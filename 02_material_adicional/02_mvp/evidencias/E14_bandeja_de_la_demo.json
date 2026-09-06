@@ -1,0 +1,64 @@
+{
+  "generado": "2026-09-05T18:38:15",
+  "version_politica": "v2026_09",
+  "expedientes": [
+    {
+      "etiqueta": "D1",
+      "solicitud_id": "SOL-689ce3eab0e9",
+      "ruta": "auto",
+      "estado": "emitida",
+      "http": 201
+    },
+    {
+      "etiqueta": "D2",
+      "solicitud_id": "SOL-13f58ae117e3",
+      "ruta": "agente",
+      "estado": "agente",
+      "http": 201
+    },
+    {
+      "etiqueta": "D3",
+      "solicitud_id": "SOL-450ee590fdef",
+      "ruta": "hitl",
+      "estado": "hitl",
+      "http": 201
+    },
+    {
+      "etiqueta": "D4",
+      "solicitud_id": "SOL-a470a2ee5065",
+      "ruta": "hitl",
+      "estado": "hitl",
+      "http": 201
+    },
+    {
+      "etiqueta": "D5",
+      "solicitud_id": "-- sin expediente --",
+      "ruta": "-",
+      "estado": "rechazada_guardrail",
+      "http": 201
+    }
+  ],
+  "consultas": [
+    "¿Cuántos días de carencia tiene la cesárea programada en el plan VIT-INT?",
+    "¿Cuántos días de carencia tiene la cobertura de salud mental?",
+    "¿La colecistectomía laparoscópica requiere preautorización?",
+    "¿Cuánto es el deducible anual del plan VIT-ESE?",
+    "¿Cuánto tiempo debo esperar desde mi afiliación para que me cubran un parto por cesárea si tengo el plan Integral?",
+    "¿Cuántos días debo esperar para que me cubran una terapia psicológica?",
+    "¿Cuánto es el deducible anual del plan VIT-ESE?"
+  ],
+  "resumen": [
+    {
+      "estado": "hitl",
+      "n": 2
+    },
+    {
+      "estado": "agente",
+      "n": 1
+    },
+    {
+      "estado": "emitida",
+      "n": 1
+    }
+  ]
+}

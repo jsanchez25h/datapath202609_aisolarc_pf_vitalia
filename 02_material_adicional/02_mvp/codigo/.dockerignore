@@ -1,0 +1,13 @@
+# Nada de esto tiene que estar dentro de la imagen.
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+# Credenciales: aunque `variables.sh` vive un nivel más arriba y no entraría en
+# el contexto, la regla queda escrita para que siga siendo cierto si alguien
+# mueve el archivo.
+variables.sh
+.env
+*.json.key
+.gcp/

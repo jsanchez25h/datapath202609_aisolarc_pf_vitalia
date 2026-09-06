@@ -1,0 +1,23 @@
+{
+  "generado": "2026-09-06T09:35:00",
+  "que_es": "Capturas de las consolas de los servicios que sostienen el MVP, tomadas el 2026-09-06 entre las 09:18 y las 09:22 hora de Lima. Complementan a evidencias/pantallas/, que retrata la aplicacion; aqui se retrata la infraestructura.",
+  "regla_de_seguridad": "Ninguna captura muestra el valor de una clave. Los secretos aparecen por nombre (Secret Manager) o como referencia montada (Cloud Run). Ni la URL del cluster Qdrant ni la cadena de conexion de Neon son visibles en ninguna imagen.",
+  "proyecto_gcp": "datapath-labs-202608",
+  "region": "us-central1",
+  "capturas": [
+    {"id": "C01", "archivo": "C01_qdrant_coleccion_politica.png", "consola": "Qdrant Cloud", "objeto": "vitalia_politica_v2026_09", "sesion": "S05", "prueba": "112 puntos, dim 3072, Cosine, HNSW m=16 ef_construct=100, status green, y el alias politica_actual apuntando a la coleccion (ADR-21)"},
+    {"id": "C02", "archivo": "C02_qdrant_cache_semantico.png", "consola": "Qdrant Cloud", "objeto": "vitalia_cache_semantico", "sesion": "S02", "prueba": "el payload real del cache: clave determinista v2026_09|todos|salud_mental|carencia, la respuesta, las citas y el sha256 del corpus. El cache guarda citas, no solo texto"},
+    {"id": "C03", "archivo": "C03_neon_adjudicacion.png", "consola": "Neon", "objeto": "vitalia_mvp.adjudicacion", "sesion": "S04", "prueba": "R1 leido en el dato: determinista=true y modelo NULL en las cuatro adjudicaciones"},
+    {"id": "C04", "archivo": "C04_neon_politica_version.png", "consola": "Neon", "objeto": "vitalia_mvp.politica_version", "sesion": "S04", "prueba": "la version v2026_09 sellada con su sha256, su vigencia y quien la aprobo"},
+    {"id": "C05", "archivo": "C05_neon_borrador_carta.png", "consola": "Neon", "objeto": "vitalia_mvp.borrador_carta", "sesion": "S06", "prueba": "borradores aprobados por el guardrail y todavia sin emitir: aprobada_guardrail=true y ninguna carta detras"},
+    {"id": "C06", "archivo": "C06_neon_metrica_costo.png", "consola": "Neon", "objeto": "vitalia_mvp.metrica_costo", "sesion": "S02 / S10", "prueba": "30 filas de costo por span; el tramo adjudicacion figura con proveedor ninguno, modelo NULL y 0 tokens"},
+    {"id": "C07", "archivo": "C07_cloud_run_revision_y_variables.png", "consola": "GCP · Cloud Run", "objeto": "vitalia-mesa · revision vitalia-mesa-00001-srk", "sesion": "S10", "prueba": "1 CPU / 2 GiB, 14 variables de entorno y los cinco secretos montados por referencia (Secreto: nombre:latest), nunca por valor"},
+    {"id": "C08", "archivo": "C08_cloud_run_observabilidad.png", "consola": "GCP · Cloud Run", "objeto": "vitalia-mesa · Observabilidad", "sesion": "S10", "prueba": "recuento de solicitudes, latencias p50/p95/p99, desglose de latencia e instancias facturables del servicio real"},
+    {"id": "C09", "archivo": "C09_cloud_build_historial.png", "consola": "GCP · Cloud Build", "objeto": "Historial de compilaciones", "sesion": "S10", "prueba": "seis compilaciones correctas en us-central1; la del MVP es 1a3e7826, 1 min 32 s"},
+    {"id": "C10", "archivo": "C10_cloud_storage_cloudbuild.png", "consola": "GCP · Cloud Storage", "objeto": "datapath-labs-202608_cloudbuild", "sesion": "S04", "prueba": "el bucket donde Cloud Build deja el contexto de construccion"},
+    {"id": "C11", "archivo": "C11_secret_manager_secretos.png", "consola": "GCP · Secret Manager", "objeto": "5 secretos vitalia-*", "sesion": "S08", "prueba": "las cinco claves del MVP viven en Secret Manager con replicacion automatica y encriptacion administrada por Google. La lista muestra nombres, no valores"},
+    {"id": "C12", "archivo": "C12_model_armor_plantilla.png", "consola": "GCP · Seguridad · Model Armor", "objeto": "plantilla vitalia-preauth", "sesion": "S09", "prueba": "el recurso projects/datapath-labs-202608/locations/us-central1/templates/vitalia-preauth creado el 6 sept 2026 8:37, con residencia de datos aplicada"},
+    {"id": "C13", "archivo": "C13_model_armor_detecciones.png", "consola": "GCP · Seguridad · Model Armor", "objeto": "plantilla vitalia-preauth · detecciones", "sesion": "S09", "prueba": "URLs maliciosas y proteccion de datos sensibles habilitadas, inyeccion/jailbreak en Bajo y superior, los cuatro filtros de IA responsable en Medio y superior, y el registro de operaciones deshabilitado"},
+    {"id": "C14", "archivo": "C14_groq_consumo.png", "consola": "Groq", "objeto": "Usage · septiembre 2026", "sesion": "S01 / S09", "prueba": "US$ 0.06 de gasto total, con openai/gpt-oss-safeguard-20b como el modelo del guardrail y actividad concentrada en el 5 y 6 de septiembre"}
+  ]
+}

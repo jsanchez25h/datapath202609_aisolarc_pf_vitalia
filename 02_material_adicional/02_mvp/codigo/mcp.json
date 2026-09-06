@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "vitalia": {
+      "command": "F:\\Laboral\\xampp\\htdocs\\datapath_ai_solutions_architech_202608\\Modulo05\\Sesion10\\Proyecto\\fase2\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-u",
+        "-m",
+        "mcp_vitalia.servidor",
+        "--solo-lectura"
+      ],
+      "cwd": "F:\\Laboral\\xampp\\htdocs\\datapath_ai_solutions_architech_202608\\Modulo05\\Sesion10\\Proyecto\\fase2\\codigo",
+      "env": {}
+    }
+  }
+}

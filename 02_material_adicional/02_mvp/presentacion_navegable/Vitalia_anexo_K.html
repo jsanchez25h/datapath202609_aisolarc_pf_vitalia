@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vitalia Salud EPS · Anexo K · Evidencias del MVP (fase 2)</title>
+<style>
+:root{
+  --navy:#1F3864; --navy-l:#D6DCE5;
+  --blue:#2E75B6; --blue-l:#DEEBF7;
+  --green:#548235; --green-l:#E2EFDA;
+  --amber:#BF8F00; --amber-l:#FFF2CC;
+  --orange:#C55A11; --orange-l:#FBE5D6;
+  --red:#A61C00; --red-l:#FBD9D3;
+  --purple:#7030A0; --purple-l:#E9DFF3;
+  --gray:#7F7F7F; --gray-l:#F2F2F2;
+  --ink:#1A1A1A; --paper:#FFFFFF;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#3A3F4B;font-family:Helvetica,Arial,sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.slide{
+  position:relative;width:1280px;height:720px;background:var(--paper);
+  border:2px solid var(--navy);display:none;flex-direction:column;flex:0 0 auto;
+}
+.slide.on{display:flex}
+/* ---- cabecera y pie tipo plano ---- */
+.hd{background:var(--navy);color:#fff;height:58px;display:flex;align-items:center;padding:0 22px;gap:16px;flex:0 0 auto}
+.hd .n{font-size:12px;letter-spacing:.12em;opacity:.75;white-space:nowrap}
+.hd h1{font-size:21px;margin:0;font-weight:bold;line-height:1.15}
+.hd .tag{margin-left:auto;font-size:10px;border:1px solid rgba(255,255,255,.5);padding:3px 9px;letter-spacing:.1em;white-space:nowrap}
+.hd.thin{height:34px}
+.hd.thin .n{font-size:10.5px;opacity:.7}
+.hd.thin h1{font-size:14px}
+.hd.thin .tag{font-size:9px;padding:2px 8px}
+.bd{flex:1 1 auto;padding:16px 22px;overflow:hidden;display:flex;flex-direction:column;gap:11px}
+.bd.plano{padding:7px 9px;gap:0}
+.ft{height:26px;flex:0 0 auto;border-top:1px solid var(--navy);display:flex;align-items:center;
+    padding:0 22px;font-size:9px;color:var(--gray);gap:14px}
+.ft .r{margin-left:auto}
+/* ---- utilidades ---- */
+.row{display:flex;gap:12px;align-items:stretch;min-height:0}
+.col{display:flex;flex-direction:column;gap:11px;min-width:0;min-height:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+.grow{flex:1 1 auto}
+.box{border:1px solid var(--navy);padding:9px 12px;font-size:12px;line-height:1.4}
+.box h3{margin:0 0 5px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.box.navy{background:var(--navy-l)} .box.blue{background:var(--blue-l);border-color:var(--blue)}
+.box.green{background:var(--green-l);border-color:var(--green)} .box.amber{background:var(--amber-l);border-color:var(--amber)}
+.box.red{background:var(--red-l);border-color:var(--red)} .box.purple{background:var(--purple-l);border-color:var(--purple)}
+.box.orange{background:var(--orange-l);border-color:var(--orange)} .box.gray{background:var(--gray-l);border-color:var(--gray)}
+.box.solid{background:var(--navy);color:#fff} .box.solid h3{color:#fff;opacity:.8}
+.box.solid b,.box.solid .lead b,.box.solid small{color:#fff}
+.box.solid small{opacity:.82}
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{background:var(--navy);color:#fff;text-align:left;padding:5px 8px;font-size:10px;letter-spacing:.05em;font-weight:bold}
+td{border:1px solid #C9CDD6;padding:4px 8px;vertical-align:top}
+tr:nth-child(even) td{background:#FAFBFC}
+td.n,th.n{text-align:right;white-space:nowrap}
+.kpi{border:1px solid var(--navy);padding:8px 10px;text-align:center}
+.kpi .v{font-size:25px;font-weight:bold;color:var(--navy);line-height:1.05}
+.kpi .k{font-size:9.5px;color:var(--gray);text-transform:uppercase;letter-spacing:.07em;margin-top:3px;line-height:1.25}
+.kpi.bad .v{color:var(--red)} .kpi.good .v{color:var(--green)}
+.lead{font-size:14px;line-height:1.45}
+.lead b{color:var(--navy)}
+small{font-size:10px;color:var(--gray);line-height:1.35;display:block}
+.fig{border:1px solid var(--navy);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;min-height:0}
+.fig.full{border:none;padding:0}
+.fig img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.cap{font-size:9px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.pill{display:inline-block;border:1px solid var(--navy);padding:1px 7px;font-size:10px;margin:0 4px 4px 0;background:#fff}
+.pill.r{border-color:var(--red);color:var(--red)} .pill.g{border-color:var(--green);color:var(--green)}
+.no{color:var(--red);font-weight:bold} .si{color:var(--green);font-weight:bold}
+ul{margin:3px 0 0 15px;padding:0;font-size:12px;line-height:1.5} li{margin-bottom:3px}
+.q{border-left:4px solid var(--navy);background:var(--gray-l);padding:8px 12px;font-size:12.5px;line-height:1.45}
+.q b{color:var(--navy)}
+/* ---- portada ---- */
+.cover{display:flex;flex-direction:column;height:100%;padding:0}
+.cover .top{flex:1 1 auto;background:var(--navy);color:#fff;padding:56px 60px;display:flex;flex-direction:column;justify-content:center}
+.cover .top .eyebrow{font-size:12px;letter-spacing:.28em;opacity:.7;margin-bottom:18px}
+.cover .top h1{font-size:44px;margin:0 0 10px;line-height:1.1}
+.cover .top h2{font-size:20px;margin:0;font-weight:normal;opacity:.85;line-height:1.35}
+.cover .bot{flex:0 0 auto;padding:22px 60px;display:flex;gap:40px;font-size:12px}
+.cover .bot div span{display:block;font-size:9.5px;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:3px}
+/* ---- navegación ---- */
+#nav{position:fixed;bottom:10px;right:14px;background:rgba(31,56,100,.94);
+     color:#fff;font-size:12px;padding:6px 14px;border-radius:2px;display:flex;gap:12px;align-items:center;z-index:9}
+#nav button{background:none;border:1px solid rgba(255,255,255,.45);color:#fff;cursor:pointer;font-size:12px;padding:1px 8px}
+#hint{position:fixed;top:12px;right:14px;color:#C9CDD6;font-size:11px;z-index:9}
+@media print{
+  @page{size:33.87cm 19.05cm;margin:0}
+  html,body{background:#fff}
+  #stage{position:static;display:block;overflow:visible}
+  #nav,#hint{display:none}
+  .slide{display:flex!important;transform:none!important;page-break-after:always;break-after:page;border:none;
+         width:1280px;height:720px;margin:0}
+  .slide:last-child{page-break-after:auto}
+}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<!-- ══════════════════════ 1 · PORTADA DEL ANEXO ══════════════════════ -->
+<section class="slide">
+  <div class="cover">
+    <div class="top">
+      <div class="eyebrow">PROYECTO FINAL · FASE 2 · ANEXO DE EVIDENCIA</div>
+      <h1>Anexo K · El MVP funcionando</h1>
+      <h2>Vitalia Salud EPS · mesa de preautorización de procedimientos programados<br>
+      La interfaz final y los servicios de las diez sesiones, corriendo</h2>
+    </div>
+    <div class="bot">
+      <div><span>Autor</span>Jonatan Sánchez</div>
+      <div><span>Programa</span>DataPath · AI Solutions Architect · 2026-08</div>
+      <div><span>Fecha</span>2026-09-06</div>
+      <div><span>Política vigente</span>v2026_09 · 112 fragmentos</div>
+      <div><span>Despliegue</span>Cloud Run · us-central1</div>
+      <div><span>Relación con la fase 1</span>Se suma a los anexos A–J</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ 2 · EL MAPA SESIÓN → EVIDENCIA ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">ANEXO K / 1</div><h1>Una fila por sesión, sin excepciones</h1>
+    <div class="tag">7 CERRADAS · 3 PARCIALES · 1 PENDIENTE</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <div class="col" style="flex:2.05">
+        <table style="flex:1 1 auto">
+          <tr><th style="width:42px">Ses.</th><th>Servicio que se demuestra</th><th style="width:27%">Dónde vive en el MVP</th><th style="width:13%">Estado</th></tr>
+          <tr><td><b>S01</b></td><td>Enrutamiento por complejidad: la tarea elige el modelo</td><td>comun/router_modelos.py</td><td><span class="si">✓</span> cerrada</td></tr>
+          <tr><td><b>S02</b></td><td>Caché semántico de clave determinista y costo por span</td><td>comun/cache_semantico.py · pantalla 5</td><td><span class="si">✓</span> cerrada</td></tr>
+          <tr><td><b>S03</b></td><td>kind + Helm + Ollama como motor de degradación N3</td><td>—</td><td>pendiente</td></tr>
+          <tr><td><b>S04</b></td><td>Ingesta: 11 docs → cláusula → sha256 + versión → alias</td><td>ingesta/pipeline_politica.py</td><td><span class="si">✓</span> cerrada</td></tr>
+          <tr><td><b>S05</b></td><td>Qdrant Cloud, HNSW, texto literal en el payload</td><td>comun/recuperacion.py</td><td>parcial</td></tr>
+          <tr><td><b>S06</b></td><td>RAG con cita textual verificada · guardrail O1–O6</td><td>flujo/ · guardrails/salida.py</td><td>parcial</td></tr>
+          <tr><td><b>S07</b></td><td>El único agente: subsanación. Servidor MCP propio, 4 tools</td><td>mcp_vitalia/</td><td><span class="si">✓</span> cerrada</td></tr>
+          <tr><td><b>S08</b></td><td>Skills versionadas y seis ganchos como middleware</td><td>mcp_vitalia/ganchos.py · skills/</td><td><span class="si">✓</span> cerrada</td></tr>
+          <tr><td><b>S09</b></td><td>Guardrail de 8 capas + red team R01–R16, y <b>Model Armor</b> medido contra él</td><td>guardrails/entrada.py · model_armor.py</td><td><span class="si">✓</span> cerrada</td></tr>
+          <tr><td><b>S10</b></td><td>Costo por span, latencias p50/p95 y feedback loop</td><td>metrica_costo en Neon · pantalla 5</td><td>parcial</td></tr>
+        </table>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="g2">
+          <div class="kpi good"><div class="v">16/16</div><div class="k">ataques detectados<br>0 falsos positivos</div></div>
+          <div class="kpi good"><div class="v">5/5</div><div class="k">citas verificadas<br>carácter por carácter</div></div>
+          <div class="kpi"><div class="v">112</div><div class="k">fragmentos de política<br>segmentados por cláusula</div></div>
+          <div class="kpi"><div class="v">40%</div><div class="k">aciertos de caché<br>0 falsos aciertos</div></div>
+        </div>
+        <div class="box amber"><h3>El orden de trabajo fue el inverso</h3>
+          <small>El riesgo de esta fase era construir un chatbot RAG bonito que demostrase dos sesiones
+          de diez. Por eso <b>primero se escribió el mapa de evidencias y después el código</b>:
+          si una sesión no tenía fila, no estaba demostrada.</small></div>
+        <div class="box grow"><h3>Lo que produjo la corrida</h3>
+          <small>7,524 líneas de Python en 8 paquetes · 7 suites de prueba con <b>0 fallos</b> ·
+          15 archivos de evidencia · 7 capturas · y <b>21 defectos encontrados y corregidos</b>,
+          cada uno con su porqué escrito.
+          <br><br>El más incómodo: <b>ningún umbral de similitud es seguro por sí solo</b> para decidir
+          un acierto de caché — las reformulaciones legítimas miden 0.598–0.787 y una pregunta de otra
+          cobertura mide 0.780.</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Anexo K §K.1</span>
+    <span>Lo parcial y lo pendiente está listado con nombre y apellido en §K.6 — un anexo que declara diez de diez cuando son siete no es un anexo</span>
+    <span class="r">fase2/09_ANEXO_K_evidencias.md</span></div>
+</section>
+
+<!-- ══════════════════════ 3 · LA INTERFAZ FINAL ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">ANEXO K / 2</div><h1>La interfaz final: cinco pantallas, siete capturas, siete URLs</h1>
+    <div class="tag">CADA CAPTURA ES UNA URL</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <div class="col" style="flex:2.15;min-height:0">
+        <div class="g2 grow" style="min-height:0">
+          <div class="col" style="min-height:0">
+            <div class="fig"><img src="img/P1_ingreso.png" alt="Pantalla de ingreso" style="width:100%"></div>
+            <div class="cap">1 · Ingreso &nbsp;#/ingreso</div>
+          </div>
+          <div class="col" style="min-height:0">
+            <div class="fig"><img src="img/P2_consulta_n1.png" alt="Consulta anticipada N1" style="width:100%"></div>
+            <div class="cap">2 · Consulta anticipada &nbsp;#/n1/AF-100234</div>
+          </div>
+          <div class="col" style="min-height:0">
+            <div class="fig"><img src="img/P3_bandeja.png" alt="Bandeja de la mesa" style="width:100%"></div>
+            <div class="cap">3 · Bandeja &nbsp;#/bandeja</div>
+          </div>
+          <div class="col" style="min-height:0">
+            <div class="fig"><img src="img/P5_panel.png" alt="Panel de operación" style="width:100%"></div>
+            <div class="cap">5 · Panel de operación &nbsp;#/panel</div>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="box blue"><h3>2 · el carril que evita la cola</h3>
+          <small>Respuesta <b>desde caché</b>: <b>US$ 0.000000</b>, con la cláusula citada y
+          <b>verificada literal</b> contra el corpus vigente. Es el <b>41% del volumen</b> que hoy entra
+          a la mesa sin necesidad de entrar.</small></div>
+        <div class="box green"><h3>3 · un solo reloj para todos</h3>
+          <small>Cuatro expedientes con la ruta que decidió el motor determinista en E3 —automática,
+          subsanación, mesa, mesa— y el semáforo del SLA <b>calculado en la base</b>, no en cada
+          pantalla.</small></div>
+        <div class="box purple"><h3>5 · lo que cuesta y lo que falla</h3>
+          <small>Costo por solicitud, hit-rate del caché, p50/p95 por tramo, guardrail de entrada y de
+          salida, feedback y la <b>versión de política vigente</b>. S02 y S10 en la misma vista.</small></div>
+        <div class="box gray grow" style="display:flex;flex-direction:column;justify-content:center">
+          <small>Falta la pantalla <b>4</b>, el detalle del expediente. Tiene tres variantes y es la que
+          se enseña en la defensa: va sola en la lámina siguiente.</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Anexo K §K.2</span>
+    <span>La interfaz enruta por <b>hash</b>: cualquiera reabre la misma pantalla sin repetir una secuencia de clics que nadie anotó — <b>veto V2</b></span>
+    <span class="r">fase2/evidencias/pantallas/INDICE.json</span></div>
+</section>
+
+<!-- ══════════════════════ 4 · LA PANTALLA DE LA DEFENSA ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">ANEXO K / 3 · PANTALLA 4a</div><h1>El detalle del expediente — una negación escrita, controlada y sin emitir</h1>
+    <div class="tag">ADR-10 · EL SISTEMA NUNCA NIEGA SOLO</div></div>
+  <!-- La captura mide 1440x2150: puesta entera en una lámina apaisada queda en una
+       franja central ilegible. Se parte por la mitad y se leen las dos mitades una al
+       lado de la otra —es la misma imagen del anexo, sin recortar nada. -->
+  <div class="bd plano">
+    <div class="row grow" style="gap:10px">
+      <div class="col" style="flex:1;justify-content:center;gap:4px">
+        <div class="fig" style="padding:2px"><div style="width:100%;aspect-ratio:1440/1075;
+             background:url('img/P4a_expediente_pendiente.png') top center/100% auto no-repeat"></div></div>
+        <div class="cap">Arriba · lo determinista y lo interpretativo · el fundamento citado · los seis controles</div>
+      </div>
+      <div class="col" style="flex:1;justify-content:center;gap:4px">
+        <div class="fig" style="padding:2px"><div style="width:100%;aspect-ratio:1440/1075;
+             background:url('img/P4a_expediente_pendiente.png') bottom center/100% auto no-repeat"></div></div>
+        <div class="cap">Abajo · el borrador de carta sin emitir · la bitácora append-only · el costo del expediente</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>#/expediente/SOL-450ee590fdef</span>
+    <span>Qué mirar: <b>carencia no cumplida, 220 días de 300</b> · la columna determinista con <b>US$ 0.000000</b> · la cita verificada · los seis controles en verde · y el estado <b>hitl</b></span>
+    <span class="r">Anexo K §K.2.1</span></div>
+</section>
+
+<!-- ══════════════════════ 5 · LO QUE ESA PANTALLA DEMUESTRA ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">ANEXO K / 4</div><h1>Los invariantes, leídos del dato y no de la documentación</h1>
+    <div class="tag">R1 · R2 · R3 · V1 · V2 · V3</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <div class="col" style="flex:1.25">
+        <table style="flex:1 1 auto">
+          <tr><th style="width:52px">Inv.</th><th>Cómo se comprueba, sin creerle a nadie</th></tr>
+          <tr><td><b>R1</b></td><td>El tramo <b>adjudicacion</b> de <b>metrica_costo</b> tiene <b>modelo = NULL</b>, 0 tokens y <b>US$ 0.000000</b> en las cuatro solicitudes. Al lado, <b>extraccion.modelo = gpt-4o-mini</b>. La asimetría está en el dato.</td></tr>
+          <tr><td><b>R2</b></td><td>O1 exige <b>al menos una</b> cita y la compara carácter por carácter; O2 comprueba que la versión citada estaba vigente. En el Carril 0, el control <b>sin_cita</b> sustituye la respuesta sin cita por la frase SIN_CLÁUSULA.</td></tr>
+          <tr><td><b>R3</b></td><td>Es una <b>restricción de base de datos</b>, no una validación de aplicación:<br><b>CHECK (tipo &lt;&gt; 'niega_necesidad_medica' OR firma_id IS NOT NULL)</b></td></tr>
+          <tr><td><b>V1</b></td><td>El caché <b>no lee ni escribe</b> cuando no puede clasificar la pregunta. Prefiere no responder a responder de otra cobertura.</td></tr>
+          <tr><td><b>V2</b></td><td>Tres comandos rehacen el estado entero y las siete capturas desde una base vacía — y el destino se cambia con <b>VITALIA_BASE</b>, así que se rehacen igual contra <b>Cloud Run</b>.</td></tr>
+          <tr><td><b>V3</b></td><td>El guardrail de entrada <b>cortocircuita</b> en la primera capa que bloquea: no se paga Groq si una regex ya decidió. Y las 4 entradas legítimas dan <b>0 falsos positivos</b>.</td></tr>
+        </table>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="box navy"><h3>ADR-10 en la superficie de herramientas</h3>
+          <small>El servidor MCP expone <b>cuatro</b> tools. No hay ninguna que emita una carta, que
+          niegue, ni que cambie el estado de un expediente. <b>No están restringidas por permisos:
+          no están escritas.</b> Un agente conectado ahí puede leerlo todo, calcular cualquier cosa y
+          redactar una subsanación — y no tiene forma de resolver una solicitud.</small></div>
+        <div class="box amber"><h3>Y lo que el MVP no demuestra</h3>
+          <small>Sin integración con el core · sin firma digital real · sin Identity Platform · sin
+          Acredita Salud. Volumen de demostración, no las 7,800 solicitudes/mes.
+          <br><b>S03, S05, S06 y S10</b> siguen parciales o pendientes, y están listadas una a una.
+          <br>La URL de Cloud Run <b>no es pública</b>: la política de organización rechaza
+          <b>allUsers</b>, y la excepción no depende del proyecto.
+          <br><b>Model Armor</b> se activó y se midió: <b>11 de 16 ataques</b> frente a 16 de las capas propias.</small></div>
+        <div class="box solid grow" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="lead" style="font-size:15px;line-height:1.5">
+          El MVP no demuestra que el sistema sea capaz de decidir. Demuestra <b>lo contrario</b>, que es
+          lo que este diseño vino a sostener.<br><br>
+          En la pantalla 4a hay una carta de negación escrita, controlada y <b>sin emitir</b>, esperando
+          a una persona. La máquina de estados <b>no tiene ninguna transición</b> que la saque de ahí
+          sin que alguien firme.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización · Anexo K</span>
+    <span>15 evidencias · 7 capturas · 21 defectos corregidos · 0 fallos en las siete suites</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+</div></div>
+
+<div id="hint">← → navegar &nbsp;·&nbsp; F pantalla completa &nbsp;·&nbsp; Ctrl/Cmd+P imprimir a PDF</div>
+<div id="nav">
+  <button id="prev">◀</button><span id="cnt">1 / 20</span><button id="next">▶</button>
+</div>
+
+<script>
+(function(){
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var i = 0, stage = document.getElementById('stage'), cnt = document.getElementById('cnt');
+  function fit(){
+    var s = Math.min(window.innerWidth/1320, window.innerHeight/760);
+    slides.forEach(function(el){ el.style.transform = 'scale(' + s + ')'; });
+  }
+  function show(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(el,k){ el.classList.toggle('on', k===i); });
+    cnt.textContent = (i+1) + ' / ' + slides.length;
+    if (location.hash !== '#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  document.getElementById('next').onclick = function(){ show(i+1); };
+  document.getElementById('prev').onclick = function(){ show(i-1); };
+  document.addEventListener('keydown', function(e){
+    if (e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ') { show(i+1); e.preventDefault(); }
+    else if (e.key==='ArrowLeft'||e.key==='PageUp') { show(i-1); e.preventDefault(); }
+    else if (e.key==='Home') show(0);
+    else if (e.key==='End') show(slides.length-1);
+    else if (e.key==='f'||e.key==='F') {
+      if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen();
+    }
+  });
+  stage.addEventListener('click', function(e){ show(e.clientX < window.innerWidth/2 ? i-1 : i+1); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('beforeprint', function(){ slides.forEach(function(el){ el.style.transform='none'; }); });
+  window.addEventListener('afterprint', fit);
+  fit();
+  show(parseInt((location.hash||'#1').slice(1),10)-1 || 0);
+})();
+</script>
+</body>
+</html>

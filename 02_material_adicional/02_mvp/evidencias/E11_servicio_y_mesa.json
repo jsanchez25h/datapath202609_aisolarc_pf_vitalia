@@ -1,0 +1,365 @@
+{
+  "salud": {
+    "version_politica": "v2026_09",
+    "alias": "politica_actual",
+    "neon": {
+      "ok": true,
+      "solicitudes": 3
+    },
+    "qdrant": {
+      "ok": true,
+      "puntos": 112
+    },
+    "ok": true
+  },
+  "expediente": {
+    "solicitud_id": "SOL-c3edb7ce3b1d",
+    "estado_inicial": "hitl",
+    "ruta": "hitl",
+    "motivo_ruta": "carencia no cumplida: el sistema no emite la negación, escala con la cita y el borrador",
+    "modelo_extraccion": "gpt-4o-mini",
+    "modelo_adjudicacion": null,
+    "adjudicacion_determinista": true,
+    "borradores_previos": 1
+  },
+  "A_carta_editada_con_cita_inventada": {
+    "http": 409,
+    "emitida": false,
+    "bloquearon": [
+      "O1"
+    ],
+    "controles": [
+      {
+        "codigo": "O1",
+        "nombre": "La cita existe literalmente",
+        "paso": false,
+        "detalle": "la carta afirma sobre la política y no cita ninguna cláusula · 1 cita(s) sin fragmento de origen: «la cobertura de maternidad se activa a los 90 días de afilia…»",
+        "accion": "descartar la respuesta y escalar"
+      },
+      {
+        "codigo": "O2",
+        "nombre": "La versión citada estaba vigente",
+        "paso": true,
+        "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+        "accion": ""
+      },
+      {
+        "codigo": "O3",
+        "nombre": "Consistencia determinista ↔ prosa",
+        "paso": true,
+        "detalle": "el motor no calculó copago y la carta no afirma ninguno",
+        "accion": ""
+      },
+      {
+        "codigo": "O4",
+        "nombre": "Sin negación clínica sin firma",
+        "paso": true,
+        "detalle": "no es una negación por necesidad médica",
+        "accion": ""
+      },
+      {
+        "codigo": "O5",
+        "nombre": "Sin PII fuera de destino",
+        "paso": true,
+        "detalle": "destino es el titular: la carta lleva sus datos por diseño",
+        "accion": ""
+      },
+      {
+        "codigo": "O6",
+        "nombre": "Esquema y catálogo",
+        "paso": true,
+        "detalle": "1 código(s), las fuentes declaradas y los fundamentos del motor resuelven contra el corpus vigente",
+        "accion": ""
+      }
+    ]
+  },
+  "A2_fuente_ajena_al_expediente": {
+    "http": 409,
+    "emitida": false,
+    "bloquearon": [
+      "O6"
+    ],
+    "controles": [
+      {
+        "codigo": "O1",
+        "nombre": "La cita existe literalmente",
+        "paso": true,
+        "detalle": "las 1 citas coinciden carácter por carácter",
+        "accion": ""
+      },
+      {
+        "codigo": "O2",
+        "nombre": "La versión citada estaba vigente",
+        "paso": true,
+        "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+        "accion": ""
+      },
+      {
+        "codigo": "O3",
+        "nombre": "Consistencia determinista ↔ prosa",
+        "paso": true,
+        "detalle": "el motor no calculó copago y la carta no afirma ninguno",
+        "accion": ""
+      },
+      {
+        "codigo": "O4",
+        "nombre": "Sin negación clínica sin firma",
+        "paso": true,
+        "detalle": "no es una negación por necesidad médica",
+        "accion": ""
+      },
+      {
+        "codigo": "O5",
+        "nombre": "Sin PII fuera de destino",
+        "paso": true,
+        "detalle": "destino es el titular: la carta lleva sus datos por diseño",
+        "accion": ""
+      },
+      {
+        "codigo": "O6",
+        "nombre": "Esquema y catálogo",
+        "paso": false,
+        "detalle": "FUENTES fuera del contexto: reembolsos-v2026_09-c10",
+        "accion": "escalar"
+      }
+    ]
+  },
+  "B_aprueba_el_borrador_del_sistema": {
+    "http": 200,
+    "emitida": true,
+    "carta_id": "CAR-71ffb7b2df72",
+    "tipo": "niega_administrativa",
+    "editada_por_persona": false
+  },
+  "C_reintento_sobre_expediente_ya_emitido": {
+    "http": 409,
+    "detalle": "el expediente está en «emitida» y la máquina de estados solo admite hitl → E4. Los expedientes en «agente» esperan documentos del prestador, no una firma."
+  },
+  "D_interfaz_servida_por_el_mismo_proceso": {
+    "http": 200,
+    "bytes": 34426,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "E_acierto_de_cache_conserva_las_citas": {
+    "fresca": {
+      "origen": "modelo",
+      "citas": 1,
+      "costo_usd": 0.0002751,
+      "latencia_ms": 7317
+    },
+    "cacheada": {
+      "origen": "cache",
+      "citas": 1,
+      "costo_usd": 0.0,
+      "similitud": 1.0,
+      "latencia_ms": 1392,
+      "clave": "v2026_09|VIT-INT|maternidad|carencia"
+    },
+    "citas": [
+      {
+        "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.",
+        "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+        "articulo": "Carencia de maternidad",
+        "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+        "version_id": "v2026_09"
+      }
+    ]
+  },
+  "F_carril0_escribe_su_costo": {
+    "cache_antes": {
+      "lecturas": 0,
+      "aciertos": 0,
+      "hit_rate": null
+    },
+    "cache_despues": {
+      "lecturas": 2,
+      "aciertos": 1,
+      "hit_rate": 0.5
+    },
+    "span_n1": {
+      "span": "n1",
+      "llamadas": 2,
+      "costo_usd": 0.0002751,
+      "tokens_in": 1236,
+      "tokens_out": 303,
+      "p50_ms_aprox": 4355.0,
+      "p50_ms": 4354.5,
+      "p95_ms": 7020.75,
+      "aciertos_cache": 1
+    }
+  },
+  "bitacora_final": [
+    {
+      "desde": "recibida",
+      "hacia": "E1",
+      "actor": "sistema",
+      "motivo": "extracción validada contra catálogo (gpt-4o-mini)",
+      "ts": "2026-09-05T22:30:45.157758+00:00"
+    },
+    {
+      "desde": "E1",
+      "hacia": "E2",
+      "actor": "motor-determinista",
+      "motivo": "carencia de maternidad no cumplida: exige 300 días y el afiliado tiene 220",
+      "ts": "2026-09-05T22:30:45.157758+00:00"
+    },
+    {
+      "desde": "E2",
+      "hacia": "E3",
+      "actor": "motor-determinista",
+      "motivo": "carencia no cumplida: el sistema no emite la negación, escala con la cita y el borrador",
+      "ts": "2026-09-05T22:30:45.157758+00:00"
+    },
+    {
+      "desde": "E3",
+      "hacia": "hitl",
+      "actor": "motor-determinista",
+      "motivo": "carencia no cumplida: el sistema no emite la negación, escala con la cita y el borrador",
+      "ts": "2026-09-05T22:30:45.157758+00:00"
+    },
+    {
+      "desde": "hitl",
+      "hacia": "E4",
+      "actor": "analista.mesa@vitalia.pe",
+      "motivo": "carta «niega_administrativa» revisada sin cambios",
+      "ts": "2026-09-05T22:31:13.849802+00:00"
+    },
+    {
+      "desde": "E4",
+      "hacia": "emitida",
+      "actor": "analista.mesa@vitalia.pe",
+      "motivo": "carta CAR-71ffb7b2df72",
+      "ts": "2026-09-05T22:31:13.849802+00:00"
+    }
+  ],
+  "cartas": [
+    {
+      "carta_id": "CAR-71ffb7b2df72",
+      "tipo": "niega_administrativa",
+      "version_politica": "v2026_09",
+      "core_folio": "FOLIO-53960a85520f",
+      "emitida_en": "2026-09-05T22:31:13.849802+00:00"
+    }
+  ],
+  "borradores_finales": [
+    {
+      "aprobada_guardrail": true,
+      "creado_en": "2026-09-05T22:31:13.849802+00:00"
+    },
+    {
+      "aprobada_guardrail": false,
+      "creado_en": "2026-09-05T22:31:09.866982+00:00"
+    },
+    {
+      "aprobada_guardrail": false,
+      "creado_en": "2026-09-05T22:31:05.369104+00:00"
+    },
+    {
+      "aprobada_guardrail": true,
+      "creado_en": "2026-09-05T22:30:45.157758+00:00"
+    }
+  ],
+  "panel": {
+    "por_span": [
+      {
+        "span": "emision",
+        "llamadas": 3,
+        "costo_usd": 0.0181725,
+        "tokens_in": 4333,
+        "tokens_out": 734,
+        "p50_ms_aprox": 2331.0,
+        "p50_ms": 2324.0,
+        "p95_ms": 2404.1,
+        "aciertos_cache": 0
+      },
+      {
+        "span": "extraccion",
+        "llamadas": 3,
+        "costo_usd": 0.00047715,
+        "tokens_in": 1305,
+        "tokens_out": 469,
+        "p50_ms_aprox": 2504.0,
+        "p50_ms": 2364.0,
+        "p95_ms": 3235.2,
+        "aciertos_cache": 0
+      },
+      {
+        "span": "n1",
+        "llamadas": 2,
+        "costo_usd": 0.0002751,
+        "tokens_in": 1236,
+        "tokens_out": 303,
+        "p50_ms_aprox": 4355.0,
+        "p50_ms": 4354.5,
+        "p95_ms": 7020.75,
+        "aciertos_cache": 1
+      },
+      {
+        "span": "adjudicacion",
+        "llamadas": 3,
+        "costo_usd": 0.0,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "p50_ms_aprox": 119.0,
+        "p50_ms": 119.0,
+        "p95_ms": 119.9,
+        "aciertos_cache": 0
+      }
+    ],
+    "solicitudes": 3,
+    "costo_usd_total": 0.018925,
+    "costo_pen_por_solicitud": 0.0237,
+    "cache": {
+      "lecturas": 2,
+      "aciertos": 1,
+      "hit_rate": 0.5
+    },
+    "ruteo": [
+      {
+        "ruta": "hitl",
+        "n": 1
+      },
+      {
+        "ruta": "auto",
+        "n": 1
+      },
+      {
+        "ruta": "agente",
+        "n": 1
+      }
+    ],
+    "guardrail": [
+      {
+        "sentido": "salida",
+        "decision": "PERMITIR",
+        "n": 34
+      },
+      {
+        "sentido": "salida",
+        "decision": "BLOQUEAR",
+        "n": 2
+      }
+    ],
+    "feedback": {
+      "pulgar_arriba": 0,
+      "pulgar_abajo": 0
+    },
+    "citas": {
+      "citas": 4,
+      "verificadas": 4
+    },
+    "politica": [
+      {
+        "version_id": "v2026_09",
+        "vigencia_desde": "2026-09-05",
+        "vigencia_hasta": null,
+        "fragmentos": 112,
+        "coleccion_qdrant": "vitalia_politica_v2026_09"
+      }
+    ]
+  },
+  "feedback": {
+    "feedback_id": 8
+  },
+  "fallos": []
+}

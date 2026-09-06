@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vitalia Salud EPS · Mesa de preautorización · Proyecto final AI Solutions Architect</title>
+<style>
+:root{
+  --navy:#1F3864; --navy-l:#D6DCE5;
+  --blue:#2E75B6; --blue-l:#DEEBF7;
+  --green:#548235; --green-l:#E2EFDA;
+  --amber:#BF8F00; --amber-l:#FFF2CC;
+  --orange:#C55A11; --orange-l:#FBE5D6;
+  --red:#A61C00; --red-l:#FBD9D3;
+  --purple:#7030A0; --purple-l:#E9DFF3;
+  --gray:#7F7F7F; --gray-l:#F2F2F2;
+  --ink:#1A1A1A; --paper:#FFFFFF;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#3A3F4B;font-family:Helvetica,Arial,sans-serif;color:var(--ink)}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.slide{
+  position:relative;width:1280px;height:720px;background:var(--paper);
+  border:2px solid var(--navy);display:none;flex-direction:column;flex:0 0 auto;
+}
+.slide.on{display:flex}
+/* ---- cabecera y pie tipo plano ---- */
+.hd{background:var(--navy);color:#fff;height:58px;display:flex;align-items:center;padding:0 22px;gap:16px;flex:0 0 auto}
+.hd .n{font-size:12px;letter-spacing:.12em;opacity:.75;white-space:nowrap}
+.hd h1{font-size:21px;margin:0;font-weight:bold;line-height:1.15}
+.hd .tag{margin-left:auto;font-size:10px;border:1px solid rgba(255,255,255,.5);padding:3px 9px;letter-spacing:.1em;white-space:nowrap}
+.hd.thin{height:34px}
+.hd.thin .n{font-size:10.5px;opacity:.7}
+.hd.thin h1{font-size:14px}
+.hd.thin .tag{font-size:9px;padding:2px 8px}
+.bd{flex:1 1 auto;padding:16px 22px;overflow:hidden;display:flex;flex-direction:column;gap:11px}
+.bd.plano{padding:7px 9px;gap:0}
+.ft{height:26px;flex:0 0 auto;border-top:1px solid var(--navy);display:flex;align-items:center;
+    padding:0 22px;font-size:9px;color:var(--gray);gap:14px}
+.ft .r{margin-left:auto}
+/* ---- utilidades ---- */
+.row{display:flex;gap:12px;align-items:stretch;min-height:0}
+.col{display:flex;flex-direction:column;gap:11px;min-width:0;min-height:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+.grow{flex:1 1 auto}
+.box{border:1px solid var(--navy);padding:9px 12px;font-size:12px;line-height:1.4}
+.box h3{margin:0 0 5px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.box.navy{background:var(--navy-l)} .box.blue{background:var(--blue-l);border-color:var(--blue)}
+.box.green{background:var(--green-l);border-color:var(--green)} .box.amber{background:var(--amber-l);border-color:var(--amber)}
+.box.red{background:var(--red-l);border-color:var(--red)} .box.purple{background:var(--purple-l);border-color:var(--purple)}
+.box.orange{background:var(--orange-l);border-color:var(--orange)} .box.gray{background:var(--gray-l);border-color:var(--gray)}
+.box.solid{background:var(--navy);color:#fff} .box.solid h3{color:#fff;opacity:.8}
+.box.solid b,.box.solid .lead b,.box.solid small{color:#fff}
+.box.solid small{opacity:.82}
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{background:var(--navy);color:#fff;text-align:left;padding:5px 8px;font-size:10px;letter-spacing:.05em;font-weight:bold}
+td{border:1px solid #C9CDD6;padding:4px 8px;vertical-align:top}
+tr:nth-child(even) td{background:#FAFBFC}
+td.n,th.n{text-align:right;white-space:nowrap}
+.kpi{border:1px solid var(--navy);padding:8px 10px;text-align:center}
+.kpi .v{font-size:25px;font-weight:bold;color:var(--navy);line-height:1.05}
+.kpi .k{font-size:9.5px;color:var(--gray);text-transform:uppercase;letter-spacing:.07em;margin-top:3px;line-height:1.25}
+.kpi.bad .v{color:var(--red)} .kpi.good .v{color:var(--green)}
+.lead{font-size:14px;line-height:1.45}
+.lead b{color:var(--navy)}
+small{font-size:10px;color:var(--gray);line-height:1.35;display:block}
+.fig{border:1px solid var(--navy);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;min-height:0}
+.fig.full{border:none;padding:0}
+.fig img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.cap{font-size:9px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.pill{display:inline-block;border:1px solid var(--navy);padding:1px 7px;font-size:10px;margin:0 4px 4px 0;background:#fff}
+.pill.r{border-color:var(--red);color:var(--red)} .pill.g{border-color:var(--green);color:var(--green)}
+.no{color:var(--red);font-weight:bold} .si{color:var(--green);font-weight:bold}
+ul{margin:3px 0 0 15px;padding:0;font-size:12px;line-height:1.5} li{margin-bottom:3px}
+.q{border-left:4px solid var(--navy);background:var(--gray-l);padding:8px 12px;font-size:12.5px;line-height:1.45}
+.q b{color:var(--navy)}
+/* ---- portada ---- */
+.cover{display:flex;flex-direction:column;height:100%;padding:0}
+.cover .top{flex:1 1 auto;background:var(--navy);color:#fff;padding:56px 60px;display:flex;flex-direction:column;justify-content:center}
+.cover .top .eyebrow{font-size:12px;letter-spacing:.28em;opacity:.7;margin-bottom:18px}
+.cover .top h1{font-size:44px;margin:0 0 10px;line-height:1.1}
+.cover .top h2{font-size:20px;margin:0;font-weight:normal;opacity:.85;line-height:1.35}
+.cover .bot{flex:0 0 auto;padding:22px 60px;display:flex;gap:40px;font-size:12px}
+.cover .bot div span{display:block;font-size:9.5px;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:3px}
+/* ---- navegación ---- */
+#nav{position:fixed;bottom:10px;right:14px;background:rgba(31,56,100,.94);
+     color:#fff;font-size:12px;padding:6px 14px;border-radius:2px;display:flex;gap:12px;align-items:center;z-index:9}
+#nav button{background:none;border:1px solid rgba(255,255,255,.45);color:#fff;cursor:pointer;font-size:12px;padding:1px 8px}
+#hint{position:fixed;top:12px;right:14px;color:#C9CDD6;font-size:11px;z-index:9}
+@media print{
+  @page{size:33.87cm 19.05cm;margin:0}
+  html,body{background:#fff}
+  #stage{position:static;display:block;overflow:visible}
+  #nav,#hint{display:none}
+  .slide{display:flex!important;transform:none!important;page-break-after:always;break-after:page;border:none;
+         width:1280px;height:720px;margin:0}
+  .slide:last-child{page-break-after:auto}
+}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<!-- ══════════════════════ 1 · PORTADA ══════════════════════ -->
+<section class="slide">
+  <div class="cover">
+    <div class="top">
+      <div class="eyebrow">DATAPATH · AI SOLUTIONS ARCHITECT · PROYECTO FINAL · COHORTE 2026-08</div>
+      <h1>Mesa de preautorización de<br>procedimientos programados</h1>
+      <h2>Vitalia Salud EPS · Perú &nbsp;—&nbsp; rediseño del proceso y arquitectura de IA<br>
+          <span style="font-size:15px;opacity:.75">Fase 1 · diseño, business case y production readiness</span></h2>
+    </div>
+    <div class="bot">
+      <div><span>Autor</span>Jonatan Sánchez</div>
+      <div><span>Fecha</span>2026-09-05</div>
+      <div><span>Presentación</span>11 láminas + 7 planos a página completa</div>
+      <div><span>Anexos</span>A–J · 11 documentos · 14 planos</div>
+      <div><span>Alcance</span>Nivel de diseño · el MVP es fase 2</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ 2 · CONTEXTO ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">CONTEXTO · LÁMINA EXTRA</div><h1>El sector, el cliente y el proceso</h1>
+    <div class="tag">PARA QUIEN NO VIENE DE SEGUROS</div></div>
+  <div class="bd">
+    <div class="row" style="flex:0 0 auto">
+      <div class="box blue" style="flex:1"><h3>El sector · aseguramiento privado en salud, Perú</h3>
+        Una aseguradora cobra una <b>cuota mensual fija</b> por persona cubierta y paga las
+        atenciones que necesite, dentro de los límites de su plan.
+        <small style="margin-top:5px"><b>IAFAS</b> financian (EPS, seguros, EsSalud, SIS) · <b>IPRESS</b> atienden
+        (clínicas y hospitales) · <b>SUSALUD</b> fiscaliza plazos, cobertura y sustento, y sanciona.
+        Una <b>EPS</b> es la figura regulada por la que una empresa redirige parte del aporte obligatorio
+        de sus trabajadores hacia una cobertura privada.</small>
+      </div>
+      <div class="box green" style="flex:1"><h3>El cliente · Vitalia Salud EPS</h3>
+        <table style="font-size:10.5px">
+          <tr><td style="width:38%">Quién paga</td><td><b>Empresas</b> — contratos corporativos</td></tr>
+          <tr><td>Quién usa</td><td>El <b>afiliado</b>: el trabajador y su familia</td></tr>
+          <tr><td>Tamaño</td><td><b>165,000</b> afiliados vigentes</td></tr>
+          <tr><td>Portafolio</td><td>Esencial 26% · <b>Integral 62%</b> · Premium 12%</td></tr>
+          <tr><td>Regulador</td><td>SUSALUD · Ley 29733 de datos personales</td></tr>
+        </table>
+      </div>
+      <div class="box amber" style="flex:1"><h3>El proceso · preautorización</h3>
+        Cuando un médico indica un procedimiento caro y programable, <b>la clínica no lo ejecuta
+        hasta que Vitalia diga que sí</b>. La mesa decide si se autoriza y con qué copago.
+        <small style="margin-top:5px"><b>Sí requieren permiso:</b> cirugías electivas, hospitalizaciones
+        programadas, imágenes de alto costo, oncología, prótesis, terapias largas y atención en el extranjero.<br>
+        <b>No lo requieren:</b> consultas ambulatorias, análisis de rutina ni emergencias.</small>
+      </div>
+    </div>
+    <div class="row grow">
+      <table style="flex:1.05">
+        <tr><th style="width:26%">En seguros de salud</th><th>Qué es</th><th style="width:33%">Equivalente en otro sector</th></tr>
+        <tr><td><b>Prima</b></td><td>Pago mensual por estar cubierto</td><td>La cuota del plan o la suscripción</td></tr>
+        <tr><td><b>Prestador</b></td><td>Clínica u hospital que atiende</td><td>El comercio afiliado donde se consume</td></tr>
+        <tr><td><b>Copago</b></td><td>Lo que paga el afiliado en cada atención</td><td>La franquicia o el cargo por transacción</td></tr>
+        <tr><td><b>Carencia</b></td><td>Espera tras contratar antes de usar un beneficio</td><td>Permanencia mínima antes de habilitar el beneficio</td></tr>
+        <tr><td><b>Exclusión</b></td><td>Lo que el contrato explícitamente no cubre</td><td>La letra pequeña del contrato</td></tr>
+        <tr><td><b>Preautorización</b></td><td><b>Permiso previo antes de un procedimiento caro</b></td><td><b>La autorización de una transacción antes del consumo</b></td></tr>
+      </table>
+      <div class="col" style="flex:.95">
+        <div class="box red"><h3>Quién depende de esta mesa</h3>
+          <small><b>Directo:</b> el paciente, que espera o desiste · la clínica, que pierde el cupo de
+          quirófano · el equipo interno saturado.<br>
+          <b>Indirecto:</b> la empresa contratante, comercial —<b>riesgo de churn de una cuenta entera,
+          cientos de afiliados a la vez</b>—, finanzas, cumplimiento ante SUSALUD y la red de prestadores.</small></div>
+        <div class="box solid grow" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="lead">En banca, cuando pasas la tarjeta, el comercio pregunta
+          <i>«¿autoriza este consumo, para este cliente, por este monto?»</i> y la respuesta llega en
+          <b>milisegundos</b>, automática y reconstruible.<br><br>
+          <b>La preautorización médica es exactamente esa pregunta.</b> Aquí demora <b>cinco días</b>,
+          la responde una persona leyendo PDFs escaneados, y muchas veces no se puede reconstruir
+          con qué versión de las reglas se respondió.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>00_modelo_del_problema.md</b> §0 y §1</span>
+    <span class="r">Jonatan Sánchez · 2026-09-05</span></div>
+</section>
+
+<!-- ══════════════════════ 3 · PLANO D-01 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-01</div><h1>Contexto de negocio y mapa de impacto</h1>
+    <div class="tag">APOYA EL CONTEXTO Y LA LÁMINA 02</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-01_contexto_negocio.png" alt="Contexto de negocio y mapa de impacto"></div></div>
+  <div class="ft"><span>D-01</span>
+    <span>Qué mirar: la mesa al centro, el <b>impacto directo</b> en la banda superior y el <b>indirecto</b> en la inferior — el churn corporativo es el más caro y el menos visible</span>
+    <span class="r">Anexo I</span></div>
+</section>
+
+<!-- ══════════════════════ 4 · LÁMINA 01 · PROBLEMA ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 01 / 10</div><h1>El problema, antes que la IA</h1>
+    <div class="tag">VER PLANOS D-01 Y D-02</div></div>
+  <div class="bd">
+    <div class="q">
+      <b>El analista de la mesa y el médico auditor de Vitalia Salud EPS</b> necesitan <b>decidir si un
+      procedimiento programado se autoriza y con qué copago</b>, durante el <b>proceso de preautorización</b>,
+      pero hoy cada solicitud recorre <b>ocho sub-procesos manuales</b> contra una política que cambia
+      seis veces al año, generando <b>6.8 días de p95 contra un compromiso contractual de 5</b> y
+      <b>S/ 235,200 al mes</b> de costo operativo.
+    </div>
+    <div class="g4" style="flex:0 0 auto">
+      <div class="kpi"><div class="v">7,800</div><div class="k">solicitudes / mes</div></div>
+      <div class="kpi"><div class="v">165 mil</div><div class="k">afiliados · 3 planes</div></div>
+      <div class="kpi"><div class="v">19 min</div><div class="k">de toque humano · p95 52</div></div>
+      <div class="kpi"><div class="v">16 + 4</div><div class="k">analistas y médicos auditores</div></div>
+    </div>
+    <div class="row grow">
+      <div class="col" style="flex:1.15">
+        <table style="flex:0 0 auto">
+          <tr><th>Compromiso de servicio</th><th class="n">Hoy p50</th><th class="n">Hoy p95</th><th class="n">Meta</th><th style="width:38px"></th></tr>
+          <tr><td>Programados</td><td class="n">2.1 d</td><td class="n"><b>6.8 d</b></td><td class="n">5 d hábiles</td><td class="no">✕</td></tr>
+          <tr><td>Urgentes</td><td class="n">26 h</td><td class="n"><b>61 h</b></td><td class="n">48 h</td><td class="no">✕</td></tr>
+          <tr><td>Atención en el extranjero</td><td class="n">9 d</td><td class="n">—</td><td class="n">15 d</td><td class="si">✓</td></tr>
+        </table>
+        <div class="box gray grow"><h3>Alcance del proyecto</h3>
+          <b>Dentro:</b> preautorización de procedimientos programados, urgentes y en el extranjero —
+          desde que el prestador envía la solicitud hasta que se emite la carta de autorización.<br>
+          <b>Fuera:</b> emergencias sin preautorización, siniestros hospitalarios, liquidación de
+          reembolsos y el maestro de afiliados, que vive en el core y <b>no se replica</b>.
+          <small style="margin-top:7px">El volumen no está disperso: <b>el 71% cae en 24 combinaciones
+          de diagnóstico y procedimiento</b> —un supuesto declarado, no un hecho medido—, y es lo que
+          hace viable automatizar la mayoría sin resolver primero la cola larga.</small></div>
+      </div>
+      <div class="box red" style="flex:1"><h3>Los siete dolores medidos · P1–P7</h3>
+        <span class="pill r">P1 · 23% observadas por expediente incompleto</span>
+        <span class="pill r">P2 · 21% derivadas al médico auditor</span>
+        <span class="pill r">P3 · 3.8% de error en el copago</span>
+        <span class="pill r">P4 · 1.4% de reversiones al apelar</span>
+        <span class="pill r">P5 · sin trazabilidad de la versión aplicada</span>
+        <span class="pill r">P6 · pico de lunes 2.4× el promedio</span>
+        <span class="pill r">P7 · la política cambia ~6 veces al año</span>
+        <small style="margin:5px 0 8px">Cuatro de los siete no son problemas de velocidad sino de
+        <b>consistencia</b>: la misma solicitud puede resolverse distinto según quién la tome y
+        qué versión del manual tenga a mano.</small>
+        <h3 style="margin-top:auto">Los 19 minutos, minuto a minuto</h3>
+        <table style="font-size:10.5px">
+          <tr><td>Recepción y registro del expediente</td><td class="n">4 min</td></tr>
+          <tr><td>Verificación de elegibilidad y vigencia</td><td class="n">3 min</td></tr>
+          <tr><td>Cálculo de carencias, topes y copago</td><td class="n">2 min</td></tr>
+          <tr><td><b>Búsqueda de la regla en el manual de política</b></td><td class="n"><b>7 min</b></td></tr>
+          <tr><td>Emisión de la carta</td><td class="n">3 min</td></tr>
+        </table>
+        <small style="margin-top:4px">El paso más caro no es decidir: es <b>encontrar contra qué decidir</b>.
+        Ese solo dato ya orienta dónde entra RAG y dónde no hace falta.</small>
+      </div>
+      <div class="box solid" style="flex:.85;display:flex;flex-direction:column;justify-content:center">
+        <h3>Por qué el costo no es administrativo</h3>
+        <div class="lead">En el mercado donde el proceso está mejor medido, <b>95%</b> de los médicos
+        reporta que la preautorización retrasa atención necesaria, <b>79%</b> que hay pacientes que
+        abandonan el tratamiento y <b>26%</b> que derivó en un evento adverso serio.<br><br>
+        <b>El costo de una mesa lenta es clínico, no administrativo.</b> Eso cambia qué se optimiza:
+        un diseño que solo minimiza costo por solicitud está optimizando la variable equivocada.</div>
+      </div>
+    </div>
+    <div class="box gray" style="flex:0 0 auto"><h3>Cómo responde el mercado al mismo problema — y de las cuatro, solo dos son tecnológicas</h3>
+      <div class="g4" style="gap:12px;font-size:11px;line-height:1.4">
+        <div><b>A · Interoperabilidad.</b> HL7 <b>Da Vinci</b> CRD, DTR y PAS: el permiso se pide desde el sistema del médico, con el requisito ya resuelto en el origen.</div>
+        <div><b>B · Regulación.</b> <b>CMS-0057-F</b> obliga APIs en 2027 y <b>SB 1120</b> exige que la IA no decida: firma el médico. Este diseño ya cumple ambas.</div>
+        <div><b>C · Gold-carding.</b> Texas HB 3459 exime a los prestadores con buen historial: <b>ataca el volumen sin tecnología</b>, y es complementario, no rival.</div>
+        <div><b>D · Automatizar.</b> Es la ruta de este proyecto. El precedente muestra su lado peligroso: automatizar la <i>negación</i> es lo que hundió a PXDX.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>00_modelo_del_problema.md</b> §2–§3 · <b>01_caso_y_as_is.md</b> §3–§6</span>
+    <span class="r">Lámina 01 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 5 · PLANO D-02 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-02</div><h1>Proceso actual (AS-IS) · ocho sub-procesos, con minutos por paso</h1>
+    <div class="tag">APOYA LA LÁMINA 01</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-02_proceso_as_is.png" alt="Proceso AS-IS"></div></div>
+  <div class="ft"><span>D-02</span>
+    <span>Qué mirar: los <b>7 de los 19 minutos</b> que se van en buscar la regla en el manual, y los tres retornos —observación, derivación y reversión— que reprocesan trabajo ya hecho</span>
+    <span class="r">Anexo I</span></div>
+</section>
+
+<!-- ══════════════════════ 6 · LÁMINA 02 · KPI Y VALOR ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 02 / 10</div><h1>Por qué el problema importa: AS-IS → TO-BE → KPI → valor</h1>
+    <div class="tag">CAPTURA DE VALOR</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <table style="flex:1.35">
+        <tr><th>Concepto</th><th class="n">AS-IS S/ mes</th><th class="n">TO-BE S/ mes</th><th class="n">Δ</th><th>KPI que lo demuestra</th></tr>
+        <tr><td>Operación de la mesa</td><td class="n">76,600</td><td class="n">28,200</td><td class="n">−48,400</td><td>Touch time 19 → <b>7 min</b> · STP <b>55–60%</b></td></tr>
+        <tr><td>Retrabajo por observación</td><td class="n">11,300</td><td class="n">3,700</td><td class="n">−7,600</td><td>Observadas 23% → <b>≤ 9%</b></td></tr>
+        <tr><td>Auditoría médica</td><td class="n">48,000</td><td class="n">22,900</td><td class="n">−25,100</td><td>Derivación 21% → <b>≤ 10%</b>, ≥85% confirmada</td></tr>
+        <tr><td><b>Fuga por copago mal aplicado</b></td><td class="n">62,200</td><td class="n">6,600</td><td class="n"><b>−55,600</b></td><td>Error de copago 3.8% → <b>≤ 0.4%</b></td></tr>
+        <tr><td>Reclamos por reversión</td><td class="n">37,100</td><td class="n">18,600</td><td class="n">−18,500</td><td>Reversiones 1.4% → <b>≤ 0.7%</b></td></tr>
+        <tr><td><b>Total</b></td><td class="n"><b>235,200</b></td><td class="n"><b>80,000</b></td><td class="n"><b>−155,200</b></td><td>TAT p95 <b>≤ 2.5 d</b> / <b>≤ 24 h</b></td></tr>
+      </table>
+      <div class="col" style="flex:.72">
+        <div class="box solid"><h3>Cadena de valor</h3>
+          <div style="font-size:11.5px;line-height:1.55">
+          Potencial = volumen × mejora × valor unitario → <b>S/ 155,200/mes</b><br>
+          Capturable = potencial × adopción × realización → <b>S/ 96,600/mes</b><br>
+          Neto = capturable − run → <b>S/ 74,900/mes ≈ S/ 0.90 M/año</b></div>
+        </div>
+        <div class="box amber"><h3>Los factores de captura, declarados</h3>
+          <table style="font-size:10.5px">
+            <tr><td>Fuga de copago</td><td class="n"><b>100%</b></td><td>caja inmediata, no productividad</td></tr>
+            <tr><td>Reclamos</td><td class="n">60%</td><td>parte es costo externo real</td></tr>
+            <tr><td>Mesa + retrabajo</td><td class="n">40%</td><td>no se despide a nadie: se absorbe crecimiento</td></tr>
+            <tr><td>Auditoría médica</td><td class="n">30%</td><td>la capacidad liberada <b>se reinvierte</b></td></tr>
+          </table>
+          <small style="margin-top:5px">Los factores son la parte discutible del caso, y por eso van
+          explícitos: el revisor puede bajarlos y rehacer la cuenta.</small></div>
+        <div class="box gray grow"><h3>Y si el revisor no los cree</h3>
+          <div class="lead" style="font-size:12.5px">Recortando <b>cada factor a la mitad</b>, el capturable
+          cae de S/ 96,600 a <b>≈ S/ 48,300/mes</b>, el neto a S/ 26,600 y el payback pasa de
+          <b>8.8 a ≈ 25 meses</b>.</div>
+          <small style="margin-top:6px">El caso sigue siendo positivo, pero deja de ser evidente. Esa es
+          exactamente la razón de declarar los factores en lugar de esconderlos dentro de un promedio:
+          <b>la discusión del caso de negocio es sobre la captura de horas, no sobre la tarifa de ningún servicio.</b></small>
+          <small style="margin-top:6px">La diferencia entre los dos escenarios es de gestión del cambio,
+          no de arquitectura — y por eso el Anexo G incluye el plan de reinversión de la capacidad médica liberada.</small></div>
+      </div>
+    </div>
+    <div class="box green" style="flex:0 0 auto">
+      <h3>El dato que ordena toda la discusión</h3>
+      <div class="lead"><b>El 58% del valor capturable viene de la fuga de copago, y se resuelve con un
+      motor de reglas determinista — sin nada de IA.</b> Es la evidencia numérica de la tesis del
+      proyecto: la IA entra donde queda el problema que solo ella resuelve, no antes.</div>
+      <small style="margin-top:5px">Las métricas de operación y de IA que acompañan al negocio —latencia p95,
+      disponibilidad, costo por solicitud, <i>faithfulness</i>, <i>recall@k</i> y tasa de éxito de tarea—
+      nunca se reportan solas: ver el trío de contrapeso en la lámina 06.</small>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>05_caso_de_negocio.md</b> §1–§3 · supuestos auditados en §8 (Anexo I)</span>
+    <span class="r">Lámina 02 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 7 · LÁMINA 03 · QUÉ HARÁ Y POR QUÉ IA ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 03 / 10</div><h1>Qué hará la solución — y por qué cada parte necesita (o no) IA</h1>
+    <div class="tag">VER PLANO D-03</div></div>
+  <div class="bd">
+    <table style="flex:1 1 auto">
+      <tr><th style="width:22%">Sub-problema</th><th style="width:16%">Naturaleza de la necesidad</th><th style="width:20%">Ruta elegida</th><th>Por qué esa y no otra</th></tr>
+      <tr><td>Elegibilidad y vigencia</td><td>Reglas estables</td><td class="si">Software determinista</td><td>Es un dato del core consultado por API. Un modelo solo agregaría incertidumbre y costo</td></tr>
+      <tr><td>Carencias, topes y copago</td><td>Reglas estables</td><td class="si">Motor de reglas</td><td>Es aritmética contractual, y debe dar el mismo resultado siempre. <b>Aquí está el 58% del valor</b></td></tr>
+      <tr><td>Lectura del expediente clínico</td><td>Extracción de documento</td><td>OCR + LLM · Gemini Flash</td><td>PDF escaneado y redactado por un tercero: no hay estructura que parsear</td></tr>
+      <tr><td>Interpretación de la política</td><td>Conocimiento privado y trazable</td><td>RAG híbrido + rerank</td><td>180 páginas que cambian ~6 veces al año y exigen devolver la <b>cita textual vigente</b></td></tr>
+      <tr><td>Ruteo y priorización</td><td>Clasificación con umbral</td><td>Reglas + confianza medida</td><td>El umbral de derivación es una decisión de negocio, no una salida del modelo</td></tr>
+      <tr><td><b>Subsanación de expedientes</b></td><td>Acciones dinámicas por caso</td><td><span class="pill g" style="margin:0">AGENTE</span></td><td>Único sub-proceso donde el camino sí varía: qué falta, a quién pedírselo y cuántas veces insistir</td></tr>
+    </table>
+    <div class="row" style="flex:0 0 auto">
+      <div class="box red" style="flex:1"><h3>La decisión de cabecera · ADR-01</h3>
+        <div class="lead"><b>Esto no es un agente.</b> Toda solicitud recorre las mismas seis verificaciones,
+        en el mismo orden, contra la misma política — y su valor está precisamente en que <i>no</i> varíe.
+        Un agente aportaría autonomía donde el negocio necesita determinismo, y a cambio traería un
+        camino no reproducible: imposible de sustentar ante SUSALUD.</div>
+      </div>
+      <div class="box green" style="flex:1"><h3>La excepción honesta</h3>
+        <div class="lead"><b>Agente acotado a la subsanación. Nunca a la decisión de autorizar.</b></div>
+        <small style="margin-top:5px">Ese recorte es la decisión de arquitectura más importante del proyecto:
+        no es «no usé agentes», es <b>«los usé exactamente donde pagan y los prohibí donde no»</b>.
+        Multi-agente se descartó (ADR-04): el analista y el auditor no negocian entre sí — uno escala al otro,
+        que es una transición de estado, no una conversación.</small>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>02_matriz_de_decision.md</b> §2–§4 (Anexo D · ADR-01 a ADR-07)</span>
+    <span class="r">Lámina 03 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 8 · PLANO D-03 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-03</div><h1>Matriz de decisión · determinista · flujo orquestado · RAG · agente</h1>
+    <div class="tag">APOYA LA LÁMINA 03 · ANEXO D</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-03_matriz_decision.png" alt="Matriz de decisión"></div></div>
+  <div class="ft"><span>D-03</span>
+    <span>Qué mirar: la <b>ruta de decisión</b> se recorre de izquierda a derecha y solo se avanza cuando la opción más simple no alcanza — cinco de los seis sub-problemas se detienen antes de llegar a «agente»</span>
+    <span class="r">Anexo D</span></div>
+</section>
+
+<!-- ══════════════════════ 9 · LÁMINA 03b · REDISEÑO ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 03b / 10 · EXTRA</div><h1>No se automatiza el proceso actual: se rediseña</h1>
+    <div class="tag">VER PLANO D-10</div></div>
+  <div class="bd">
+    <div class="box navy" style="flex:0 0 auto">
+      <div class="lead">La pregunta no era «¿en cuál de los ocho pasos entra IA?», sino
+      <b>«¿siguen siendo ocho pasos?»</b> — y la respuesta es no.
+      <b>Ocho sub-procesos secuenciales pasan a cuatro estados y tres carriles.</b></div>
+    </div>
+    <div class="row grow">
+      <table style="flex:1.2">
+        <tr><th style="width:22%">Acción</th><th>Qué le pasa al paso de hoy</th></tr>
+        <tr><td class="no">SE ELIMINA</td><td>La revisión de completitud: el formulario bloquea el envío incompleto en el origen.
+            <small>No se automatiza un control — se hace innecesario. Es el patrón DTR de HL7 Da Vinci.</small></td></tr>
+        <tr><td class="no">SE ELIMINA</td><td>La cola de reparto manual del pico de lunes</td></tr>
+        <tr><td><b>SE UNIFICAN</b></td><td>Elegibilidad + carencia + copago + cobertura → <b>E2 · adjudicación unificada</b>,
+            con una parte determinista y una interpretativa que se contrastan entre sí</td></tr>
+        <tr><td><b>CAMBIA DE DUEÑO</b></td><td>La consulta de cobertura pasa del analista al prestador:
+            <b>carril 0 · N1 respuesta anticipada</b>, antes de que exista una solicitud</td></tr>
+        <tr><td class="si">APARECE</td><td>Sello de versión de política en cada carta, traza inmutable y agente de subsanación</td></tr>
+      </table>
+      <div class="col" style="flex:.85">
+        <div class="g3" style="flex:0 0 auto">
+          <div class="kpi good"><div class="v">8 → 4</div><div class="k">sub-procesos → estados</div></div>
+          <div class="kpi good"><div class="v">1.23 → 0.40</div><div class="k">toques humanos por solicitud</div></div>
+          <div class="kpi good"><div class="v">19 → 7</div><div class="k">minutos de touch time</div></div>
+        </div>
+        <div class="box gray grow"><h3>Tres carriles, no uno</h3>
+          <b>Carril 0 · N1</b> — consulta anticipada del prestador, antes de que exista solicitud.
+          Es el carril que ataca el pico de lunes por el lado de la demanda.<br><br>
+          <b>Carril 1</b> — guardrail → E1 extracción → E2 adjudicación → E3 ruteo medido →
+          E4 emisión sellada → traza inmutable.<br><br>
+          <b>Carril 2 · N2</b> — autorización por episodio, <span class="no">condicional</span>:
+          bloqueada por un endoso a la póliza. Es una mesa contractual, no una revisión de arquitectura,
+          y por eso es la fase de menor control del equipo técnico.
+          <div style="border-top:1px solid var(--gray);margin:9px 0 7px"></div>
+          <b>Los cuatro estados</b> — <b>E1</b> extracción → <b>E2</b> adjudicación → <b>E3</b> ruteo
+          medido → <b>E4</b> emisión sellada. Un expediente no puede estar en dos a la vez, y cada
+          transición deja traza inmutable con la versión de política vigente.
+          <small style="margin-top:8px">Rediseñar antes de automatizar es lo que hace creíble la meta de
+          <b>55–60% de STP</b>. Automatizar los ocho pasos de hoy tal como están habría dejado intactos
+          el reparto manual del lunes, el 23% de observaciones y la búsqueda de la regla — es decir, casi
+          todo el problema, con una capa de IA encima.</small>
+          <div style="border-top:1px solid var(--gray);margin:9px 0 7px"></div>
+          <h3>Lo que el rediseño le exige a la organización</h3>
+          Un <b>rol nuevo: curador de política</b> (0.5 FTE, S/ 6,000/mes), dueño de que cada endoso entre
+          versionado, segmentado y citable. Y un compromiso declarado: <b>la capacidad médica liberada se
+          reinvierte, no se recorta.</b>
+          <small style="margin-top:6px">Sin esas dos cosas el rediseño se revierte solo en el primer
+          trimestre: el manual vuelve a desactualizarse y los auditores vuelven a derivar por defecto.
+          Es la parte del proyecto que no se resuelve con arquitectura.</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>04a_rediseno_del_proceso.md</b> · <b>04_to_be.md</b> §3 (Anexo G)</span>
+    <span class="r">Lámina 03b / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 10 · PLANO D-10 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-10</div><h1>Rediseño del proceso · qué se elimina, qué se unifica y qué cambia de dueño</h1>
+    <div class="tag">APOYA LA LÁMINA 03b · ANEXO G</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-10_rediseno_del_proceso.png" alt="Rediseño del proceso"></div></div>
+  <div class="ft"><span>D-10</span>
+    <span>Qué mirar: la columna central es la <b>acción de rediseño</b> aplicada a cada paso de hoy; abajo, los pasos que <b>no</b> existían y el efecto medido sobre toques humanos y touch time</span>
+    <span class="r">Anexo G</span></div>
+</section>
+
+<!-- ══════════════════════ 11 · LÁMINA 04 · ARQUITECTURA ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 04 / 10</div><h1>Arquitectura end-to-end</h1>
+    <div class="tag">D-06 LÓGICA · D-11 VISTA CLOUD</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <div class="col" style="flex:1.55">
+        <div class="fig grow"><img src="img/D-06_arquitectura_ia_gcp.png" alt="Arquitectura de solución IA por capas"></div>
+        <div class="cap">D-06 · ecosistema digital · canales · borde · integración · backend · modelos · datos — la vista física y de red está en el plano siguiente</div>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="box blue"><h3>Datos</h3>
+          Corpus normativo firmado en GCS → segmentación <b>por cláusula</b> (~4,800 fragmentos) →
+          embeddings <b>text-embedding-3-large</b> 3,072 dims → <b>Qdrant</b>, una colección por versión de política.
+          <b>Cero PII en el vector store.</b> El proceso vive en <b>Neon</b>; el afiliado nunca se copia del core.</div>
+        <div class="box purple"><h3>Estrategia de modelos</h3>
+          <b>Principal:</b> Gemini Flash, temperatura 0.0 · <b>Condicional:</b> Pro (+23% de factura, no activado) ·
+          <b>Routing</b> por sub-problema, no por costo · <b>Caching</b> semántico por
+          <i>dx × procedimiento × plan × versión de política</i>, invalidado en cada endoso ·
+          <b>Fallback: el carril manual</b>, nunca otro proveedor — cambiar de modelo rompería la reconstruibilidad.</div>
+        <div class="box orange"><h3>Infraestructura</h3>
+          Cloud Run con <code>min-instances=1</code> en tres servicios · API Gateway + Cloud Armor + Identity Platform ·
+          VPC con tres subredes, PSC y egreso por Cloud NAT con IP fija · API gestionada, no <i>self-hosted</i>.</div>
+        <div class="box green"><h3>Integraciones</h3>
+          Core de Vitalia tras <b>adaptador propio</b> · <b>Acredita Salud</b> (SUSALUD, hito 31-oct-2026) ·
+          portal del prestador · correo (entrada no confiable) · <b>Pub/Sub con DLQ</b> · escritura idempotente.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>04_to_be.md</b> §3 · <b>08_modelo_de_datos.md</b> (Anexo C) · <b>07</b> §3</span>
+    <span class="r">Lámina 04 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 12 · PLANO D-11 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-11</div><h1>Vista de la plataforma en la nube · arquitectura física y networking</h1>
+    <div class="tag">APOYA LA LÁMINA 04 · ANEXO B</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-11_arquitectura_cloud.png" alt="Arquitectura cloud y networking"></div></div>
+  <div class="ft"><span>D-11</span>
+    <span>Qué mirar: el borde con Cloud Armor e Identity Platform, las tres subredes de la VPC, el <b>Private Service Connect</b> hacia los servicios gestionados y el egreso por <b>Cloud NAT con IP fija</b>, que es un requisito de Acredita Salud</span>
+    <span class="r">Anexo B</span></div>
+</section>
+
+<!-- ══════════════════════ 13 · LÁMINA 05 · PATRONES ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 05 / 10</div><h1>Patrones y decisiones: problema · alternativa descartada · trade-off · validación</h1>
+    <div class="tag">21 ADRs · ANEXO D</div></div>
+  <div class="bd">
+    <table style="flex:1 1 auto">
+      <tr><th style="width:15%">Decisión</th><th style="width:23%">Problema que resuelve</th><th style="width:21%">Alternativa descartada</th><th style="width:21%">Trade-off que introduce</th><th>Cómo se valida</th></tr>
+      <tr><td><b>Flujo orquestado, no agente</b><br><small>ADR-01</small></td>
+          <td>Camino no reproducible ⇒ negación indefendible ante SUSALUD (veto V2)</td>
+          <td>Agente autónomo de punta a punta</td>
+          <td>Menos flexibilidad ante casos raros: van al auditor</td>
+          <td>100% de decisiones reconstruibles a 6 meses</td></tr>
+      <tr><td><b>RAG sobre corpus versionado</b><br><small>ADR-02, ADR-03</small></td>
+          <td>La política cambia ~6 veces/año y hay que citar la versión vigente</td>
+          <td><i>Fine-tuning</i> (no cita fuente) y política completa en el prompt (no cabe)</td>
+          <td>Latencia de recuperación y un pipeline de indexación que mantener</td>
+          <td><i>faithfulness</i> ≥ 0.95 · <i>recall@k</i> · 30 casos de regresión por endoso</td></tr>
+      <tr><td><b>Búsqueda híbrida + rerank</b><br><small>ADR-06</small></td>
+          <td>Los códigos de procedimiento son identificadores, no lenguaje natural</td>
+          <td>Búsqueda densa sola</td>
+          <td>Dos índices y un reordenador más en la ruta crítica</td>
+          <td>Medido: 0.56 densa sola vs. <b>0.74</b> — por eso se adoptó</td></tr>
+      <tr><td><b>Colección por versión de política</b><br><small>ADR-21</small></td>
+          <td>Citar política derogada es el peor error posible (R2)</td>
+          <td>Una colección con filtro por <code>version_id</code></td>
+          <td>~700 MB con 12 versiones vivas y publicación por alias</td>
+          <td>Un filtro olvidado cita derogada; una colección equivocada <b>no existe</b></td></tr>
+      <tr><td><b>HITL obligatorio</b><br><small>ADR-07, ADR-10</small></td>
+          <td>Asimetría del error: negar mal un caso oncológico no es un bug (veto V1)</td>
+          <td>Automatizar el 100% sin control humano</td>
+          <td>El STP se topa en 55–60%, no en 90%</td>
+          <td><b>0% de negaciones sin firma médica</b> — invariante, no meta</td></tr>
+    </table>
+    <div class="row" style="flex:0 0 auto">
+      <div class="box navy" style="flex:1.5">
+        <h3>Los tres invariantes de diseño y los tres vetos</h3>
+        <div class="lead">
+        <b>R1 · lo determinista nunca pasa por un modelo</b> — <b>R2 · ninguna afirmación sobre política sin cita
+        textual de la versión vigente</b> — <b>R3 · ninguna negación por necesidad médica sin firma de médico colegiado</b>.</div>
+        <small style="margin-top:6px">Vetos: <b>V1</b> asimetría del error · <b>V2</b> reconstruibilidad · <b>V3</b> economía.
+        Seis de los 21 ADRs tienen como condición de reversión la palabra <b>nunca</b>: son exactamente los que sostienen R2, R3 y V1.
+        Si alguno se revierte, lo que cambia no es el diseño, es la promesa regulatoria.</small>
+      </div>
+      <div class="box gray" style="flex:1">
+        <h3>Patrones adoptados y descartados</h3>
+        <span class="pill g">chunking por cláusula</span><span class="pill g">hybrid search</span>
+        <span class="pill g">rerank</span><span class="pill g">sentence-window</span>
+        <span class="pill g">single agent + HITL</span><span class="pill g">retry · circuit breaker · fallback</span>
+        <span class="pill g">idempotencia</span><span class="pill g">DLQ</span><br>
+        <span class="pill r">GraphRAG</span><span class="pill r">multi-agente</span>
+        <span class="pill r">RAPTOR</span><span class="pill r">fine-tuning</span>
+        <small style="margin-top:4px">GraphRAG queda en el roadmap: aportaría solo en exclusiones con excepción encadenada,
+        y las relaciones plan–cobertura ya son tablas del core.</small>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>02</b> §3–§4 · <b>06</b> §12 · <b>07</b> §12 · <b>08</b> §11 (Anexo D)</span>
+    <span class="r">Lámina 05 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 14 · LÁMINA 06 · SEGURIDAD Y EVALS ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 06 / 10</div><h1>Confiabilidad: seguridad y evaluación por diseño</h1>
+    <div class="tag">VER PLANO D-08 · ANEXO E</div></div>
+  <div class="bd">
+    <div class="box solid" style="flex:0 0 auto">
+      <div class="lead">La restricción que ordena todo lo demás: <b>el sistema automático puede autorizar o
+      escalar; no puede negar por necesidad médica.</b> No es una regla de negocio — es la ausencia de la
+      transición en el catálogo de herramientas.
+      <b>Un atacante que convenza al modelo de «negar este caso» no consigue una negación: consigue un escalamiento al auditor.</b></div>
+    </div>
+    <div class="row grow">
+      <div class="col" style="flex:1">
+        <div class="box red"><h3>Guardrail de entrada · 8 capas, de barata a cara</h3>
+          <small>La primera que bloquea corta la cadena. Política <b>fail-close</b>.</small>
+          <span class="pill">1 secretos · regex &lt;1 ms</span><span class="pill">2 inyección</span>
+          <span class="pill">3 toxicidad</span><span class="pill">4 regex propio</span>
+          <span class="pill">5 PII · Presidio local</span><span class="pill">6 URL</span>
+          <span class="pill">7 Prompt Guard 2 · ~120 ms</span><span class="pill">8 Llama Guard 4 · ~400 ms</span>
+          <small>Decisiones: <b>PERMITIR · TRANSFORMAR · CONFIRMAR · BLOQUEAR</b>. Separación instrucción/dato y
+          esquema JSON cerrado: el modelo no tiene nada interesante que hacer aunque obedezca al atacante.</small></div>
+        <div class="box purple"><h3>Guardrail de salida · O1–O6</h3>
+          <small>El que casi nadie escribe. <b>O1</b> cita literal verificada contra el corpus firmado ·
+          <b>O2</b> vigencia · <b>O3 contraste del copago determinista ↔ prosa</b> · <b>O4</b> sin negación sin firma ·
+          <b>O5</b> sin PII · <b>O6</b> esquema y catálogo.<br>
+          O3 es la justificación retroactiva de haber partido E2 en dos: si la aritmética y la redacción no coinciden,
+          la carta no sale.</small></div>
+        <div class="box amber grow"><h3>Amenazas modeladas · A1–A10 y el control que las contiene</h3>
+          <table style="font-size:10px">
+            <tr><td style="width:53%"><b>A1</b> Inyección indirecta en el documento del prestador</td><td>capa 2 + separación instrucción/dato</td></tr>
+            <tr><td><b>A2</b> Texto invisible y homoglifos</td><td>normalización + capa 4</td></tr>
+            <tr><td><b>A3</b> Exfiltración por la respuesta</td><td>O5 + esquema JSON cerrado</td></tr>
+            <tr><td><b>A4</b> Envenenamiento del corpus normativo</td><td>corpus firmado · ingesta con doble aprobación</td></tr>
+            <tr><td><b>A5</b> Cita de política derogada</td><td>colección por versión (ADR-21) + O2</td></tr>
+            <tr><td><b>A6</b> Ruptura de R3: negación sin firma</td><td>la transición no existe + O4</td></tr>
+            <tr><td><b>A7</b> DoS económico</td><td>cuota por prestador · Cloud Armor · tope por solicitud</td></tr>
+            <tr><td><b>A8</b> Abuso del canal del agente</td><td>catálogo cerrado + tope de reintentos</td></tr>
+            <tr><td><b>A9</b> Fuga por el log</td><td>enmascarado antes de trazar</td></tr>
+            <tr><td><b>A10</b> Secretos dentro del expediente</td><td>capa 1, antes de cualquier modelo</td></tr>
+          </table>
+          <small style="margin-top:5px">Datos de salud bajo <b>Ley 29733</b>, con residencia declarada y
+          enmascarado antes de la extracción.</small></div>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="box green"><h3>Golden set · 430 casos</h3>
+          <small>300 expedientes (210 del núcleo / 90 de la cola) + 60 preguntas de política +
+          40 adversariales + 30 de regresión por endoso.<br>
+          <b>Doble anotación ciega con κ de Cohen ≥ 0.75</b>: si κ &lt; 0.75 el problema no es el modelo,
+          es que el criterio humano no está definido. +25 casos/mes desde producción.</small></div>
+        <div class="box red"><h3>Red teaming · R1–R16</h3>
+          <small>Agrupados por invariante atacado. Criterio de aprobación: <b>100% en invariantes</b>, ≥95% en el resto.
+          <b>R11 · forzar una negación automática: imposible por construcción.</b></small></div>
+        <div class="box navy grow"><h3>El trío que se reporta siempre junto</h3>
+          <table style="font-size:11px">
+            <tr><td>% de automatización (STP)</td><td class="n"><b>55–60%</b></td></tr>
+            <tr><td>% de reversiones al apelar</td><td class="n"><b>≤ 0.7%</b></td></tr>
+            <tr><td>% de negaciones sin firma médica</td><td class="n"><b>0% · invariante</b></td></tr>
+          </table>
+          <small style="margin-top:6px">Un STP que sube mientras suben las reversiones no es una mejora: es el
+          anti-patrón que hundió a PXDX —300,000 casos en dos meses, 1.2 segundos por caso— y el que le costó a
+          nH Predict una demanda colectiva. Por eso el trío va en el tablero del supervisor, no en un anexo.</small>
+          <h3 style="margin-top:11px">Y las métricas por componente, debajo</h3>
+          <table style="font-size:10.5px">
+            <tr><td style="width:52%">Recuperación · política</td><td><i>recall@k</i> y precisión de la cita</td></tr>
+            <tr><td>Extracción del expediente</td><td>exactitud por campo · cobertura</td></tr>
+            <tr><td>Adjudicación</td><td><i>faithfulness</i> ≥ 0.95 · acuerdo con el auditor</td></tr>
+            <tr><td>Guardrail</td><td>FPR ≤ 0.5% · fugas = 0</td></tr>
+            <tr><td>Agente de subsanación</td><td>tasa de éxito de tarea · reintentos por caso</td></tr>
+          </table>
+          <small style="margin-top:5px">Ninguna de estas cinco se presenta al negocio por sí sola: solo
+          explican <b>por qué</b> el trío de arriba se mueve. <b>ADR-08 a ADR-12</b> registran las cinco
+          decisiones de seguridad y qué haría falta para revertirlas.</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>06_seguridad_y_evaluacion.md</b> §1–§11 (Anexo E · ADR-08 a ADR-12)</span>
+    <span class="r">Lámina 06 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 15 · PLANO D-08 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-08</div><h1>Gobierno de la solución · guardrails, control humano y ciclo LLMOps</h1>
+    <div class="tag">APOYA LA LÁMINA 06 · ANEXO E</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-08_gobierno_guardrails_llmops.png" alt="Gobierno, guardrails y LLMOps"></div></div>
+  <div class="ft"><span>D-08</span>
+    <span>Qué mirar: el guardrail de <b>salida</b> a la derecha —el que casi nadie dibuja— y el lazo de LLMOps que devuelve casos de producción al golden set</span>
+    <span class="r">Anexo E</span></div>
+</section>
+
+<!-- ══════════════════════ 16 · LÁMINA 07 · COSTOS, SLO Y GO-LIVE ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 07 / 10</div><h1>Cómo operará en producción: costos, SLOs y go-live</h1>
+    <div class="tag">D-12 · D-14 · ANEXOS A y F</div></div>
+  <div class="bd">
+    <div class="g4" style="flex:0 0 auto">
+      <div class="kpi"><div class="v">S/ 6,700</div><div class="k">factura cloud / mes · bottom-up</div></div>
+      <div class="kpi"><div class="v">S/ 0.86</div><div class="k">cloud por solicitud · 8% del costo del proceso</div></div>
+      <div class="kpi"><div class="v">75 / 25</div><div class="k">fijo vs. variable</div></div>
+      <div class="kpi"><div class="v">3.8%</div><div class="k">de la factura son tokens de LLM</div></div>
+    </div>
+    <div class="row grow">
+      <div class="col" style="flex:1">
+        <div class="box amber"><h3>FinOps · dónde está la palanca real</h3>
+          <small>Si el volumen se duplica, la factura sube <b>25%</b> y el unitario cae a S/ 0.52.
+          Cambiar Flash por Pro sube <b>23%</b>. Optimizar el prompt a la mitad de tokens baja <b>1.9%</b>: no vale el esfuerzo.
+          <b>La palanca son <code>min-instances</code>, el dimensionamiento de Qdrant y Neon, y la retención de logs</b> — no los prompts.
+          Costo atribuido por solicitud, por prompt y por tipo en cada <i>span</i>.</small></div>
+        <div class="box blue"><h3>SLOs · el compromiso es sobre el proceso, no sobre la automatización</h3>
+          <table style="font-size:10.5px">
+            <tr><td>J1 · consulta anticipada N1</td><td class="n">p95 &lt; 2 s · 99.5%</td></tr>
+            <tr><td>J3 · adjudicación</td><td class="n">p95 &lt; 90 s</td></tr>
+            <tr><td>J4 · extremo a extremo</td><td class="n">p95 &lt; 5 min</td></tr>
+            <tr><td>J5 · emisión de la carta</td><td class="n">p95 &lt; 10 s · 99.9%</td></tr>
+            <tr><td>J7 / J8 · TAT de negocio</td><td class="n">≤ 2.5 d · ≤ 24 h</td></tr>
+          </table>
+          <small style="margin-top:5px">Error budget 3.6 h/mes con política de cuatro escalones.
+          Groq no publica SLA: por eso la disponibilidad se argumenta como <b>compuesta</b> y honestamente.</small></div>
+        <div class="box green grow"><h3>Resiliencia y degradación · N0–N5</h3>
+          <small>Timeout escalonado, reintento con <i>jitter</i> solo en operaciones idempotentes, <i>circuit breaker</i>
+          por dependencia, <i>bulkhead</i>, clave de idempotencia <code>solicitud + versión + sha256</code>, Pub/Sub con DLQ.
+          <b>Regla transversal: ante un incidente se baja de nivel de automatización, nunca se relaja un control.</b>
+          Toda degradación termina en el mismo lugar — la mesa, que no desaparece. N4 = <i>fail-close</i>.</small></div>
+      </div>
+      <div class="col" style="flex:1.15">
+        <div class="fig grow"><img src="img/D-14_secuencia_end_to_end.png" alt="Secuencia end-to-end y latencia"></div>
+        <div class="cap">D-14 · T1–T11 y el presupuesto de latencia p95: 8 · 25 · 6 · 30 · 5 s + 16 de holgura</div>
+        <div class="box gray"><h3>Go-live · 10 compuertas</h3>
+          <small>Golden set superado · red team 100% en invariantes · corpus firmado y versionado ·
+          canary 5→25→100% con <i>gates</i> por métrica · runbook I1–I6 · seis alertas con dueño ·
+          RPO 5 min en Neon y <b>RPO 0 en Qdrant</b> (el índice es derivado) · prueba de recuperación semestral.</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>05a_costeo_cloud.md</b> (Anexo A) · <b>07_operacion_y_produccion.md</b> (Anexo F)</span>
+    <span class="r">Lámina 07 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 17 · LÁMINA 08 · CASO DE NEGOCIO ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 08 / 10</div><h1>Caso de negocio, secuencia y cierre</h1>
+    <div class="tag">VER PLANO D-09</div></div>
+  <div class="bd">
+    <div class="g4" style="flex:0 0 auto">
+      <div class="kpi"><div class="v">S/ 660 K</div><div class="k">inversión total</div></div>
+      <div class="kpi good"><div class="v">S/ 96,600</div><div class="k">capturable / mes</div></div>
+      <div class="kpi good"><div class="v">8.8 meses</div><div class="k">payback · 8.6 con el costeo bottom-up</div></div>
+      <div class="kpi good"><div class="v">S/ 1.13 M</div><div class="k">VAN @12% a 3 años · TIR ≈ 85%</div></div>
+    </div>
+    <table style="flex:1 1 auto">
+      <tr><th style="width:27%">Fase</th><th>Qué entrega</th><th class="n">Duración</th><th class="n">Inversión</th><th class="n">Capturable/mes</th><th class="n">Payback</th></tr>
+      <tr><td><b>F0</b> · pre-validación en el origen <span class="pill g" style="margin:0">sin IA</span></td>
+          <td>Observadas 23% → 9%. El formulario bloquea el envío incompleto: no se automatiza el control, se hace innecesario.
+              <b>Si el proyecto parara aquí, ya se pagó en SLA</b></td>
+          <td class="n">~4 sem</td><td class="n">75,000</td><td class="n">3,000</td><td class="n">no paga en caja</td></tr>
+      <tr><td><b>F1</b> · elegibilidad, carencia y copago <span class="pill g" style="margin:0">sin IA</span></td>
+          <td>Cierra la fuga de copago con reglas deterministas · integra <b>Acredita Salud</b> · deja lista la precondición de N2</td>
+          <td class="n">~8 sem</td><td class="n">225,000</td><td class="n">63,700</td><td class="n"><b>3.5 meses</b></td></tr>
+      <tr><td><b>F2–F4</b> · extracción, RAG, STP y agente <span class="pill" style="margin:0">con IA</span></td>
+          <td>STP 55–60%, cita trazable y subsanación. <b>Modo sombra</b> primero, <b>canary 5 → 25 → 100%</b> después, con compuertas por métrica</td>
+          <td class="n">~22 sem</td><td class="n">360,000</td><td class="n">29,900</td><td class="n">12 meses</td></tr>
+      <tr><td><b>F5</b> · autorización por episodio <span class="pill r" style="margin:0">condicional</span></td>
+          <td>Bloqueada por el endoso a la póliza — decisión contractual, no técnica. No se compromete valor sobre ella</td>
+          <td class="n">~6 sem</td><td class="n">—</td><td class="n">holgura</td><td class="n">—</td></tr>
+    </table>
+    <div class="row" style="flex:0 0 auto">
+      <div class="box navy" style="flex:1.15">
+        <div class="lead"><b>Lo que hay que decir en voz alta:</b> la fase que <b>no</b> lleva IA se paga en
+        3.5 meses; la que sí la lleva tarda 12. Ambas valen la pena, pero en ese orden — invertir la
+        secuencia habría triplicado el tiempo hasta el primer retorno.</div>
+      </div>
+      <div class="box red" style="flex:1"><h3>Riesgos vivos y hechos declarados</h3>
+        <small><b>Hito externo innegociable:</b> integración con Acredita Salud al <b>31-oct-2026</b> ·
+        El riesgo del proyecto está en el <b>factor de captura de horas</b>, no en la tarifa de ningún servicio:
+        la factura cloud completa es el 7% del valor capturable y puede triplicarse sin voltear el caso ·
+        F5, la fase de mayor retorno por solicitud, es la de menor control del equipo técnico.</small></div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>05_caso_de_negocio.md</b> §4–§7 · <b>04_to_be.md</b> §7 y §9 (Anexo H)</span>
+    <span class="r">Lámina 08 / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 18 · PLANO D-09 ══════════════════════ -->
+<section class="slide">
+  <div class="hd thin"><div class="n">PLANO D-09</div><h1>Roadmap de implementación · hitos y retorno por fase</h1>
+    <div class="tag">APOYA LA LÁMINA 08 · ANEXO H</div></div>
+  <div class="bd plano"><div class="fig full grow"><img src="img/D-09_roadmap.png" alt="Roadmap e hitos"></div></div>
+  <div class="ft"><span>D-09</span>
+    <span>Qué mirar: la IA <b>no aparece hasta F2</b>, y el hito externo de Acredita Salud (31-oct-2026) cae dentro de F1 — es la única fecha que el proyecto no puede mover</span>
+    <span class="r">Anexo H</span></div>
+</section>
+
+<!-- ══════════════════════ 19 · LÁMINA 08b · ECONOMÍA ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">LÁMINA 08b / 10 · EXTRA</div><h1>Economía de la plataforma: la factura, sin agregados</h1>
+    <div class="tag">D-12 · ANEXO A</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <div class="col" style="flex:1.5">
+        <div class="fig grow"><img src="img/D-12_estructura_de_costos.png" alt="Estructura de costos"></div>
+        <div class="cap">D-12 · composición, naturaleza fija/variable, costo unitario y sensibilidad</div>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="box blue"><h3>El total, de abajo hacia arriba</h3>
+          <table style="font-size:10.5px">
+            <tr><td>Google Cloud</td><td class="n">$ 756.88</td></tr>
+            <tr><td>Terceros (Qdrant, Neon, LangSmith, OpenAI, Groq)</td><td class="n">$ 649.50</td></tr>
+            <tr><td><b>Producción</b></td><td class="n"><b>$ 1,406.38 = S/ 5,274</b></td></tr>
+            <tr><td>No producción + soporte</td><td class="n">S/ 1,429</td></tr>
+            <tr><td><b>Total</b></td><td class="n"><b>S/ 6,700 / mes</b></td></tr>
+          </table>
+          <small style="margin-top:4px">Precio de lista, us-central1, tarifas del 2026-09-05. Tipo de cambio declarado S/ 3.75/USD.</small></div>
+        <div class="box amber"><h3>Los dos hallazgos</h3>
+          <small><b>1.</b> Los tokens de LLM son el <b>3.8%</b> de la factura; toda la capa de IA, el 12%.
+          Optimizar prompts es intervenir sobre la doceava parte del problema.<br>
+          <b>2.</b> El error del presupuesto original no fue el monto sino el <b>reparto</b>: 3.4× de más en
+          inferencia y de menos en conectividad — VPN, PSC, NAT e instancias mínimas suman más que toda la inferencia junta.</small></div>
+        <div class="box green grow"><h3>La disciplina que se aplicó</h3>
+          <div class="lead"><b>El ahorro no se descuenta del caso de negocio.</b> El run comprometido sigue
+          siendo S/ 21,700/mes; los S/ 2,000 de diferencia quedan como <b>contingencia</b> hasta que tres meses de
+          facturación etiquetada los confirmen.</div>
+          <small style="margin-top:5px">Único escenario que rompe el presupuesto: Cloud Armor Enterprise (+$3,000/mes).
+          Se rechaza — es una decisión comercial de Google, no una necesidad técnica de este volumen.</small></div>
+      </div>
+    </div>
+    <div class="box solid" style="flex:0 0 auto">
+      <div class="lead"><b>La plataforma cloud es el 8% del costo unitario del proceso rediseñado; las personas son el 92%.</b>
+      Ese dato cierra la tesis del proyecto desde el lado económico: el problema de Vitalia nunca fue el costo de la
+      tecnología, y la solución tampoco se sostiene por abaratarla. En este tipo de sistema el costo dominante no son
+      los tokens — es la gobernanza del conocimiento: el curador de política (S/ 6,000/mes) cuesta el doble que toda la inferencia.</div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>Fuente: <b>05a_costeo_cloud.md</b> §3–§9 (Anexo A)</span>
+    <span class="r">Lámina 08b / 10</span></div>
+</section>
+
+<!-- ══════════════════════ 20 · CIERRE ══════════════════════ -->
+<section class="slide">
+  <div class="hd"><div class="n">CIERRE</div><h1>Qué se entrega y qué viene después</h1>
+    <div class="tag">FASE 1 CERRADA</div></div>
+  <div class="bd">
+    <div class="row grow">
+      <div class="col" style="flex:1.1">
+        <table style="flex:1 1 auto">
+          <tr><th style="width:44px">Anexo</th><th>Contenido</th><th style="width:33%">Documento</th></tr>
+          <tr><td><b>A</b></td><td>Detalle de costos y assumptions</td><td>05a_costeo_cloud.md</td></tr>
+          <tr><td><b>B</b></td><td>Arquitectura física/cloud y networking</td><td>D-11 · 04_to_be.md §3</td></tr>
+          <tr><td><b>C</b></td><td>Modelo de datos, pipeline y metadata</td><td>08_modelo_de_datos.md · D-13</td></tr>
+          <tr><td><b>D</b></td><td>ADRs y alternativas evaluadas <small>21 ADRs</small></td><td>02 §3–§4 · 06 §12 · 07 §12 · 08 §11</td></tr>
+          <tr><td><b>E</b></td><td>Golden set, evals y red-team cases</td><td>06_seguridad_y_evaluacion.md</td></tr>
+          <tr><td><b>F</b></td><td>Sizing, load test, SLOs y observabilidad</td><td>07_operacion_y_produccion.md · D-14</td></tr>
+          <tr><td><b>G</b></td><td>Rediseño del proceso y gestión del cambio</td><td>04a · 04 §6 · D-10</td></tr>
+          <tr><td><b>H</b></td><td>Riesgos y mitigaciones</td><td>04_to_be.md §9</td></tr>
+          <tr><td><b>I</b></td><td>Auditoría del baseline</td><td>05_caso_de_negocio.md §8</td></tr>
+          <tr><td><b>J</b></td><td>Benchmark de mercado y precedentes</td><td>03_benchmark_mercado.md</td></tr>
+        </table>
+      </div>
+      <div class="col" style="flex:1">
+        <div class="box amber"><h3>Lo que está declarado como supuesto, no como hecho</h3>
+          <small>La concentración del <b>71%</b> del volumen en 24 combinaciones · el <b>55%</b> de derivación
+          defensiva · los tres drivers del costeo (8 páginas por expediente, 45% al RAG, dimensionamiento de
+          Qdrant y Neon) · <b>κ ≥ 0.75</b> entre anotadores y el umbral de confianza 0.90 ·
+          y el más apalancado de todos: el <b>hit rate del caché semántico</b>, que sostiene las
+          3,500 consultas RAG/mes del modelo de costos.
+          <br><b>Un revisor debe poder señalar cada uno sin encontrar una defensa inventada.</b></small></div>
+        <div class="box navy"><h3>Fase 2 — MVP demostrable</h3>
+          <small>Implementación en Google Cloud de los servicios destacados, corrida del golden set,
+          pruebas de carga P1–P7 y captura de trazas. Se adjuntará como <b>anexo de evidencia</b>
+          sobre este mismo diseño, sin modificar lo comprometido aquí.</small></div>
+        <div class="box solid grow" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="lead" style="font-size:15px;line-height:1.5">
+          Este proyecto no automatiza una mesa: <b>rediseña un proceso</b> y coloca IA únicamente donde una
+          solución más simple no alcanza.<br><br>
+          Por eso las dos primeras fases <b>no llevan IA</b>, el 58% del valor lo captura un motor de reglas,
+          y la decisión de arquitectura de la que más orgullo se puede tener es
+          <b>una que prohíbe: el sistema no puede negar.</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Mesa de preautorización</span>
+    <span>11 documentos · 14 planos draw.io · 21 ADRs</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-05</span></div>
+</section>
+
+</div></div>
+
+<div id="hint">← → navegar &nbsp;·&nbsp; F pantalla completa &nbsp;·&nbsp; Ctrl/Cmd+P imprimir a PDF</div>
+<div id="nav">
+  <button id="prev">◀</button><span id="cnt">1 / 20</span><button id="next">▶</button>
+</div>
+
+<script>
+(function(){
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var i = 0, stage = document.getElementById('stage'), cnt = document.getElementById('cnt');
+  function fit(){
+    var s = Math.min(window.innerWidth/1320, window.innerHeight/760);
+    slides.forEach(function(el){ el.style.transform = 'scale(' + s + ')'; });
+  }
+  function show(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(el,k){ el.classList.toggle('on', k===i); });
+    cnt.textContent = (i+1) + ' / ' + slides.length;
+    if (location.hash !== '#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  document.getElementById('next').onclick = function(){ show(i+1); };
+  document.getElementById('prev').onclick = function(){ show(i-1); };
+  document.addEventListener('keydown', function(e){
+    if (e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ') { show(i+1); e.preventDefault(); }
+    else if (e.key==='ArrowLeft'||e.key==='PageUp') { show(i-1); e.preventDefault(); }
+    else if (e.key==='Home') show(0);
+    else if (e.key==='End') show(slides.length-1);
+    else if (e.key==='f'||e.key==='F') {
+      if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen();
+    }
+  });
+  stage.addEventListener('click', function(e){ show(e.clientX < window.innerWidth/2 ? i-1 : i+1); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('beforeprint', function(){ slides.forEach(function(el){ el.style.transform='none'; }); });
+  window.addEventListener('afterprint', fit);
+  fit();
+  show(parseInt((location.hash||'#1').slice(1),10)-1 || 0);
+})();
+</script>
+</body>
+</html>

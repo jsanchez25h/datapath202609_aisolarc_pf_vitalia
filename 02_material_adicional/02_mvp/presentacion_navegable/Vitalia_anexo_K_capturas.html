@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vitalia Salud EPS · Anexo K · Álbum de capturas (fase 2)</title>
+<style>
+:root{
+  --navy:#1F3864; --navy-l:#D6DCE5;
+  --blue:#2E75B6; --blue-l:#DEEBF7;
+  --green:#548235; --green-l:#E2EFDA;
+  --amber:#BF8F00; --amber-l:#FFF2CC;
+  --red:#A61C00; --red-l:#FBD9D3;
+  --purple:#7030A0; --purple-l:#E9DFF3;
+  --gray:#7F7F7F; --gray-l:#F2F2F2;
+  --ink:#1A1A1A; --paper:#FFFFFF;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#3A3F4B;font-family:Helvetica,Arial,sans-serif;color:var(--ink)}
+#doc{display:flex;flex-direction:column;align-items:center;gap:26px;padding:26px 0}
+.page{
+  position:relative;width:1240px;height:1754px;background:var(--paper);
+  border:1px solid #000;display:flex;flex-direction:column;flex:0 0 auto;
+  counter-increment:pg;
+}
+.hd{background:var(--navy);color:#fff;height:56px;display:flex;align-items:center;padding:0 34px;gap:16px;flex:0 0 auto}
+.hd .n{font-size:11px;letter-spacing:.14em;opacity:.72;white-space:nowrap}
+.hd h1{font-size:20px;margin:0;font-weight:bold;line-height:1.15}
+.hd .tag{margin-left:auto;font-size:10px;border:1px solid rgba(255,255,255,.5);padding:3px 9px;letter-spacing:.09em;white-space:nowrap}
+.bd{flex:1 1 auto;padding:22px 34px;display:flex;flex-direction:column;gap:14px;overflow:hidden}
+.ft{height:30px;flex:0 0 auto;border-top:1px solid var(--navy);display:flex;align-items:center;
+    padding:0 34px;font-size:9.5px;color:var(--gray);gap:14px}
+.ft .r{margin-left:auto}
+.ft .r::after{content:" · pág. " counter(pg)}
+.exp{border:1px solid var(--navy);border-left:5px solid var(--navy);background:var(--gray-l);
+     padding:11px 15px;font-size:13.5px;line-height:1.5}
+.exp b{color:var(--navy)}
+.exp .ruta{font-family:Consolas,"Courier New",monospace;font-size:12.5px;background:#fff;border:1px solid #C9CDD6;
+     padding:1px 6px;white-space:nowrap}
+.exp ul{margin:6px 0 0 17px;padding:0;font-size:13px;line-height:1.5}
+.exp li{margin-bottom:2px}
+.figbox{border:1px solid var(--navy);background:#fff;position:relative;overflow:hidden;
+        align-self:center;width:1162px;flex:0 0 auto;margin-top:auto}
+.figbox img{display:block;width:1160px;position:absolute;left:0;top:0}
+.figbox.auto{position:relative}
+/* Las capturas apaisadas no llegan a llenar el folio: el sobrante se reparte
+   arriba y abajo con margenes automaticos en vez de amontonarse al pie. */
+.cap{font-size:9.5px;color:var(--gray);letter-spacing:.07em;text-transform:uppercase;text-align:center;margin-top:-4px;margin-bottom:auto}
+.box{border:1px solid var(--navy);padding:11px 15px;font-size:13px;line-height:1.5}
+.box h3{margin:0 0 6px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--navy)}
+.box.blue{background:var(--blue-l);border-color:var(--blue)}
+.box.green{background:var(--green-l);border-color:var(--green)}
+.box.amber{background:var(--amber-l);border-color:var(--amber)}
+.box.red{background:var(--red-l);border-color:var(--red)}
+.box.navy{background:var(--navy-l)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--navy);color:#fff;text-align:left;padding:6px 9px;font-size:10.5px;letter-spacing:.05em}
+td{border:1px solid #C9CDD6;padding:5px 9px;vertical-align:top}
+tr:nth-child(even) td{background:#FAFBFC}
+code{font-family:Consolas,"Courier New",monospace;font-size:12px}
+.cover{display:flex;flex-direction:column;height:100%;padding:0}
+.cover .top{flex:1 1 auto;background:var(--navy);color:#fff;padding:70px 62px;display:flex;flex-direction:column;justify-content:center}
+.cover .top .eyebrow{font-size:12px;letter-spacing:.30em;opacity:.72;margin-bottom:22px}
+.cover .top h1{font-size:52px;margin:0 0 14px;line-height:1.08}
+.cover .top h2{font-size:21px;margin:0;font-weight:normal;opacity:.86;line-height:1.4}
+.cover .mid{flex:0 0 auto;padding:28px 62px;border-bottom:1px solid var(--navy);font-size:14px;line-height:1.6}
+.cover .bot{flex:0 0 auto;padding:26px 62px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px 40px;font-size:13px}
+.cover .bot div span{display:block;font-size:9.5px;letter-spacing:.13em;color:var(--gray);text-transform:uppercase;margin-bottom:3px}
+.divider{display:flex;flex-direction:column;justify-content:center;height:100%;padding:0 70px;gap:22px}
+.divider .k{font-size:13px;letter-spacing:.28em;color:var(--gray);text-transform:uppercase}
+.divider h1{font-size:44px;margin:0;color:var(--navy);line-height:1.12}
+.divider p{font-size:16px;line-height:1.6;margin:0;max-width:900px}
+@media print{
+  @page{size:21cm 29.7cm;margin:0}
+  html,body{background:#fff}
+  #doc{display:block;padding:0;gap:0}
+  /* El album se disena a 1240x1754 px = A4 a 150 dpi, para que las capturas
+     de consola se lean en papel. Chrome imprime a 96 dpi (A4 = 793.7x1122.5 px),
+     asi que la hoja se reduce con zoom -que si afecta a la caja de maquetacion,
+     a diferencia de transform- y cada .page vuelve a caber en una pagina. */
+  .page{zoom:.6395;border:none;margin:0;page-break-after:always;break-after:page}
+  .page:last-child{page-break-after:auto;break-after:auto}
+}
+</style>
+</head>
+<body>
+<div id="doc">
+
+<!-- ═══════════════ 1 · PORTADA ═══════════════ -->
+<section class="page">
+  <div class="cover">
+    <div class="top">
+      <div class="eyebrow">PROYECTO FINAL · FASE 2 · ANEXO K · ÁLBUM DE CAPTURAS</div>
+      <h1>La ruta de pantalla<br>y la configuración que la sostiene</h1>
+      <h2>Vitalia Salud EPS · mesa de preautorización de procedimientos programados<br>
+      Veintiún capturas a página completa, cada una con lo que hay que mirar en ella</h2>
+    </div>
+    <div class="mid">
+      Este álbum es el acompañante visual del <b>Anexo K</b>. El anexo explica qué se construyó; aquí se ve.
+      <b>Parte 1</b> recorre la aplicación pantalla por pantalla, en el mismo orden en que se recorre en la
+      defensa. <b>Parte 2</b> abre las consolas de los servicios que la sostienen —Qdrant, Neon, Cloud Run,
+      Cloud Build, Cloud Storage, Secret Manager, Model Armor y Groq— para que lo que la aplicación afirma
+      se pueda contrastar contra el proveedor que lo ejecuta.
+    </div>
+    <div class="bot">
+      <div><span>Autor</span>Jonatan Sánchez</div>
+      <div><span>Programa</span>DataPath · AI Solutions Architect · 2026-08</div>
+      <div><span>Fecha</span>2026-09-06</div>
+      <div><span>Parte 1 · aplicación</span>7 capturas · 10 páginas</div>
+      <div><span>Parte 2 · configuración</span>14 capturas · 14 páginas</div>
+      <div><span>Política vigente</span>v2026_09 · 112 fragmentos</div>
+      <div><span>Proyecto GCP</span>datapath-labs-202608 · us-central1</div>
+      <div><span>Servicio</span>Cloud Run · vitalia-mesa</div>
+      <div><span>Relación con la fase 1</span>Se suma a los anexos A–J</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2 · CÓMO LEER ESTE ÁLBUM ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">ANEXO K · ÁLBUM</div><h1>Cómo leer este álbum</h1>
+    <div class="tag">21 CAPTURAS · 29 PÁGINAS</div></div>
+  <div class="bd">
+    <div class="exp">
+      Una página por captura, la imagen a tamaño completo y encima —no debajo— <b>qué hay que mirar en ella</b>.
+      Las tres pantallas del expediente son largas: ocupan dos páginas cada una, arriba y abajo, para que el
+      texto siga siendo legible en papel. Ninguna captura se ha recortado ni retocado.
+    </div>
+    <div class="box navy">
+      <h3>Parte 1 · la ruta de pantalla</h3>
+      <table>
+        <tr><th style="width:52px">#</th><th style="width:250px">Pantalla</th><th style="width:330px">Ruta</th><th>Lo que prueba</th></tr>
+        <tr><td>P1</td><td>Ingreso</td><td><code>#/ingreso</code></td><td>La autenticación es del borde, no de la aplicación (ADR-15) — y está dicho en la propia pantalla</td></tr>
+        <tr><td>P2</td><td>Consulta anticipada N1</td><td><code>#/n1/&lt;pregunta&gt;</code></td><td>El Carril 0: respuesta desde caché, US$ 0.000000 y la cita verificada literal (R2)</td></tr>
+        <tr><td>P3</td><td>Bandeja</td><td><code>#/bandeja</code></td><td>Cuatro expedientes, su ruta y el reloj del SLA calculado en la base</td></tr>
+        <tr><td>P4a</td><td>Expediente · pendiente</td><td><code>#/expediente/SOL-450ee590fdef</code></td><td><b>La pantalla de la defensa</b>: negación redactada, controlada y sin emitir (ADR-10)</td></tr>
+        <tr><td>P4b</td><td>Expediente · emitido</td><td><code>#/expediente/SOL-689ce3eab0e9</code></td><td>El ciclo cerrado: carta, folio del core y bitácora completa</td></tr>
+        <tr><td>P4c</td><td>Expediente · subsanación</td><td><code>#/expediente/SOL-13f58ae117e3</code></td><td>El único agente del diseño: pide lo que falta en vez de rechazar</td></tr>
+        <tr><td>P5</td><td>Panel de operación</td><td><code>#/panel</code></td><td>Costo, hit-rate, p50/p95 por span, ruteo, guardrail y versión de política</td></tr>
+      </table>
+      <div style="font-size:12px;line-height:1.5;margin-top:9px;color:#444">
+        <b>Cada captura es una URL.</b> La interfaz enruta por <i>hash</i>, así que cualquiera reabre exactamente
+        la misma pantalla sin reproducir una secuencia de clics que nadie anotó. Es el veto <b>V2</b> aplicado a la
+        evidencia: <i>una captura que no se puede rehacer no es evidencia</i>. Los identificadores <code>SOL-…</code>
+        cambian en cada repoblado y <code>demo/capturar.py</code> no lleva ninguno escrito: los resuelve por estado.
+      </div>
+    </div>
+    <div class="box blue">
+      <h3>Parte 2 · la configuración técnica</h3>
+      <table>
+        <tr><th style="width:52px">#</th><th style="width:250px">Consola</th><th style="width:330px">Objeto</th><th>Sesión</th></tr>
+        <tr><td>C01–C02</td><td>Qdrant Cloud</td><td><code>vitalia_politica_v2026_09</code> + alias · <code>vitalia_cache_semantico</code></td><td>S05 · S02</td></tr>
+        <tr><td>C03–C06</td><td>Neon · esquema <code>vitalia_mvp</code></td><td><code>adjudicacion</code> · <code>politica_version</code> · <code>borrador_carta</code> · <code>metrica_costo</code></td><td>S04 · S06 · S10</td></tr>
+        <tr><td>C07–C08</td><td>GCP · Cloud Run</td><td><code>vitalia-mesa</code>: revisión, variables y observabilidad</td><td>S10</td></tr>
+        <tr><td>C09–C10</td><td>GCP · Cloud Build / Storage</td><td>Historial de compilaciones y bucket de contexto</td><td>S10 · S04</td></tr>
+        <tr><td>C11</td><td>GCP · Secret Manager</td><td>Los cinco secretos <code>vitalia-*</code></td><td>S08</td></tr>
+        <tr><td>C12–C13</td><td>GCP · Seguridad · Model Armor</td><td>Plantilla <code>vitalia-preauth</code> y sus detecciones</td><td>S09</td></tr>
+        <tr><td>C14</td><td>Groq</td><td>Consumo del mes: US$ 0.06</td><td>S01 · S09</td></tr>
+      </table>
+    </div>
+    <div class="box red">
+      <h3>Una regla que se cumple en las veintiuna</h3>
+      <b>Ninguna captura muestra el valor de una clave.</b> En Secret Manager se ven <i>nombres</i>; en Cloud Run,
+      <i>referencias montadas</i> (<code>Secreto: vitalia-openai-api-key:latest</code>). Ni la URL del clúster de
+      Qdrant ni la cadena de conexión de Neon aparecen en ninguna imagen. Eso no es prudencia decorativa: la
+      captura tiene que poder circular con el entregable.
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ 3 · SEPARADOR PARTE 1 ═══════════════ -->
+<section class="page">
+  <div class="divider">
+    <div class="k">Parte 1 de 2</div>
+    <h1>La ruta de pantalla</h1>
+    <p>Siete capturas en el orden del recorrido: se entra, se pregunta, se abre la bandeja, se trabajan los
+    tres expedientes que cubren los tres desenlaces del diseño —autorización automática, subsanación y
+    escalamiento a la mesa— y se cierra en el panel de operación.</p>
+    <p><b>La pantalla que hay que enseñar es la 4a.</b> Es la única que pone en la misma página, y en dos
+    columnas contiguas, las dos naturalezas que el diseño se negó a mezclar: lo determinista, que no pasa por
+    ningún modelo, y lo interpretativo, que propone pero no dispone.</p>
+    <p style="font-size:14px;color:#555"><i>El modelo propone, el catálogo dispone.</i></p>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P1 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 1 DE 7</div><h1>Ingreso a la mesa</h1>
+    <div class="tag">#/ingreso</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>La puerta.</b> Se elige perfil —analista, auditor médico u operación— y se entra a la bandeja.
+      Lo que hay que mirar no es el formulario: es la advertencia que la propia pantalla lleva escrita.
+      <ul>
+        <li><b>La autenticación es del borde, no de la aplicación</b> (ADR-15). En producción la resuelve
+        Identity Platform delante de Cloud Run; la aplicación nunca guarda contraseñas ni emite sesiones.</li>
+        <li>En el MVP el ingreso es <b>de demostración</b>, y así lo dice la pantalla. Se declara en vez de
+        simularse: un control que se aparenta es peor que uno que falta, porque nadie lo va a buscar después.</li>
+        <li>El perfil elegido gobierna lo que se ve y lo que se puede hacer aguas abajo — el botón de emitir
+        no existe para quien no puede emitir.</li>
+      </ul>
+      Ruta reproducible: <span class="ruta">http://127.0.0.1:8088/app/#/ingreso</span>
+    </div>
+    <div class="figbox" style="height:725px"><img src="img/P1_ingreso.png" alt="Pantalla de ingreso"></div>
+    <div class="cap">P1_ingreso.png · 1440 × 900 · fase2/evidencias/pantallas/</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P2 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 2 DE 7</div><h1>Consulta anticipada N1 · el Carril 0</h1>
+    <div class="tag">#/n1/&lt;pregunta&gt;</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>El carril que lleva el 41% del volumen</b> y que en el proceso actual consume tiempo de analista sin
+      producir ninguna decisión: preguntas de cobertura y carencia que se responden antes de radicar nada.
+      <ul>
+        <li><b>Servida desde caché:</b> la etiqueta <code>desde caché</code>, <code>US$ 0.000000</code> y coseno
+        <code>1.0000</code>. La clave del caché es determinista —versión, plan, cobertura, intención— y no una
+        similitud: <i>ningún umbral de similitud es seguro por sí solo</i> (hallazgo E00 §1).</li>
+        <li><b>La cita se muestra, no se resume:</b> <code>carencias_y_preexistencias-v2026_09-c03</code>,
+        verificada carácter por carácter contra el corpus vigente. Es <b>R2</b> en vivo — ninguna afirmación
+        sobre política sin cita textual.</li>
+        <li>El caché guarda las citas junto a la respuesta. <i>El caché no puede tirar las citas</i>: una
+        respuesta barata sin respaldo sería exactamente el error que el diseño no admite.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:564px"><img src="img/P2_consulta_n1.png" alt="Consulta N1"></div>
+    <div class="cap">P2_consulta_n1.png · 1440 × 700 · pregunta: «¿Cuántos días de carencia tiene la cesárea programada en el plan VIT-INT?»</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P3 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 3 DE 7</div><h1>Bandeja de la mesa</h1>
+    <div class="tag">#/bandeja</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>Lo primero que ve un analista al empezar el turno.</b> Cuatro expedientes, y para cada uno tres datos
+      que en el proceso actual viven en tres sitios distintos: la <b>ruta</b> que tomó (automática · subsanación ·
+      mesa · mesa), el <b>estado</b> y el <b>reloj del SLA</b>.
+      <ul>
+        <li>El reloj <b>se calcula en la base de datos</b>, no en el navegador: un solo reloj para todos los
+        analistas, y el mismo que audita después la operación. El TAT deja de depender de quién mira la pantalla.</li>
+        <li>La ruta no es una etiqueta puesta a mano: es el resultado de E3, y la columna <code>motivo_ruta</code>
+        de <code>adjudicacion</code> guarda por qué se tomó.</li>
+        <li>Dos de los cuatro están en la mesa. <b>Eso es el diseño funcionando</b>, no una carencia: el sistema
+        escala lo que no debe resolver solo.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:806px"><img src="img/P3_bandeja.png" alt="Bandeja"></div>
+    <div class="cap">P3_bandeja.png · 1440 × 1000 · el estado exacto está en E14_bandeja_de_la_demo.json</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P4a · arriba ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 4a DE 7 · ARRIBA</div><h1>El expediente pendiente · la pantalla de la defensa</h1>
+    <div class="tag">SOL-450ee590fdef · estado hitl</div></div>
+  <div class="bd">
+    <div class="exp">
+      Cesárea programada con <b>220 días de los 300 de carencia</b> exigidos. El sistema redactó la negación,
+      la aprobó por el guardrail y <b>no la emitió</b>. La mitad superior de la pantalla pone las dos naturalezas
+      del problema en dos columnas contiguas, que es la decisión de diseño que sostiene todo lo demás:
+      <ul>
+        <li><b>Izquierda, lo determinista.</b> Etiquetas <code>sin modelo</code> · <code>reproducible</code> ·
+        <code>R1</code>. Elegibilidad, carencia, cobertura y copago con su desglose. Al pie:
+        <i>«esta columna no pasó por ningún modelo; la fila de <code>metrica_costo</code> del tramo
+        <code>adjudicacion</code> vale US$ 0.000000, y esa fila en cero es la prueba —no un hueco en los datos»</i>.</li>
+        <li><b>Derecha, lo interpretativo.</b> Etiqueta <code>gpt-4o-mini</code> y la advertencia
+        <i>«propone, no dispone»</i>. Cada campo extraído lleva su confianza <b>y</b> su contraste contra catálogo.
+        La confianza que declara el modelo no decide nada: decide la columna «contraste», que es una consulta.</li>
+      </ul>
+      <b>R1 no se afirma: se lee en el dato.</b> <code>extraccion.modelo = gpt-4o-mini</code> frente a
+      <code>adjudicacion.modelo = NULL, determinista = true</code>. Quien audite no tiene que creerle a la
+      documentación.
+    </div>
+    <div class="figbox" style="height:880px"><img src="img/P4a_expediente_pendiente.png" alt="Expediente pendiente, mitad superior"></div>
+    <div class="cap">P4a_expediente_pendiente.png · 1440 × 2150 · mitad superior</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P4a · abajo ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 4a DE 7 · ABAJO</div><h1>El expediente pendiente · citas, controles y bitácora</h1>
+    <div class="tag">SOL-450ee590fdef · sin emitir</div></div>
+  <div class="bd">
+    <div class="exp">
+      La mitad inferior es donde la decisión se vuelve auditable, en este orden:
+      <ul>
+        <li><b>Las cláusulas que la sostienen</b>, con su <code>chunk_id</code> y la etiqueta
+        <b>verificada literal</b>. No un resumen de la política: el texto de la política.</li>
+        <li><b>Los seis controles O1–O6</b> del guardrail de salida, con lo que verificó cada uno y su resultado.
+        O1 exige al menos una cita y la compara carácter por carácter; O2 comprueba que la versión citada sea la
+        vigente. En una corrida anterior O1 se cumplía por vacuidad —<i>«las 0 citas coinciden»</i>— y ese defecto
+        está escrito en <code>E01_hallazgos_carril1.md</code>.</li>
+        <li><b>El borrador de carta</b>, marcado <i>«todavía no es de nadie»</i>, con dos botones —<i>Emitir sin
+        cambios</i> / <i>Emitir con mis correcciones</i>— y la advertencia de que <b>editar el texto no salta el
+        guardrail</b>.</li>
+        <li><b>La bitácora <i>append-only</i></b>, con cada transición, su actor y su motivo.</li>
+      </ul>
+      <b>Esto es el ADR-10.</b> El expediente está en <code>hitl</code> y la máquina de estados no tiene ninguna
+      transición que lo saque de ahí sin que una persona firme. En la superficie MCP no existe herramienta que
+      emita, niegue o cambie estado: no está restringida, <b>no está escrita</b>.
+    </div>
+    <div class="figbox" style="height:880px"><img src="img/P4a_expediente_pendiente.png" style="top:-852px" alt="Expediente pendiente, mitad inferior"></div>
+    <div class="cap">P4a_expediente_pendiente.png · mitad inferior</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P4b · arriba ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 4b DE 7 · ARRIBA</div><h1>El expediente emitido · el ciclo cerrado</h1>
+    <div class="tag">SOL-689ce3eab0e9 · autoriza</div></div>
+  <div class="bd">
+    <div class="exp">
+      El caso que <b>sí</b> se resuelve solo: elegible, carencia cumplida, cobertura clara y tarifa en catálogo.
+      La mitad superior enseña las mismas dos columnas de P4a, pero con el desenlace contrario.
+      <ul>
+        <li><b>Copago S/ 1,210.00 con su desglose</b> calculado del tarifario, no estimado por un modelo. La misma
+        columna determinista, el mismo <code>US$ 0.000000</code> en el tramo de adjudicación.</li>
+        <li><b>Carta <code>autoriza</code> emitida</b> y el <b>folio del core</b> devuelto. El sistema no administra
+        el core: lo lee y le entrega (ADR-18).</li>
+        <li>La automatización no es el objetivo declarado del diseño, es la consecuencia de haber acotado bien lo
+        determinista: cuando las cuatro condiciones se cumplen, no hay nada que interpretar.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:860px"><img src="img/P4b_expediente_emitido.png" alt="Expediente emitido, mitad superior"></div>
+    <div class="cap">P4b_expediente_emitido.png · 1440 × 2100 · mitad superior</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P4b · abajo ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 4b DE 7 · ABAJO</div><h1>El expediente emitido · la bitácora completa</h1>
+    <div class="tag">recibida → … → emitida</div></div>
+  <div class="bd">
+    <div class="exp">
+      Abajo está la <b>traza entera</b>, que es lo que convierte una autorización automática en algo defendible
+      ante un regulador:
+      <ul>
+        <li><b>La bitácora <code>recibida → … → emitida</code></b>, <i>append-only</i>, con actor y motivo en cada
+        transición. No hay <code>UPDATE</code> sobre el estado: hay eventos. Reconstruir el expediente a cualquier
+        fecha es leer la tabla, no reinterpretarla (veto <b>V2</b>).</li>
+        <li><b>Los controles O1–O6 aplicados también a la carta que se emitió</b>: emitir sin cambios no salta el
+        guardrail, y emitir con correcciones tampoco.</li>
+        <li><b>Las cláusulas citadas</b> con su versión. Si mañana se publica <code>v2026_10</code>, esta carta
+        seguirá diciendo contra qué versión se decidió.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:860px"><img src="img/P4b_expediente_emitido.png" style="top:-832px" alt="Expediente emitido, mitad inferior"></div>
+    <div class="cap">P4b_expediente_emitido.png · mitad inferior</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P4c · arriba ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 4c DE 7 · ARRIBA</div><h1>El expediente en subsanación · el único agente</h1>
+    <div class="tag">SOL-13f58ae117e3 · observa</div></div>
+  <div class="bd">
+    <div class="exp">
+      Falta el informe médico que sustenta la indicación. En el proceso actual eso termina en un rechazo
+      administrativo que el afiliado vuelve a presentar dos semanas después. Aquí <b>el sistema pide lo que falta</b>.
+      <ul>
+        <li><b>Es el único agente del diseño</b>, y es agente por una razón concreta: no se sabe de antemano
+        cuántos documentos faltan ni cuál pedir primero. Todo lo demás del flujo es determinista o es una
+        extracción, y ninguna de las dos cosas necesita un agente.</li>
+        <li>Trabaja contra un <b>servidor MCP propio con catálogo cerrado de cuatro herramientas</b>. Ninguna de
+        las cuatro emite, niega ni cambia estado.</li>
+        <li>Cada llamada pasa por <b>seis ganchos</b> como middleware: solo-lectura, idempotencia, PII y traza,
+        entre otros. <i>Un gancho que confía en la skill no es un control</i> — ese defecto está en
+        <code>E13_hallazgos_del_mcp.md</code>.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:840px"><img src="img/P4c_expediente_subsanacion.png" alt="Expediente en subsanación, mitad superior"></div>
+    <div class="cap">P4c_expediente_subsanacion.png · 1440 × 2050 · mitad superior</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P4c · abajo ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 4c DE 7 · ABAJO</div><h1>El expediente en subsanación · la carta que pide, no rechaza</h1>
+    <div class="tag">borrador observa · aprobado por guardrail</div></div>
+  <div class="bd">
+    <div class="exp">
+      La mitad inferior enseña el resultado del agente y lo que se hizo con él:
+      <ul>
+        <li><b>El borrador de tipo <code>observa</code></b>: nombra el documento que falta, cita la cláusula que lo
+        exige y da el plazo. Es una petición, no una negativa — y esa diferencia es la que evita que el afiliado
+        empiece de cero.</li>
+        <li><b>Los controles O1–O6 corrieron igual.</b> Que la carta sea benigna no la exime: el guardrail de salida
+        no distingue por intención, distingue por control.</li>
+        <li><b>La traza de la conversación del agente</b> con su costo y su latencia por tramo, y la bitácora del
+        expediente con la transición a <code>observa</code> y su motivo.</li>
+      </ul>
+      Tres desenlaces, tres expedientes: <b>autoriza</b> (P4b), <b>observa</b> (P4c) y <b>negación retenida en
+      <code>hitl</code></b> (P4a). Son los tres que el diseño promete, y están los tres a la vista.
+    </div>
+    <div class="figbox" style="height:840px"><img src="img/P4c_expediente_subsanacion.png" style="top:-811px" alt="Expediente en subsanación, mitad inferior"></div>
+    <div class="cap">P4c_expediente_subsanacion.png · mitad inferior</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ P5 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 1 · PANTALLA 5 DE 7</div><h1>Panel de operación</h1>
+    <div class="tag">#/panel</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>Lo que mira quien opera la mesa</b>, no quien la construyó: costo por solicitud, hit-rate del caché,
+      p50/p95 por span, distribución del ruteo, actividad del guardrail, feedback y la versión de política vigente.
+      <ul>
+        <li><b>El costo se lee de <code>metrica_costo</code></b>, span a span. Los <b>S/ 0.02</b> por solicitud son
+        la medición de esta corrida; el <b>S/ 0.86</b> del Anexo A es el costo costeado a 7,800 solicitudes/mes con
+        la infraestructura fija de producción. <b>No son la misma cifra y no se mezclan.</b></li>
+        <li><b>El panel mide los dos carriles.</b> En una versión anterior medía solo el Carril 1 y el carril que
+        lleva el 41% del volumen no aparecía en la cuenta (<code>E12</code> §3). El defecto está escrito.</li>
+        <li><b>La versión de política se muestra siempre</b>, resuelta por el alias <code>politica_actual</code>
+        (ADR-21). La aplicación nunca lee el nombre de la colección: publicar una versión es mover el alias.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:725px"><img src="img/P5_panel.png" alt="Panel de operación"></div>
+    <div class="cap">P5_panel.png · 1440 × 900 · volcado completo en E11_servicio_y_mesa.json → panel</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 1</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ SEPARADOR PARTE 2 ═══════════════ -->
+<section class="page">
+  <div class="divider">
+    <div class="k">Parte 2 de 2</div>
+    <h1>La configuración técnica</h1>
+    <p>Catorce consolas. La aplicación de la Parte 1 afirma cosas —que hay 112 fragmentos de política, que el
+    tramo de adjudicación no pasa por ningún modelo, que las claves no están en el código—. Aquí se abren los
+    proveedores que las ejecutan para que esas afirmaciones se puedan contrastar contra algo que no escribimos
+    nosotros.</p>
+    <p><b>Ninguna de las catorce muestra el valor de una clave.</b> Secret Manager enseña nombres; Cloud Run,
+    referencias montadas. Ni la URL del clúster de Qdrant ni la cadena de conexión de Neon aparecen en ninguna
+    imagen. La captura tiene que poder circular con el entregable.</p>
+    <p style="font-size:14px;color:#555"><i>Un límite que se afirma sin poder comprobarlo no vale más que una excusa.</i></p>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C01 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C01 · QDRANT CLOUD</div><h1>La colección de política y el alias que la publica</h1>
+    <div class="tag">S05 · ADR-21 · ADR-19</div></div>
+  <div class="bd">
+    <div class="exp">
+      Clúster <code>datalab_aisa_modulo01_jfsh</code>, Qdrant v1.19.0, colección
+      <code>vitalia_politica_v2026_09</code>. Cuatro cosas hay que leer aquí:
+      <ul>
+        <li><b><code>"points_count": 112</code></b> — los 112 fragmentos de <code>E04_ingesta_v2026_09.json</code>,
+        contados por el proveedor y no por nuestro <i>log</i>. Once documentos segmentados <b>por cláusula</b>
+        (ADR-19), no por número de caracteres.</li>
+        <li><b><code>"size": 3072</code> y <code>"distance": "Cosine"</code></b> — <code>text-embedding-3-large</code>.
+        Las colecciones de los laboratorios anteriores tienen 1,536 dimensiones; esa diferencia es la forma
+        más rápida de saber si se está mirando el corpus del MVP o uno viejo.</li>
+        <li><b><code>"hnsw_config": m 16, ef_construct 100</code></b> y <code>"status": "green"</code>, con dos
+        segmentos y <code>on_disk_payload</code> activo: el <code>texto_literal</code> del que sale la cita
+        verificada vive en el <i>payload</i>, no en un archivo aparte que habría que sincronizar.</li>
+        <li><b>El bloque <i>Aliases</i>: <code>politica_actual</code>.</b> La aplicación lee el alias y nunca el
+        nombre de la colección. <b>Publicar una versión es mover el alias</b> — y revertir, moverlo de vuelta.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:607px"><img src="img/consolas/C01_qdrant_coleccion_politica.png" alt="Qdrant, colección de política"></div>
+    <div class="cap">C01_qdrant_coleccion_politica.png · consola de Qdrant Cloud · 2026-09-06 09:19</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C02 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C02 · QDRANT CLOUD</div><h1>El caché semántico por dentro</h1>
+    <div class="tag">S02 · AI FinOps</div></div>
+  <div class="bd">
+    <div class="exp">
+      La colección <code>vitalia_cache_semantico</code>, abierta en un punto real. Esta captura contesta la
+      pregunta incómoda de todo caché de LLM: <b>¿qué guarda exactamente, y qué pasa con el respaldo?</b>
+      <ul>
+        <li><b>La clave es determinista:</b> <code>"clave": "v2026_09|todos|salud_mental|carencia"</code> —
+        versión de política, plan, cobertura e intención. No es un <i>hash</i> del texto ni un umbral de
+        similitud. Reformulaciones legítimas de la misma pregunta miden entre 0.598 y 0.787 de coseno, y una
+        pregunta de <i>otra</i> cobertura mide 0.780: las bandas se solapan, así que
+        <b>ningún umbral es seguro por sí solo</b> (<code>E00_hallazgos_carril0.md</code> §1).</li>
+        <li><b>El <i>payload</i> lleva <code>citas</code></b> junto a la respuesta. <i>El caché no puede tirar las
+        citas</i>: si las tirara, el ahorro se pagaría con una afirmación sin respaldo, que es justo el error que
+        el diseño no admite.</li>
+        <li><b><code>version_id</code> y <code>sha256</code></b> del corpus: si se publica <code>v2026_10</code>,
+        estas entradas dejan de servir solas, sin tener que acordarse de vaciar nada.</li>
+        <li><code>Vectors: Default vector · Length 3072</code> — el mismo espacio que la colección de política.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:604px"><img src="img/consolas/C02_qdrant_cache_semantico.png" alt="Qdrant, caché semántico"></div>
+    <div class="cap">C02_qdrant_cache_semantico.png · consola de Qdrant Cloud · 2026-09-06 09:18</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C03 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C03 · NEON</div><h1>La tabla que prueba R1</h1>
+    <div class="tag">vitalia_mvp.adjudicacion · 4 filas</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>Si sólo se puede enseñar una tabla, es ésta.</b> Cuatro adjudicaciones, y en las cuatro:
+      <ul>
+        <li><b><code>determinista = true</code></b> y <b><code>modelo = NULL</code></b>. El invariante <b>R1</b>
+        —lo determinista nunca pasa por un modelo— no es una promesa de la documentación: es una columna.</li>
+        <li><b><code>carencia_dias_exigidos</code> y <code>carencia_dias_afiliado</code> guardados</b>, no
+        recalculados al mostrarlos. Por eso la pantalla puede decir <i>«220 días de 300»</i> meses después y
+        seguir diciendo lo mismo.</li>
+        <li><b><code>copago_pen</code> con su <code>copago_desglose</code></b>: el importe y de dónde sale, en la
+        misma fila.</li>
+        <li><b><code>ruta</code> y <code>motivo_ruta</code></b>: la decisión de escalar queda escrita con su
+        porqué, que es lo que hace revisable el 41% de casos que no se automatizan.</li>
+      </ul>
+      El contraste está en la tabla <code>extraccion</code>, que sí lleva <code>modelo = 'gpt-4o-mini'</code>.
+      Dos tablas, dos naturalezas, y la frontera entre ellas visible en el esquema.
+    </div>
+    <div class="figbox" style="height:461px"><img src="img/consolas/C03_neon_adjudicacion.png" alt="Neon, tabla adjudicacion"></div>
+    <div class="cap">C03_neon_adjudicacion.png · consola de Neon · proyecto datapath-labs · rama production · esquema vitalia_mvp</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C04 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C04 · NEON</div><h1>La política, sellada y fechada</h1>
+    <div class="tag">vitalia_mvp.politica_version</div></div>
+  <div class="bd">
+    <div class="exp">
+      Una sola fila, y es la que permite responder <i>«¿contra qué texto se decidió esto?»</i> sin abrir un correo:
+      <ul>
+        <li><b><code>version_id = v2026_09</code></b> y su <b><code>sha256</code></b>: el corpus entero resumido en
+        un valor. Si alguien reemplaza un PDF, el <i>hash</i> deja de cuadrar y la ingesta lo dice.</li>
+        <li><b><code>vigencia_desde</code> / <code>vigencia_hasta</code></b>: el control O2 del guardrail de salida
+        comprueba contra estas fechas que la cláusula citada estaba vigente el día de la decisión.</li>
+        <li><b><code>aprobado_por</code></b> — una persona con nombre, no un proceso. Publicar política es un acto
+        de gobierno, no un despliegue.</li>
+        <li><b><code>coleccion_qdrant</code> y <code>fragmentos = 112</code></b>: la fila apunta a la colección de
+        C01 y al número que allí se cuenta. Las dos evidencias se cierran una contra la otra.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:362px"><img src="img/consolas/C04_neon_politica_version.png" alt="Neon, tabla politica_version"></div>
+    <div class="cap">C04_neon_politica_version.png · consola de Neon · esquema vitalia_mvp</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C05 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C05 · NEON</div><h1>Cartas escritas, aprobadas y todavía sin emitir</h1>
+    <div class="tag">vitalia_mvp.borrador_carta · ADR-10</div></div>
+  <div class="bd">
+    <div class="exp">
+      Es el ADR-10 leído en el dato, y por eso vale más que la pantalla: <b>el borrador y la carta son dos tablas
+      distintas</b>. Un texto redactado no es un acto administrativo hasta que alguien lo emite.
+      <ul>
+        <li>Tres borradores: uno <code>observa</code> y dos <code>niega_administrativa</code>, con
+        <b><code>aprobada_guardrail = true</code></b> en todos. <b>Aprobado por el guardrail no es emitido.</b>
+        Son dos hechos distintos y el esquema los guarda por separado.</li>
+        <li>La tabla <code>carta</code> tiene <b>una sola fila</b> —la autorización de P4b—. La diferencia entre
+        tres y uno es exactamente lo que el sistema se negó a decidir solo.</li>
+        <li>La tabla <code>carta</code> lleva además la restricción que hace de <b>R3</b> algo no evitable:
+        <code>CHECK (tipo &lt;&gt; 'niega_necesidad_medica' OR firma_id IS NOT NULL)</code>. No es una validación de
+        aplicación que se pueda saltar por otra ruta: la base rechaza la fila.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:429px"><img src="img/consolas/C05_neon_borrador_carta.png" alt="Neon, tabla borrador_carta"></div>
+    <div class="cap">C05_neon_borrador_carta.png · consola de Neon · esquema vitalia_mvp</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C06 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C06 · NEON</div><h1>El costo, span a span</h1>
+    <div class="tag">vitalia_mvp.metrica_costo · 30 filas</div></div>
+  <div class="bd">
+    <div class="exp">
+      Treinta filas, una por tramo ejecutado: <code>extraccion</code>, <code>adjudicacion</code>,
+      <code>emision</code>, <code>n1</code>. Cada una con proveedor, modelo, tokens de entrada y salida, costo,
+      latencia y si hubo acierto de caché. De aquí sale el panel de P5 — <b>el panel no calcula nada, lee</b>.
+      <ul>
+        <li><b>Las filas de <code>adjudicacion</code> traen <code>proveedor = ninguno</code>, <code>modelo = NULL</code>
+        y 0 tokens.</b> Es la contraparte de C03: R1 mirado desde la contabilidad. <b>Una fila en cero es la
+        prueba; un tramo ausente sería un hueco en los datos</b>, y por eso el tramo se escribe igual aunque no
+        cueste nada.</li>
+        <li><b><code>trace_id</code> y <code>span</code></b> permiten reconstruir el costo de una solicitud
+        concreta, no sólo el total del mes.</li>
+        <li>Los <b>S/ 0.02</b> por solicitud del panel salen de sumar estas filas. El <b>S/ 0.86</b> del Anexo A es
+        otra cosa: el costo costeado a 7,800 solicitudes/mes con infraestructura fija. <b>No se mezclan.</b></li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:559px"><img src="img/consolas/C06_neon_metrica_costo.png" alt="Neon, tabla metrica_costo"></div>
+    <div class="cap">C06_neon_metrica_costo.png · consola de Neon · esquema vitalia_mvp</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C07 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C07 · GCP · CLOUD RUN</div><h1>El servicio, su revisión y las claves que no están en el código</h1>
+    <div class="tag">vitalia-mesa · us-central1</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>La captura más densa del álbum.</b> Servicio <code>vitalia-mesa</code>, revisión
+      <code>vitalia-mesa-00001-srk</code> con el 100% del tráfico, 1 CPU y 2 GiB.
+      <ul>
+        <li><b>Catorce variables de entorno, y las cinco últimas dicen <code>Secreto: …:latest</code></b>
+        —<code>DATABASE_URL</code>, <code>QDRANT_URL</code>, <code>QDRANT_API_KEY</code>,
+        <code>OPENAI_API_KEY</code>, <code>GROQ_API_KEY</code>—. El contenedor <b>no tiene <code>variables.sh</code></b>:
+        las resuelve Secret Manager en el arranque. Ni la consola muestra los valores, ni la imagen los contiene.</li>
+        <li>Las otras nueve son configuración, no secretos, y se leen enteras:
+        <code>DB_SCHEMA=vitalia_mvp</code>, <code>QDRANT_COLLECTION_ALIAS=politica_actual</code> —el alias de C01—,
+        <code>VERSION_POLITICA=2026-09</code>, <code>GUARDRAIL_ENGINE=groq</code>,
+        <code>GROQ_PROMPT_GUARD_MODEL=meta-llama/llama-prompt-guard-2-86m</code> y
+        <code>GROQ_LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20b</code>: las capas 7 y 8 del guardrail, nombradas
+        en la configuración del servicio.</li>
+        <li><b>La URL existe pero no es pública.</b> La organización aplica
+        <code>constraints/iam.allowedPolicyMemberDomains</code> y rechaza <code>allUsers</code>. Para verlo hay que
+        invocarlo con token o levantar <code>gcloud run services proxy</code>. La política efectiva está copiada
+        literal en <code>E15_despliegue_cloud_run.json</code>.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:563px"><img src="img/consolas/C07_cloud_run_revision_y_variables.png" alt="Cloud Run, revisión y variables"></div>
+    <div class="cap">C07_cloud_run_revision_y_variables.png · proyecto datapath-labs-202608</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C08 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C08 · GCP · CLOUD RUN</div><h1>Observabilidad del servicio desplegado</h1>
+    <div class="tag">S10 · LLMOps</div></div>
+  <div class="bd">
+    <div class="exp">
+      La pestaña <i>Observabilidad</i> del mismo servicio, con las métricas que da la plataforma sin instrumentar
+      nada: recuento de solicitudes, <b>latencias p50 / p95 / p99</b>, latencia de extremo a extremo, desglose por
+      etapa —ejecución del usuario, enrutamiento, entrada a la región, arranque— e instancias facturables.
+      <ul>
+        <li><b>Es la capa exterior de la observabilidad, y por sí sola no basta.</b> Mide la solicitud HTTP; no
+        sabe cuánto costó el tramo de extracción ni si el guardrail cortó. Ese detalle vive en
+        <code>metrica_costo</code> (C06) y en el panel de P5. <b>Las dos capas miden cosas distintas y las dos
+        hacen falta.</b></li>
+        <li><b>La actividad es de demostración</b>, no de producción: picos sueltos el 5 y el 6 de septiembre.
+        Decirlo es parte de la evidencia — un gráfico casi vacío presentado como carga sería una afirmación falsa.</li>
+        <li><b>Lo que falta está declarado</b> en §K.6: la instrumentación con LangSmith y la medición de los SLOs
+        J1 (&lt; 2 s), J3 (&lt; 90 s) y J4 (&lt; 5 min) <i>bajo carga</i>. Esta pantalla es el punto de partida de
+        esa medición, no su sustituto.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:573px"><img src="img/consolas/C08_cloud_run_observabilidad.png" alt="Cloud Run, observabilidad"></div>
+    <div class="cap">C08_cloud_run_observabilidad.png · último día · zona horaria UTC-5</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C09 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C09 · GCP · CLOUD BUILD</div><h1>Cómo llegó la imagen hasta ahí</h1>
+    <div class="tag">6 compilaciones · us-central1</div></div>
+  <div class="bd">
+    <div class="exp">
+      Historial de compilaciones del proyecto. <b>La del MVP es <code>1a3e7826</code></b>, del 5 de septiembre a
+      las 19:54, <b>1 min 32 s</b>, correcta. Las cinco de agosto son de los laboratorios anteriores del curso y
+      están aquí por lo mismo que se enseña la bandeja entera: el entorno es real y tiene historia.
+      <ul>
+        <li><b>La imagen no se construyó en esta máquina.</b> <code>gcloud builds submit</code> sube el contexto,
+        Cloud Build construye y publica en Artifact Registry (<code>vitalia-mvp/mesa:v1</code>) y Cloud Run
+        despliega esa imagen. Lo que corre en la nube no depende del Python local ni de que aquí funcione.</li>
+        <li>La columna <b><i>Estadísticas de seguridad</i></b> tiene un <i>Ver</i> sólo en la compilación reciente:
+        el análisis de vulnerabilidades del artefacto. No se explotó en esta fase, y se dice.</li>
+        <li>Sin <i>Fuente</i>, <i>Ref</i> ni <i>Activador</i>: el despliegue fue <b>manual y reproducible por
+        comando</b> (§K.5), no automático desde un repositorio. Automatizarlo es F1 del roadmap, no algo que
+        se pueda dar por hecho.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:563px"><img src="img/consolas/C09_cloud_build_historial.png" alt="Cloud Build, historial"></div>
+    <div class="cap">C09_cloud_build_historial.png · proyecto datapath-labs-202608</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C10 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C10 · GCP · CLOUD STORAGE</div><h1>El bucket del contexto de construcción</h1>
+    <div class="tag">datapath-labs-202608_cloudbuild</div></div>
+  <div class="bd">
+    <div class="exp">
+      El bucket donde Cloud Build deja el contexto que se le envía en cada <code>builds submit</code>. Es la pieza
+      menos vistosa del álbum y aun así merece página propia por dos razones:
+      <ul>
+        <li><b>Cierra la cadena de C09.</b> Contexto en Storage → construcción en Cloud Build → imagen en Artifact
+        Registry → revisión en Cloud Run. Los cuatro eslabones están retratados y ninguno se afirma de memoria.</li>
+        <li><b>Es también el sitio donde un despliegue descuidado filtra secretos.</b> Aquí no: el
+        <code>.gcloudignore</code> del proyecto deja fuera <code>variables.sh</code>, <code>.env</code> y
+        <code>.gcp/</code>, de modo que <b>lo que se sube no contiene ninguna clave</b>. Que el contenedor las
+        reciba de Secret Manager (C07, C11) sólo sirve si además no viajaron dentro de la imagen.</li>
+      </ul>
+      En el diseño de la fase 1 este bucket es parte del apartado de ingesta y artefactos; aquí aparece con su
+      nombre real, que es lo único que faltaba.
+    </div>
+    <div class="figbox" style="height:565px"><img src="img/consolas/C10_cloud_storage_cloudbuild.png" alt="Cloud Storage, bucket de Cloud Build"></div>
+    <div class="cap">C10_cloud_storage_cloudbuild.png · proyecto datapath-labs-202608</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C11 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C11 · GCP · SECRET MANAGER</div><h1>Las cinco claves, por nombre</h1>
+    <div class="tag">S08 · production-grade</div></div>
+  <div class="bd">
+    <div class="exp">
+      <code>vitalia-database-url</code>, <code>vitalia-groq-api-key</code>, <code>vitalia-openai-api-key</code>,
+      <code>vitalia-qdrant-api-key</code>, <code>vitalia-qdrant-url</code>. Replicación automática y encriptación
+      administrada por Google.
+      <ul>
+        <li><b>La consola enseña nombres, no valores</b>, y esa es exactamente la propiedad que se quería
+        demostrar. Para leer un valor hace falta un permiso distinto del que hace falta para montarlo en un
+        servicio: quien despliega no necesita ver la clave.</li>
+        <li><b><code>QDRANT_URL</code> es un secreto y no una variable de configuración.</b> No es paranoia de
+        más: la URL del clúster identifica el destino y, junto con la clave, abre el índice entero. Va donde van
+        las claves.</li>
+        <li><b>La rotación deja de ser un evento traumático:</b> se añade una versión al secreto y se redespliega
+        la revisión. No hay que editar código, ni una imagen, ni buscar en cuántos sitios estaba copiada.</li>
+        <li>En el repositorio del proyecto, <code>variables.sh</code>, <code>.env</code> y <code>.gcp/</code> están
+        en <code>.gitignore</code> desde el primer día. Secret Manager es la otra mitad de la misma regla.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:646px"><img src="img/consolas/C11_secret_manager_secretos.png" alt="Secret Manager, los cinco secretos"></div>
+    <div class="cap">C11_secret_manager_secretos.png · proyecto datapath-labs-202608</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C12 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C12 · GCP · SEGURIDAD · MODEL ARMOR</div><h1>La plantilla existe, y con nombre y fecha</h1>
+    <div class="tag">S09 · ADR-08</div></div>
+  <div class="bd">
+    <div class="exp">
+      <b>Model Armor no fue una idea de última hora:</b> está en el ADR-08 de la fase 1 y en los diagramas D-06,
+      D-11 y D-12, escrito meses antes de que existiera este recurso. Esta captura es la confirmación empírica de
+      una decisión ya tomada.
+      <ul>
+        <li><b>Recurso:</b>
+        <code>projects/datapath-labs-202608/locations/us-central1/templates/vitalia-preauth</code>, creado el
+        6 de septiembre de 2026 a las 8:37.</li>
+        <li><b><i>Residencia de los datos: Aplicada</i></b> — el contenido inspeccionado no sale de la región,
+        lo que en un caso de salud no es un detalle de configuración sino una condición.</li>
+        <li><b>El servicio es regional</b>, y eso cuesta una tarde si no se sabe: <code>gcloud model-armor …</code>
+        pega al endpoint global y devuelve <code>PERMISSION_DENIED</code> aun siendo <i>owner</i> con la API
+        habilitada. Hay que usar <code>modelarmor.us-central1.rep.googleapis.com</code>, y el error no lo dice.</li>
+        <li><b>En la consola se llega por Seguridad → Model Armor</b>, dentro de Security Command Center — no es
+        un producto de la sección de IA, y por eso cuesta encontrarlo.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:809px"><img src="img/consolas/C12_model_armor_plantilla.png" alt="Model Armor, plantilla"></div>
+    <div class="cap">C12_model_armor_plantilla.png · plantilla vitalia-preauth</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C13 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C13 · GCP · SEGURIDAD · MODEL ARMOR</div><h1>Qué detecta, con qué umbral, y qué no registra</h1>
+    <div class="tag">11/16 frente a 16/16</div></div>
+  <div class="bd">
+    <div class="exp">
+      La configuración exacta contra la que se midió <code>E16_model_armor_vs_capas_propias.json</code>:
+      URLs maliciosas <b>habilitada</b>; inyección de instrucciones y jailbreak <b>habilitada, Bajo y superior</b>;
+      protección de datos sensibles <b>habilitada, básica</b>; y los cuatro filtros de IA responsable
+      —odio, peligroso, sexualmente explícito, hostigamiento— en <b>Medio y superior</b>.
+      <ul>
+        <li><b>Se activó y se midió, no se declaró.</b> Mismos 20 casos del red team, tres motores: capas propias
+        <b>16/16</b>, Model Armor solo <b>11/16</b>, mixto <b>16/16</b>. Cero falsos positivos en los tres.</li>
+        <li><b>Las once que atrapa salen todas de <code>pi_and_jailbreak</code>.</b> <code>rai</code>,
+        <code>malicious_uris</code> y <code>sdp</code> no marcaron ni un caso. Los cinco que deja pasar —R04, R05,
+        R13, R14, R15— dependen del modismo en español o de las reglas de Vitalia:
+        <b>ningún proveedor gestionado sabe que aquí no se niega sin firma.</b></li>
+        <li>Por eso el motor recomendado es <code>mixto</code>: <b>suma, no sustituye</b>. Es exactamente lo que
+        el ADR-08 decidió antes de tener el número.</li>
+        <li><b>Al pie, <i>Configuración de registros: Inhabilitado</i>.</b> Sin
+        <code>log_sanitize_operations</code> no hay rastro en Cloud Logging de cada inspección, así que la
+        evidencia de las llamadas es la corrida de E16, no un panel del proveedor. <b>Se dice en vez de dejar
+        que se suponga.</b></li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:690px"><img src="img/consolas/C13_model_armor_detecciones.png" alt="Model Armor, detecciones y registros"></div>
+    <div class="cap">C13_model_armor_detecciones.png · plantilla vitalia-preauth · detecciones y configuración de registros</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ C14 ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">PARTE 2 · C14 · GROQ</div><h1>Lo que costó todo esto, en la factura del proveedor</h1>
+    <div class="tag">US$ 0.06 · septiembre 2026</div></div>
+  <div class="bd">
+    <div class="exp">
+      El consumo del mes en Groq: <b>US$ 0.06 de gasto total</b>, con
+      <code>openai/gpt-oss-safeguard-20b</code> —la capa 8 del guardrail— como principal contribuyente y la
+      actividad concentrada el 5 y el 6 de septiembre, que son los días en que se construyó y se midió el MVP.
+      <ul>
+        <li><b>Cierra el círculo de C06.</b> La contabilidad interna dice S/ 0.02 por solicitud; el proveedor dice
+        seis centavos de dólar en el mes. Las dos cifras se sostienen porque miden el mismo tráfico desde los dos
+        lados, y ninguna de las dos es el S/ 0.86 costeado a volumen de producción.</li>
+        <li><b>Groq está donde está por latencia, no por precio.</b> El router elige <code>gpt-oss-20b</code> para
+        el Carril 0 porque <b>J1 exige p95 &lt; 2 s</b>: manda la latencia, no la capacidad. Que además salga
+        barato es una consecuencia, no el criterio.</li>
+        <li>El guardrail cortocircuita en la primera capa que bloquea (veto <b>V3</b>): <b>no se paga Groq si una
+        regex ya decidió.</b> Esta factura es el efecto de esa decisión, medido.</li>
+      </ul>
+    </div>
+    <div class="figbox" style="height:567px"><img src="img/consolas/C14_groq_consumo.png" alt="Groq, consumo del mes"></div>
+    <div class="cap">C14_groq_consumo.png · consola de Groq · Usage · septiembre 2026 · datos en UTC</div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas · Parte 2</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+<!-- ═══════════════ CIERRE ═══════════════ -->
+<section class="page">
+  <div class="hd"><div class="n">ANEXO K · ÁLBUM · CIERRE</div><h1>Qué queda demostrado y qué sigue sin estarlo</h1>
+    <div class="tag">21 CAPTURAS</div></div>
+  <div class="bd">
+    <div class="box green">
+      <h3>Lo que estas veintiuna capturas sostienen</h3>
+      <ul>
+        <li><b>R1</b> · lo determinista nunca pasa por un modelo — C03 (<code>determinista = true</code>,
+        <code>modelo = NULL</code>) y C06 (tramo de adjudicación con proveedor <code>ninguno</code> y 0 tokens),
+        con su lectura en pantalla en P4a.</li>
+        <li><b>R2</b> · ninguna afirmación sobre política sin cita textual — P2 y P4a abajo, respaldadas por
+        C01 (112 fragmentos, <code>texto_literal</code> en el <i>payload</i>) y C04 (versión sellada con
+        <code>sha256</code> y vigencia).</li>
+        <li><b>R3</b> · ninguna negación por necesidad médica sin firma — C05, y la restricción <code>CHECK</code>
+        que la hace inevitable.</li>
+        <li><b>ADR-10</b> · el sistema nunca niega solo — P4a en <code>hitl</code> y C05: tres borradores
+        aprobados, una sola carta emitida.</li>
+        <li><b>ADR-21</b> · acceso por alias — el bloque <i>Aliases</i> de C01 y la variable
+        <code>QDRANT_COLLECTION_ALIAS</code> de C07.</li>
+        <li><b>ADR-08</b> · guardrail propio <i>y</i> Model Armor — C12 y C13, con el número que lo justifica.</li>
+        <li><b>Las claves nunca están en el código</b> — C11 (nombres), C07 (referencias montadas) y C10 (lo que
+        se sube a construir no las lleva).</li>
+      </ul>
+    </div>
+    <div class="box amber">
+      <h3>Lo que estas capturas no demuestran, dicho antes de que nadie lo busque</h3>
+      <ul>
+        <li><b>El volumen es de demostración.</b> C08 enseña picos sueltos, no 7,800 solicitudes/mes. Los SLOs
+        J1, J3 y J4 <i>bajo carga</i> siguen sin medirse.</li>
+        <li><b>Model Armor no registra sus operaciones</b> (C13, al pie): la evidencia de las llamadas es la
+        corrida de E16, no un panel del proveedor. Y sigue sin pasarse por él la <b>salida</b> del modelo.</li>
+        <li><b>La URL de Cloud Run no es pública</b> (C07): cerrada por
+        <code>constraints/iam.allowedPolicyMemberDomains</code> a nivel de organización. Se ve con token o por
+        proxy, y la política efectiva está copiada literal en <code>E15</code>.</li>
+        <li><b>No hay integración con el core</b>, ni firma digital real, ni Identity Platform. Está en §K.6 con
+        nombre y apellido, y en el roadmap de la fase 1 con fecha.</li>
+        <li><b>Faltan S05</b> (denso vs. híbrido con recall@k), <b>S06</b> (RAGAS), <b>S10</b> (LangSmith) y
+        <b>S03</b> (kind + Helm + Ollama como N3).</li>
+      </ul>
+    </div>
+    <div class="exp" style="margin-top:auto">
+      El MVP no demuestra que el sistema sea capaz de decidir. Demuestra lo contrario, que es lo que este diseño
+      vino a sostener: en P4a hay una carta de negación <b>escrita, controlada y sin emitir</b>, esperando a una
+      persona. El expediente está en <code>hitl</code> y la máquina de estados no tiene ninguna transición que lo
+      saque de ahí sin que alguien firme.<br><br>
+      <b>Eso es el ADR-10, y no depende de que nadie se acuerde de aplicarlo.</b>
+    </div>
+  </div>
+  <div class="ft"><span>Vitalia Salud EPS · Anexo K · Álbum de capturas</span>
+    <span class="r">Jonatan Sánchez · DataPath · 2026-09-06</span></div>
+</section>
+
+</div>
+</body>
+</html>

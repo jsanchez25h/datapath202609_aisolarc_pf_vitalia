@@ -1,0 +1,24 @@
+{
+  "version_id": "v2026_09",
+  "coleccion": "vitalia_politica_v2026_09",
+  "documentos": 11,
+  "fragmentos": 112,
+  "sha256_corpus": "65587fd9c64fcfbd325a03f70c727b712c15c3d222fbae49b34e234124ab9c93",
+  "modelo_embedding": "text-embedding-3-large",
+  "dims": 3072,
+  "alias_publicado": true,
+  "segundos": 10.0,
+  "por_documento": {
+    "afiliacion_y_dependientes": 11,
+    "autorizaciones": 11,
+    "carencias_y_preexistencias": 9,
+    "deducibles_y_copagos": 9,
+    "exclusiones": 9,
+    "facturacion_y_pagos": 10,
+    "faq_atencion": 13,
+    "planes_y_coberturas": 10,
+    "protocolos_de_procedimientos_quirurgicos": 10,
+    "red_de_clinicas": 10,
+    "reembolsos": 10
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "generado": "2026-09-05T18:47:10",
+  "parcial": null,
+  "base": "http://127.0.0.1:8088",
+  "version_politica": "v2026_09",
+  "expedientes": {
+    "P4a": "SOL-450ee590fdef",
+    "P4b": "SOL-689ce3eab0e9",
+    "P4c": "SOL-13f58ae117e3"
+  },
+  "capturas": [
+    {
+      "pantalla": "P1_ingreso",
+      "url": "http://127.0.0.1:8088/app/#/ingreso",
+      "ventana": "1440x900",
+      "kb": 44
+    },
+    {
+      "pantalla": "P2_consulta_n1",
+      "url": "http://127.0.0.1:8088/app/#/n1/%C2%BFCu%C3%A1ntos%20d%C3%ADas%20de%20carencia%20tiene%20la%20ces%C3%A1rea%20programada%20en%20el%20plan%20VIT-INT%3F",
+      "ventana": "1440x700",
+      "kb": 67
+    },
+    {
+      "pantalla": "P3_bandeja",
+      "url": "http://127.0.0.1:8088/app/#/bandeja",
+      "ventana": "1440x1000",
+      "kb": 78
+    },
+    {
+      "pantalla": "P4a_expediente_pendiente",
+      "url": "http://127.0.0.1:8088/app/#/expediente/SOL-450ee590fdef",
+      "ventana": "1440x2150",
+      "kb": 238
+    },
+    {
+      "pantalla": "P4b_expediente_emitido",
+      "url": "http://127.0.0.1:8088/app/#/expediente/SOL-689ce3eab0e9",
+      "ventana": "1440x2100",
+      "kb": 192
+    },
+    {
+      "pantalla": "P4c_expediente_subsanacion",
+      "url": "http://127.0.0.1:8088/app/#/expediente/SOL-13f58ae117e3",
+      "ventana": "1440x2050",
+      "kb": 219
+    },
+    {
+      "pantalla": "P5_panel",
+      "url": "http://127.0.0.1:8088/app/#/panel",
+      "ventana": "1440x900",
+      "kb": 76
+    }
+  ]
+}

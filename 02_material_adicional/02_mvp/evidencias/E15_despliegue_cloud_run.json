@@ -1,0 +1,173 @@
+{
+  "generado": "2026-09-06T08:27:28",
+  "etapa": "B · despliegue gestionado",
+  "servicio": {
+    "proyecto": "datapath-labs-202608",
+    "region": "us-central1",
+    "nombre": "vitalia-mesa",
+    "url": "https://vitalia-mesa-w3o3qedjsq-uc.a.run.app",
+    "revision": "vitalia-mesa-00001-srk",
+    "imagen": "us-central1-docker.pkg.dev/datapath-labs-202608/vitalia-mvp/mesa:v1",
+    "cpu": "1",
+    "memoria": "2Gi",
+    "concurrencia": 20,
+    "max_instancias": "2"
+  },
+  "acceso": {
+    "publico": false,
+    "control": "IAM · roles/run.invoker",
+    "por_que": "La organización aplica constraints/iam.allowedPolicyMemberDomains: `allUsers` queda rechazado con FAILED_PRECONDITION. Abrirlo exige una excepción a nivel de organización, que no depende del proyecto.",
+    "politica_efectiva": "name: projects/465408735025/policies/iam.allowedPolicyMemberDomains\nspec:\n  rules:\n  - values:\n      allowedValues:\n      - C03etc3y2",
+    "como_se_ve_igual": "gcloud run services proxy vitalia-mesa --region us-central1"
+  },
+  "configuracion": {
+    "variables_en_claro": [
+      "DB_SCHEMA",
+      "GROQ_LLAMA_GUARD_MODEL",
+      "GROQ_PROMPT_GUARD_MODEL",
+      "GUARDRAIL_ENGINE",
+      "QDRANT_CACHE_COLLECTION",
+      "QDRANT_COLLECTION_ALIAS",
+      "QDRANT_COLLECTION_NAME",
+      "RETRIEVAL_LIMIT",
+      "VERSION_POLITICA"
+    ],
+    "secretos_montados": [
+      {
+        "variable": "DATABASE_URL",
+        "secreto": "vitalia-database-url",
+        "version": "latest"
+      },
+      {
+        "variable": "QDRANT_URL",
+        "secreto": "vitalia-qdrant-url",
+        "version": "latest"
+      },
+      {
+        "variable": "QDRANT_API_KEY",
+        "secreto": "vitalia-qdrant-api-key",
+        "version": "latest"
+      },
+      {
+        "variable": "OPENAI_API_KEY",
+        "secreto": "vitalia-openai-api-key",
+        "version": "latest"
+      },
+      {
+        "variable": "GROQ_API_KEY",
+        "secreto": "vitalia-groq-api-key",
+        "version": "latest"
+      }
+    ],
+    "nota": "Los valores no aparecen aquí ni en la imagen: `comun/config.py` lee `variables.sh` solo si existe y con `os.environ.setdefault`, así que en Cloud Run gana lo que inyecta Secret Manager."
+  },
+  "comprobaciones": {
+    "salud": {
+      "ms": 964,
+      "version_politica": "v2026_09",
+      "alias": "politica_actual",
+      "neon": {
+        "ok": true,
+        "solicitudes": 4
+      },
+      "qdrant": {
+        "ok": true,
+        "puntos": 112
+      },
+      "ok": true
+    },
+    "n1_consulta": {
+      "ms": 2146,
+      "origen": "cache",
+      "citas_verificadas": [
+        "carencias_y_preexistencias-v2026_09-c03",
+        "protocolos_de_procedimientos_quirurgicos-v2026_09-c07"
+      ],
+      "citas_rechazadas": 0,
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 333,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 203,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 318,
+            "omitida": false
+          }
+        ]
+      }
+    },
+    "panel": {
+      "ms": 1103,
+      "solicitudes": 4,
+      "version_politica": null
+    }
+  },
+  "invariante": "R2 · la respuesta del servicio remoto trae sus citas verificadas contra el corpus de la versión vigente, igual que la local: el alojamiento no cambia lo que el sistema puede afirmar."
+}

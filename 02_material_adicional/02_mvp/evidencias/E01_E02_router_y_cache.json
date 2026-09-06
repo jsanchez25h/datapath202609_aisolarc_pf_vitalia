@@ -1,0 +1,1613 @@
+{
+  "ruta_elegida": {
+    "tarea": "n1_consulta",
+    "proveedor": "groq",
+    "modelo": "openai/gpt-oss-20b",
+    "razon": "J1 exige p95 < 2 s: manda la latencia, no la capacidad",
+    "temperatura": 0.0,
+    "max_tokens": 1400
+  },
+  "calibracion_umbral_cache": {
+    "ancla": "¿Cuántos días de carencia tiene la cobertura de maternidad?",
+    "vecinas": [
+      {
+        "clase": "reformulacion",
+        "consulta": "cuanto tiempo debo esperar desde que me afilio para que me cubran el parto",
+        "coseno": 0.5982,
+        "clave": "maternidad|carencia"
+      },
+      {
+        "clase": "reformulacion",
+        "consulta": "periodo de espera de la cobertura de maternidad en Vitalia",
+        "coseno": 0.647,
+        "clave": "maternidad|carencia"
+      },
+      {
+        "clase": "cuasi_acierto",
+        "consulta": "¿Cuántos días de carencia tiene la cobertura de salud mental?",
+        "coseno": 0.7796,
+        "clave": "salud_mental|carencia"
+      },
+      {
+        "clase": "cuasi_acierto",
+        "consulta": "¿Cuál es el copago de un parto por cesárea?",
+        "coseno": 0.4688,
+        "clave": "maternidad|copago"
+      },
+      {
+        "clase": "otro_plan",
+        "consulta": "¿Cuántos días de carencia tiene la cobertura de maternidad?",
+        "coseno": 1.0,
+        "clave": "maternidad|carencia"
+      },
+      {
+        "clase": "ajena",
+        "consulta": "¿Qué documentos exige Vitalia para autorizar una artroscopia de rodilla?",
+        "coseno": 0.2822,
+        "clave": "hospitalizacion|documentos"
+      },
+      {
+        "clase": "ajena",
+        "consulta": "¿Qué significa el código REEM-06 en un rechazo de reembolso?",
+        "coseno": 0.2755,
+        "clave": "reembolso|significado"
+      }
+    ],
+    "minimo_reformulacion": 0.5982,
+    "maximo_cuasi_acierto": 0.7796
+  },
+  "umbral_en_clave": 0.55,
+  "consultas_legitimas": 5,
+  "generadas": 3,
+  "aciertos_cache": 2,
+  "tasa_acierto": 0.4,
+  "cuasi_aciertos_probados": 3,
+  "falsos_aciertos_cache": 0,
+  "citas_verificadas_total": 10,
+  "citas_rechazadas_total": 0,
+  "respuestas_truncadas": 0,
+  "latencia_p_max_ms": 12358,
+  "latencia_max_generada_ms": 12358,
+  "latencia_max_cache_ms": 1406,
+  "desglose_max_generada_ms": {
+    "guardrail": 1774,
+    "cache": 1081,
+    "recuperacion": 2144,
+    "generacion": 10255
+  },
+  "costo_usd_real": 0.001321,
+  "costo_usd_sin_cache": 0.002201,
+  "ahorro_pct": 40.0,
+  "casos": [
+    {
+      "id": "Q1",
+      "consulta": "¿Cuántos días de carencia tiene la cobertura de maternidad?",
+      "plan": "VIT-INT",
+      "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia.  \n«La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.»  \n\nFUENTES: carencias_y_preexistencias-v2026_09-c03",
+      "origen": "modelo",
+      "citas_verificadas": [
+        {
+          "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.",
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "articulo": "Carencia de maternidad",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "articulo": "Carencia de maternidad",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad\n\nLa cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde\nel inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día\n301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los\n300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no\nlo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se\nexonera por antigüedad en otra aseguradora.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 1212,
+          "offset_fin": 1756,
+          "score": 0.363636,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "planes_y_coberturas-v2026_09-c07",
+          "doc_id": "planes_y_coberturas",
+          "version_id": "v2026_09",
+          "jerarquia": "Planes y coberturas > Coberturas por tipo de atención > Maternidad",
+          "articulo": "Maternidad",
+          "texto_literal": "Planes y coberturas > Coberturas por tipo de atención > Maternidad\n\nLa cobertura de maternidad está incluida únicamente en los planes Integral y Premium. Cubre\ncontroles prenatales, exámenes de rutina del embarazo, parto natural o cesárea, y atención del\nrecién nacido durante los primeros 30 días. El plan Integral cubre hasta 12 controles\nprenatales; el plan Premium no tiene tope. La cobertura de maternidad está sujeta al periodo de\ncarencia que se detalla en el documento de carencias y preexistencias.",
+          "tipo_norma": "cobertura",
+          "planes": [
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3512,
+          "offset_fin": 3969,
+          "score": 0.303114,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c01",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Qué es un periodo de carencia",
+          "articulo": "Qué es un periodo de carencia",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Qué es un periodo de carencia\n\nEl periodo de carencia es el tiempo que debe transcurrir desde el inicio de vigencia de la\npóliza hasta que una cobertura específica queda habilitada. Durante la carencia el afiliado\npaga su prima con normalidad, pero esa cobertura en particular todavía no opera. Las carencias\nse cuentan en días calendario desde la fecha de inicio de vigencia, no desde la fecha de firma\nde la solicitud ni desde el primer pago.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 55,
+          "offset_fin": 505,
+          "score": 0.279167,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "afiliacion_y_dependientes-v2026_09-c06",
+          "doc_id": "afiliacion_y_dependientes",
+          "version_id": "v2026_09",
+          "jerarquia": "Afiliación y dependientes > Dependientes > Inscripción de un recién nacido",
+          "articulo": "Inscripción de un recién nacido",
+          "texto_literal": "Afiliación y dependientes > Dependientes > Inscripción de un recién nacido\n\nEl hijo recién nacido de una afiliada con cobertura de maternidad vigente se inscribe sin\nevaluación médica y sin periodos de carencia si la solicitud se presenta dentro de los 30 días\ncalendario siguientes al nacimiento. Pasado ese plazo, la inscripción sigue el procedimiento\nordinario: evaluación médica, declaración jurada y carencias completas desde su propia fecha de\nvigencia. Es el trámite que más se pierde por desconocimiento.",
+          "tipo_norma": "afiliacion",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 2337,
+          "offset_fin": 2812,
+          "score": 0.25707,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "deducibles_y_copagos-v2026_09-c08",
+          "doc_id": "deducibles_y_copagos",
+          "version_id": "v2026_09",
+          "jerarquia": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto",
+          "articulo": "Copago de parto",
+          "texto_literal": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto\n\nEl parto natural tiene un copago de S/ 900 en el plan Integral y de S/ 0 en el plan Premium.\nLa cesárea tiene un copago de S/ 1,400 en el plan Integral y de S/ 0 en el plan Premium. El\nplan Esencial no cubre maternidad, por lo que no aplica copago sino que el gasto es íntegro del\nafiliado. La atención del recién nacido durante los primeros 30 días no genera copago\nadicional en ningún plan que cubra maternidad. Este copago aplica solo si se cumplió el periodo\nde carencia de maternidad.",
+          "tipo_norma": "copago",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3715,
+          "offset_fin": 4227,
+          "score": 0.239044,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        }
+      ],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 1774,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 719,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 875,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "openai/gpt-oss-20b",
+      "costo_usd": 0.0002751,
+      "tokens_in": 1236,
+      "tokens_out": 303,
+      "latencia_ms": 6076,
+      "latencia_cache_ms": 1081,
+      "latencia_recuperacion_ms": 2144,
+      "latencia_generacion_ms": 1075,
+      "latencia_guardrail_ms": 1774,
+      "similitud_cache": null,
+      "clave_cache": "v2026_09|VIT-INT|maternidad|carencia",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    },
+    {
+      "id": "Q2",
+      "consulta": "¿Qué documentos exige Vitalia para autorizar una artroscopia de rodilla?",
+      "plan": "VIT-ESE",
+      "texto": "Para autorizar una artroscopia de rodilla, Vitalia exige que la solicitud incluya:  \n1. “El sustento mínimo es, por lo tanto, la resonancia magnética con informe radiológico y el informe de terapia física que documente las sesiones realizadas, la fecha de inicio y la respuesta al tratamiento.”  \n2. “La artroscopia de rodilla se autoriza cuando existe lesión meniscal o ligamentaria demostrada por resonancia magnética y, además, cuando se acredita tratamiento conservador previo de al menos seis semanas con terapia física supervisada, salvo en los casos de bloqueo articular agudo, luxación o lesión aguda del ligamento cruzado anterior en paciente deportista, en los que la indicación es directa.”  \n3. “Toda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la orden médica firmada por el médico tratante de la red con su número de colegiatura, el informe médico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico codificado según CIE‑10, la fecha tentativa y la clínica donde se realizará.”  \n\nFUENTES: protocolos_de_procedimientos_quirurgicos-v2026_09-c05, protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+      "origen": "modelo",
+      "citas_verificadas": [
+        {
+          "texto": "El sustento mínimo es, por lo tanto, la resonancia magnética con informe radiológico y el informe de terapia física que documente las sesiones realizadas, la fecha de inicio y la respuesta al tratamiento.",
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c05",
+          "articulo": "Artroscopia de rodilla",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Traumatología > Artroscopia de rodilla",
+          "version_id": "v2026_09"
+        },
+        {
+          "texto": "La artroscopia de rodilla se autoriza cuando existe lesión meniscal o ligamentaria demostrada por resonancia magnética y, además, cuando se acredita tratamiento conservador previo de al menos seis semanas con terapia física supervisada, salvo en los casos de bloqueo articular agudo, luxación o lesión aguda del ligamento cruzado anterior en paciente deportista, en los que la indicación es directa.",
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c05",
+          "articulo": "Artroscopia de rodilla",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Traumatología > Artroscopia de rodilla",
+          "version_id": "v2026_09"
+        },
+        {
+          "texto": "Toda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la orden médica firmada por el médico tratante de la red con su número de colegiatura, el informe médico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico codificado según CIE‑10, la fecha tentativa y la clínica donde se realizará.",
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+          "articulo": "Documentos exigibles a toda solicitud programada",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Documentos exigibles a toda solicitud programada",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c05",
+          "doc_id": "protocolos_de_procedimientos_quirurgicos",
+          "version_id": "v2026_09",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Traumatología > Artroscopia de rodilla",
+          "articulo": "Artroscopia de rodilla",
+          "texto_literal": "Protocolos de procedimientos quirúrgicos programados > Traumatología > Artroscopia de rodilla\n\nLa artroscopia de rodilla se autoriza cuando existe lesión meniscal o ligamentaria demostrada\npor resonancia magnética y, además, cuando se acredita **tratamiento conservador previo de al\nmenos seis semanas** con terapia física supervisada, salvo en los casos de bloqueo articular\nagudo, luxación o lesión aguda del ligamento cruzado anterior en paciente deportista, en los\nque la indicación es directa. El sustento mínimo es, por lo tanto, la resonancia magnética con\ninforme radiológico y el **informe de terapia física** que documente las sesiones realizadas,\nla fecha de inicio y la respuesta al tratamiento. La ausencia del informe de terapia física en\nun caso que no corresponde a las excepciones señaladas genera observación de la solicitud.",
+          "tipo_norma": "protocolo",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 2322,
+          "offset_fin": 3100,
+          "score": 0.537879,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c06",
+          "doc_id": "protocolos_de_procedimientos_quirurgicos",
+          "version_id": "v2026_09",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Traumatología > Artroplastía total de rodilla y de cadera",
+          "articulo": "Artroplastía total de rodilla y de cadera",
+          "texto_literal": "Protocolos de procedimientos quirúrgicos programados > Traumatología > Artroplastía total de rodilla y de cadera\n\nLa artroplastía total requiere radiografía con informe que documente el grado de artrosis según\nla clasificación de Kellgren-Lawrence, informe de tratamiento conservador de al menos seis\nmeses e informe del traumatólogo con la indicación y el modelo de prótesis propuesto. La\nprótesis se rige por la carencia de prótesis y órtesis establecida en el documento de\ncarencias.",
+          "tipo_norma": "protocolo",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3100,
+          "offset_fin": 3551,
+          "score": 0.453907,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c01",
+          "doc_id": "protocolos_de_procedimientos_quirurgicos",
+          "version_id": "v2026_09",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Qué regula este documento",
+          "articulo": "Qué regula este documento",
+          "texto_literal": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Qué regula este documento\n\nEste documento establece, para los procedimientos quirúrgicos programados de mayor volumen, el\nsustento clínico mínimo que debe acompañar a la solicitud de preautorización y los criterios de\npertinencia que aplica el médico auditor. No sustituye ni modifica las coberturas, exclusiones,\ncarencias ni copagos definidos en los documentos correspondientes: los complementa indicando\nqué debe presentarse para que la solicitud pueda evaluarse sin observación. Cuando este\nprotocolo exige un documento y la solicitud no lo trae, la solicitud se observa dentro de las\n24 horas siguientes según lo señalado en el documento de autorizaciones.",
+          "tipo_norma": "protocolo",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 86,
+          "offset_fin": 753,
+          "score": 0.368237,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+          "doc_id": "protocolos_de_procedimientos_quirurgicos",
+          "version_id": "v2026_09",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Documentos exigibles a toda solicitud programada",
+          "articulo": "Documentos exigibles a toda solicitud programada",
+          "texto_literal": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Documentos exigibles a toda solicitud programada\n\nToda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la\norden médica firmada por el médico tratante de la red con su número de colegiatura, el informe\nmédico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico\ncodificado según CIE-10, la fecha tentativa y la clínica donde se realizará. La ausencia de\ncualquiera de estos elementos genera observación y suspende el plazo de evaluación hasta que\nse subsane.",
+          "tipo_norma": "protocolo",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 753,
+          "offset_fin": 1304,
+          "score": 0.354986,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c04",
+          "doc_id": "protocolos_de_procedimientos_quirurgicos",
+          "version_id": "v2026_09",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Cirugía general > Hernioplastía inguinal",
+          "articulo": "Hernioplastía inguinal",
+          "texto_literal": "Protocolos de procedimientos quirúrgicos programados > Cirugía general > Hernioplastía inguinal\n\nLa hernioplastía inguinal se autoriza con el informe del cirujano que documente la hernia al\nexamen físico. La ecografía de pared abdominal se exige solo cuando el informe clínico no es\nconcluyente o cuando se trata de una recidiva. La reparación con malla está cubierta en los\ntres planes; la malla biológica requiere sustento adicional del cirujano y evaluación del\nmédico auditor.",
+          "tipo_norma": "protocolo",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 1891,
+          "offset_fin": 2322,
+          "score": 0.354167,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        }
+      ],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 871,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 629,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 865,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "openai/gpt-oss-20b",
+      "costo_usd": 0.000737,
+      "tokens_in": 1350,
+      "tokens_out": 1204,
+      "latencia_ms": 4026,
+      "latencia_cache_ms": 551,
+      "latencia_recuperacion_ms": 695,
+      "latencia_generacion_ms": 1906,
+      "latencia_guardrail_ms": 871,
+      "similitud_cache": null,
+      "clave_cache": "v2026_09|VIT-ESE|hospitalizacion|documentos",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    },
+    {
+      "id": "Q3",
+      "consulta": "¿Qué significa el código REEM-06 en un rechazo de reembolso?",
+      "plan": null,
+      "texto": "El código REEM‑06 indica que la póliza estaba en mora al momento de la atención: “REEM‑06 | Póliza en mora al momento de la atención”.  \nLa regularización posterior no rehabilita la cobertura de forma retroactiva: “El código REEM‑06 se aplica cuando la póliza estaba en mora en la fecha de la atención, aunque el afiliado haya regularizado el pago después. La regularización posterior rehabilita la cobertura hacia adelante pero no de forma retroactiva.”  \n\nFUENTES: reembolsos-v2026_09-c08, reembolsos-v2026_09-c10",
+      "origen": "modelo",
+      "citas_verificadas": [
+        {
+          "texto": "REEM‑06 | Póliza en mora al momento de la atención",
+          "chunk_id": "reembolsos-v2026_09-c08",
+          "articulo": "Tabla de códigos",
+          "jerarquia": "Reembolsos > Códigos de rechazo > Tabla de códigos",
+          "version_id": "v2026_09"
+        },
+        {
+          "texto": "El código REEM‑06 se aplica cuando la póliza estaba en mora en la fecha de la atención, aunque el afiliado haya regularizado el pago después. La regularización posterior rehabilita la cobertura hacia adelante pero no de forma retroactiva.",
+          "chunk_id": "reembolsos-v2026_09-c10",
+          "articulo": "Rechazo por mora",
+          "jerarquia": "Reembolsos > Códigos de rechazo > Rechazo por mora",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [
+        {
+          "chunk_id": "reembolsos-v2026_09-c08",
+          "doc_id": "reembolsos",
+          "version_id": "v2026_09",
+          "jerarquia": "Reembolsos > Códigos de rechazo > Tabla de códigos",
+          "articulo": "Tabla de códigos",
+          "texto_literal": "Reembolsos > Códigos de rechazo > Tabla de códigos\n\n| Código | Motivo del rechazo |\n|---|---|\n| REEM-01 | Solicitud presentada fuera del plazo de 60 días |\n| REEM-02 | Atención excluida de la póliza |\n| REEM-03 | Comprobante sin detalle de servicios o ilegible |\n| REEM-04 | Periodo de carencia no cumplido para esa cobertura |\n| REEM-05 | Condición preexistente no declarada |\n| REEM-06 | Póliza en mora al momento de la atención |\n| REEM-07 | Procedimiento programado sin preautorización |\n| REEM-08 | Comprobante a nombre de un tercero no afiliado |",
+          "tipo_norma": "reembolso",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3603,
+          "offset_fin": 4127,
+          "score": 0.516317,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "reembolsos-v2026_09-c10",
+          "doc_id": "reembolsos",
+          "version_id": "v2026_09",
+          "jerarquia": "Reembolsos > Códigos de rechazo > Rechazo por mora",
+          "articulo": "Rechazo por mora",
+          "texto_literal": "Reembolsos > Códigos de rechazo > Rechazo por mora\n\nEl código REEM-06 se aplica cuando la póliza estaba en mora en la fecha de la atención, aunque\nel afiliado haya regularizado el pago después. La regularización posterior rehabilita la\ncobertura hacia adelante pero no de forma retroactiva. Este es el motivo de rechazo más\nfrecuente y el más evitable: basta con mantener la prima al día o activar el débito automático.",
+          "tipo_norma": "reembolso",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 4636,
+          "offset_fin": 5026,
+          "score": 0.508741,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "reembolsos-v2026_09-c09",
+          "doc_id": "reembolsos",
+          "version_id": "v2026_09",
+          "jerarquia": "Reembolsos > Códigos de rechazo > Qué hacer ante un rechazo",
+          "articulo": "Qué hacer ante un rechazo",
+          "texto_literal": "Reembolsos > Códigos de rechazo > Qué hacer ante un rechazo\n\nEl afiliado puede presentar una apelación dentro de los 30 días calendario siguientes a la\nnotificación del rechazo, adjuntando el sustento que corresponda. Las apelaciones por códigos\nREEM-03 y REEM-08 suelen resolverse con solo corregir el comprobante ante el prestador. Las\napelaciones por REEM-04 y REEM-05 requieren informe médico y son evaluadas por un auditor\ndistinto del que emitió el rechazo. El resultado de la apelación se comunica en un máximo de 20\ndías hábiles.",
+          "tipo_norma": "reembolso",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 4127,
+          "offset_fin": 4636,
+          "score": 0.417837,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "facturacion_y_pagos-v2026_09-c08",
+          "doc_id": "facturacion_y_pagos",
+          "version_id": "v2026_09",
+          "jerarquia": "Facturación y pagos > Mora y rehabilitación > Suspensión de cobertura por mora",
+          "articulo": "Suspensión de cobertura por mora",
+          "texto_literal": "Facturación y pagos > Mora y rehabilitación > Suspensión de cobertura por mora\n\nVencido el periodo de gracia sin que se regularice el pago, la cobertura queda suspendida\nautomáticamente. Durante la suspensión el afiliado no puede atenderse por atención directa, las\nautorizaciones vigentes quedan sin efecto y las solicitudes de reembolso por atenciones\nocurridas en ese periodo se rechazan con el código REEM-06. La suspensión se notifica al correo\nregistrado el mismo día en que se produce.",
+          "tipo_norma": "facturacion",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3210,
+          "offset_fin": 3662,
+          "score": 0.39955,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "reembolsos-v2026_09-c03",
+          "doc_id": "reembolsos",
+          "version_id": "v2026_09",
+          "jerarquia": "Reembolsos > Documentos requeridos > Documentación obligatoria",
+          "articulo": "Documentación obligatoria",
+          "texto_literal": "Reembolsos > Documentos requeridos > Documentación obligatoria\n\nToda solicitud de reembolso debe incluir: comprobante de pago original (factura o boleta\nelectrónica a nombre del afiliado o del titular), informe médico con diagnóstico y fecha de\natención, receta médica cuando se reembolsen medicamentos, resultados de los exámenes cuando se\nreembolsen exámenes auxiliares, y el formulario de solicitud de reembolso firmado. Las boletas\nsin detalle de los servicios prestados no son válidas y generan rechazo con el código REEM-03.",
+          "tipo_norma": "reembolso",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 1153,
+          "offset_fin": 1652,
+          "score": 0.368452,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        }
+      ],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 1115,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 605,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 1094,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "openai/gpt-oss-20b",
+      "costo_usd": 0.0003086,
+      "tokens_in": 1206,
+      "tokens_out": 376,
+      "latencia_ms": 4411,
+      "latencia_cache_ms": 875,
+      "latencia_recuperacion_ms": 792,
+      "latencia_generacion_ms": 1628,
+      "latencia_guardrail_ms": 1115,
+      "similitud_cache": null,
+      "clave_cache": "v2026_09|todos|reembolso|significado",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    },
+    {
+      "id": "Q1b",
+      "consulta": "cuanto tiempo debo esperar desde que me afilio para que me cubran el parto",
+      "plan": "VIT-INT",
+      "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia.  \n«La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.»  \n\nFUENTES: carencias_y_preexistencias-v2026_09-c03",
+      "origen": "cache",
+      "citas_verificadas": [
+        {
+          "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.",
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "articulo": "Carencia de maternidad",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 837,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 640,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 827,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "",
+      "costo_usd": 0.0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latencia_ms": 1406,
+      "latencia_cache_ms": 569,
+      "latencia_recuperacion_ms": 0,
+      "latencia_generacion_ms": 0,
+      "latencia_guardrail_ms": 837,
+      "similitud_cache": 0.5982,
+      "clave_cache": "v2026_09|VIT-INT|maternidad|carencia",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    },
+    {
+      "id": "Q1c",
+      "consulta": "periodo de espera de la cobertura de maternidad en Vitalia",
+      "plan": "VIT-INT",
+      "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia.  \n«La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.»  \n\nFUENTES: carencias_y_preexistencias-v2026_09-c03",
+      "origen": "cache",
+      "citas_verificadas": [
+        {
+          "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.",
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "articulo": "Carencia de maternidad",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 676,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0005,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0005",
+            "latencia_ms": 641,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 669,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "",
+      "costo_usd": 0.0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "latencia_ms": 1164,
+      "latencia_cache_ms": 487,
+      "latencia_recuperacion_ms": 0,
+      "latencia_generacion_ms": 0,
+      "latencia_guardrail_ms": 676,
+      "similitud_cache": 0.6471,
+      "clave_cache": "v2026_09|VIT-INT|maternidad|carencia",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    },
+    {
+      "id": "N1",
+      "consulta": "¿Cuántos días de carencia tiene la cobertura de salud mental?",
+      "plan": "VIT-INT",
+      "clase": "cuasi_acierto",
+      "es_control": true,
+      "texto": "No tengo la cláusula que responde eso; la mesa de preautorización puede confirmarlo.",
+      "origen": "modelo",
+      "citas_verificadas": [],
+      "citas_rechazadas": [],
+      "fragmentos": [
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "articulo": "Carencia de maternidad",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad\n\nLa cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde\nel inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día\n301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los\n300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no\nlo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se\nexonera por antigüedad en otra aseguradora.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 1212,
+          "offset_fin": 1756,
+          "score": 0.328089,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c02",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Tabla de carencias por cobertura",
+          "articulo": "Tabla de carencias por cobertura",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Tabla de carencias por cobertura\n\n| Cobertura | Carencia | Aplica a |\n|---|---|---|\n| Emergencia por accidente | 0 días | Los tres planes |\n| Emergencia por enfermedad | 0 días | Los tres planes |\n| Consulta ambulatoria | 30 días | Los tres planes |\n| Exámenes de laboratorio e imágenes | 30 días | Los tres planes |\n| Hospitalización y cirugía | 60 días | Los tres planes |\n| Terapia física y rehabilitación | 90 días | Los tres planes |\n| Salud mental | 90 días | Integral y Premium |\n| Maternidad y parto | 300 días | Integral y Premium |\n| Tratamiento oncológico | 180 días | Los tres planes |\n| Cirugía bariátrica | 540 días | Solo Premium |\n| Prótesis y órtesis | 365 días | Integral y Premium |",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 505,
+          "offset_fin": 1212,
+          "score": 0.306818,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c01",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Qué es un periodo de carencia",
+          "articulo": "Qué es un periodo de carencia",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Qué es un periodo de carencia\n\nEl periodo de carencia es el tiempo que debe transcurrir desde el inicio de vigencia de la\npóliza hasta que una cobertura específica queda habilitada. Durante la carencia el afiliado\npaga su prima con normalidad, pero esa cobertura en particular todavía no opera. Las carencias\nse cuentan en días calendario desde la fecha de inicio de vigencia, no desde la fecha de firma\nde la solicitud ni desde el primer pago.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 55,
+          "offset_fin": 505,
+          "score": 0.305195,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c07",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Preexistencias > Cobertura de preexistencias declaradas",
+          "articulo": "Cobertura de preexistencias declaradas",
+          "texto_literal": "Carencias y preexistencias > Preexistencias > Cobertura de preexistencias declaradas\n\nLas preexistencias declaradas y aceptadas por la compañía quedan cubiertas después de un\nperiodo de carencia especial de 12 meses continuos de afiliación, salvo que la evaluación\nmédica establezca una condición particular en el endoso de la póliza. Vitalia Salud puede\naceptar la preexistencia con cobertura plena, aceptarla con sublímite anual, aplicar una\nextraprima, o excluirla expresamente. La decisión se comunica por escrito antes de la emisión\nde la póliza y queda registrada en el endoso.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3265,
+          "offset_fin": 3808,
+          "score": 0.256151,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "planes_y_coberturas-v2026_09-c07",
+          "doc_id": "planes_y_coberturas",
+          "version_id": "v2026_09",
+          "jerarquia": "Planes y coberturas > Coberturas por tipo de atención > Maternidad",
+          "articulo": "Maternidad",
+          "texto_literal": "Planes y coberturas > Coberturas por tipo de atención > Maternidad\n\nLa cobertura de maternidad está incluida únicamente en los planes Integral y Premium. Cubre\ncontroles prenatales, exámenes de rutina del embarazo, parto natural o cesárea, y atención del\nrecién nacido durante los primeros 30 días. El plan Integral cubre hasta 12 controles\nprenatales; el plan Premium no tiene tope. La cobertura de maternidad está sujeta al periodo de\ncarencia que se detalla en el documento de carencias y preexistencias.",
+          "tipo_norma": "cobertura",
+          "planes": [
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3512,
+          "offset_fin": 3969,
+          "score": 0.22037,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        }
+      ],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 752,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 651,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 745,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "openai/gpt-oss-20b",
+      "costo_usd": 0.000286,
+      "tokens_in": 1315,
+      "tokens_out": 309,
+      "latencia_ms": 3377,
+      "latencia_cache_ms": 513,
+      "latencia_recuperacion_ms": 617,
+      "latencia_generacion_ms": 1493,
+      "latencia_guardrail_ms": 752,
+      "similitud_cache": null,
+      "clave_cache": "v2026_09|VIT-INT|salud_mental|carencia",
+      "truncada": false,
+      "sin_cita": true,
+      "finish_reason": ""
+    },
+    {
+      "id": "N2",
+      "consulta": "¿Cuál es el copago de un parto por cesárea?",
+      "plan": "VIT-INT",
+      "clase": "cuasi_acierto",
+      "es_control": true,
+      "texto": "\"La cesárea tiene un copago de S/ 1,400 en el plan Integral y de S/ 0 en el plan Premium.\"  \nFUENTES: [deducibles_y_copagos-v2026_09-c08]",
+      "origen": "modelo",
+      "citas_verificadas": [
+        {
+          "texto": "La cesárea tiene un copago de S/ 1,400 en el plan Integral y de S/ 0 en el plan Premium.",
+          "chunk_id": "deducibles_y_copagos-v2026_09-c08",
+          "articulo": "Copago de parto",
+          "jerarquia": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [
+        {
+          "chunk_id": "deducibles_y_copagos-v2026_09-c08",
+          "doc_id": "deducibles_y_copagos",
+          "version_id": "v2026_09",
+          "jerarquia": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto",
+          "articulo": "Copago de parto",
+          "texto_literal": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto\n\nEl parto natural tiene un copago de S/ 900 en el plan Integral y de S/ 0 en el plan Premium.\nLa cesárea tiene un copago de S/ 1,400 en el plan Integral y de S/ 0 en el plan Premium. El\nplan Esencial no cubre maternidad, por lo que no aplica copago sino que el gasto es íntegro del\nafiliado. La atención del recién nacido durante los primeros 30 días no genera copago\nadicional en ningún plan que cubra maternidad. Este copago aplica solo si se cumplió el periodo\nde carencia de maternidad.",
+          "tipo_norma": "copago",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3715,
+          "offset_fin": 4227,
+          "score": 0.545455,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "planes_y_coberturas-v2026_09-c07",
+          "doc_id": "planes_y_coberturas",
+          "version_id": "v2026_09",
+          "jerarquia": "Planes y coberturas > Coberturas por tipo de atención > Maternidad",
+          "articulo": "Maternidad",
+          "texto_literal": "Planes y coberturas > Coberturas por tipo de atención > Maternidad\n\nLa cobertura de maternidad está incluida únicamente en los planes Integral y Premium. Cubre\ncontroles prenatales, exámenes de rutina del embarazo, parto natural o cesárea, y atención del\nrecién nacido durante los primeros 30 días. El plan Integral cubre hasta 12 controles\nprenatales; el plan Premium no tiene tope. La cobertura de maternidad está sujeta al periodo de\ncarencia que se detalla en el documento de carencias y preexistencias.",
+          "tipo_norma": "cobertura",
+          "planes": [
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3512,
+          "offset_fin": 3969,
+          "score": 0.452198,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c07",
+          "doc_id": "protocolos_de_procedimientos_quirurgicos",
+          "version_id": "v2026_09",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Ginecología y obstetricia > Cesárea programada",
+          "articulo": "Cesárea programada",
+          "texto_literal": "Protocolos de procedimientos quirúrgicos programados > Ginecología y obstetricia > Cesárea programada\n\nLa cesárea programada se autoriza con el informe del gineco-obstetra que sustente la indicación\n—presentación podálica, cesárea previa, desproporción céfalo-pélvica, placenta previa u otra\nindicación obstétrica documentada—, el control prenatal vigente y la ecografía obstétrica del\ntercer trimestre. La cobertura de la cesárea está condicionada al cumplimiento del periodo de\ncarencia de maternidad establecido en el documento de carencias, que se verifica antes de\ncualquier evaluación de pertinencia clínica. La cesárea sin indicación obstétrica documentada,\nsolicitada por preferencia de la gestante, no está cubierta y su costo es asumido íntegramente\npor la afiliada.",
+          "tipo_norma": "protocolo",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3551,
+          "offset_fin": 4250,
+          "score": 0.444185,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "articulo": "Carencia de maternidad",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad\n\nLa cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde\nel inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día\n301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los\n300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no\nlo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se\nexonera por antigüedad en otra aseguradora.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 1212,
+          "offset_fin": 1756,
+          "score": 0.412155,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "deducibles_y_copagos-v2026_09-c01",
+          "doc_id": "deducibles_y_copagos",
+          "version_id": "v2026_09",
+          "jerarquia": "Deducibles y copagos > Conceptos > Diferencia entre deducible y copago",
+          "articulo": "Diferencia entre deducible y copago",
+          "texto_literal": "Deducibles y copagos > Conceptos > Diferencia entre deducible y copago\n\nEl deducible es un monto anual fijo que el afiliado asume antes de que la cobertura empiece a\noperar sobre los gastos hospitalarios. Se consume una sola vez por año póliza y por afiliado.\nEl copago, en cambio, es un monto o porcentaje que el afiliado paga en cada atención,\nindependientemente de cuántas veces se atienda. Un afiliado puede haber agotado su deducible\nanual y seguir pagando copagos en cada consulta. Los copagos no consumen deducible ni al\nrevés.",
+          "tipo_norma": "copago",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 38,
+          "offset_fin": 543,
+          "score": 0.363524,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        }
+      ],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 840,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 614,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 833,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "openai/gpt-oss-20b",
+      "costo_usd": 0.0003783,
+      "tokens_in": 1348,
+      "tokens_out": 487,
+      "latencia_ms": 6617,
+      "latencia_cache_ms": 517,
+      "latencia_recuperacion_ms": 701,
+      "latencia_generacion_ms": 4559,
+      "latencia_guardrail_ms": 840,
+      "similitud_cache": null,
+      "clave_cache": "v2026_09|VIT-INT|maternidad|copago",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    },
+    {
+      "id": "N3",
+      "consulta": "¿Cuántos días de carencia tiene la cobertura de maternidad?",
+      "plan": "VIT-PRE",
+      "clase": "otro_plan",
+      "es_control": true,
+      "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia.  \n«La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.»  \n\nFUENTES: carencias_y_preexistencias-v2026_09-c03",
+      "origen": "modelo",
+      "citas_verificadas": [
+        {
+          "texto": "La cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día 301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los 300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no lo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se exonera por antigüedad en otra aseguradora.",
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "articulo": "Carencia de maternidad",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "version_id": "v2026_09"
+        }
+      ],
+      "citas_rechazadas": [],
+      "fragmentos": [
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+          "articulo": "Carencia de maternidad",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad\n\nLa cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde\nel inicio de vigencia. Esto significa que el parto queda cubierto si ocurre a partir del día\n301. Si el embarazo se inicia durante la carencia pero el parto ocurre después de cumplidos los\n300 días, el parto sí está cubierto; los controles prenatales realizados durante la carencia no\nlo están y deben ser asumidos por la afiliada. La carencia de maternidad no se reduce ni se\nexonera por antigüedad en otra aseguradora.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 1212,
+          "offset_fin": 1756,
+          "score": 0.363636,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "planes_y_coberturas-v2026_09-c07",
+          "doc_id": "planes_y_coberturas",
+          "version_id": "v2026_09",
+          "jerarquia": "Planes y coberturas > Coberturas por tipo de atención > Maternidad",
+          "articulo": "Maternidad",
+          "texto_literal": "Planes y coberturas > Coberturas por tipo de atención > Maternidad\n\nLa cobertura de maternidad está incluida únicamente en los planes Integral y Premium. Cubre\ncontroles prenatales, exámenes de rutina del embarazo, parto natural o cesárea, y atención del\nrecién nacido durante los primeros 30 días. El plan Integral cubre hasta 12 controles\nprenatales; el plan Premium no tiene tope. La cobertura de maternidad está sujeta al periodo de\ncarencia que se detalla en el documento de carencias y preexistencias.",
+          "tipo_norma": "cobertura",
+          "planes": [
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3512,
+          "offset_fin": 3969,
+          "score": 0.303114,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c01",
+          "doc_id": "carencias_y_preexistencias",
+          "version_id": "v2026_09",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Qué es un periodo de carencia",
+          "articulo": "Qué es un periodo de carencia",
+          "texto_literal": "Carencias y preexistencias > Periodos de carencia > Qué es un periodo de carencia\n\nEl periodo de carencia es el tiempo que debe transcurrir desde el inicio de vigencia de la\npóliza hasta que una cobertura específica queda habilitada. Durante la carencia el afiliado\npaga su prima con normalidad, pero esa cobertura en particular todavía no opera. Las carencias\nse cuentan en días calendario desde la fecha de inicio de vigencia, no desde la fecha de firma\nde la solicitud ni desde el primer pago.",
+          "tipo_norma": "carencia",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 55,
+          "offset_fin": 505,
+          "score": 0.279167,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "afiliacion_y_dependientes-v2026_09-c06",
+          "doc_id": "afiliacion_y_dependientes",
+          "version_id": "v2026_09",
+          "jerarquia": "Afiliación y dependientes > Dependientes > Inscripción de un recién nacido",
+          "articulo": "Inscripción de un recién nacido",
+          "texto_literal": "Afiliación y dependientes > Dependientes > Inscripción de un recién nacido\n\nEl hijo recién nacido de una afiliada con cobertura de maternidad vigente se inscribe sin\nevaluación médica y sin periodos de carencia si la solicitud se presenta dentro de los 30 días\ncalendario siguientes al nacimiento. Pasado ese plazo, la inscripción sigue el procedimiento\nordinario: evaluación médica, declaración jurada y carencias completas desde su propia fecha de\nvigencia. Es el trámite que más se pierde por desconocimiento.",
+          "tipo_norma": "afiliacion",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 2337,
+          "offset_fin": 2812,
+          "score": 0.25707,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        },
+        {
+          "chunk_id": "deducibles_y_copagos-v2026_09-c08",
+          "doc_id": "deducibles_y_copagos",
+          "version_id": "v2026_09",
+          "jerarquia": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto",
+          "articulo": "Copago de parto",
+          "texto_literal": "Deducibles y copagos > Deducibles hospitalarios > Copago de parto\n\nEl parto natural tiene un copago de S/ 900 en el plan Integral y de S/ 0 en el plan Premium.\nLa cesárea tiene un copago de S/ 1,400 en el plan Integral y de S/ 0 en el plan Premium. El\nplan Esencial no cubre maternidad, por lo que no aplica copago sino que el gasto es íntegro del\nafiliado. La atención del recién nacido durante los primeros 30 días no genera copago\nadicional en ningún plan que cubra maternidad. Este copago aplica solo si se cumplió el periodo\nde carencia de maternidad.",
+          "tipo_norma": "copago",
+          "planes": [
+            "VIT-ESE",
+            "VIT-INT",
+            "VIT-PRE"
+          ],
+          "offset_ini": 3715,
+          "offset_fin": 4227,
+          "score": 0.239044,
+          "origen": [
+            "bm25",
+            "denso"
+          ]
+        }
+      ],
+      "guardrail": {
+        "decision": "PERMITIR",
+        "latencia_ms": 772,
+        "hallazgos": [
+          {
+            "capa": "1_secretos",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "2_inyeccion",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "3_toxicidad",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "4_reglas_dominio",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "5_pii",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "6_url",
+            "decision": "PERMITIR",
+            "categoria": "",
+            "confianza": null,
+            "detalle": "",
+            "latencia_ms": 0,
+            "omitida": false
+          },
+          {
+            "capa": "7_prompt_guard",
+            "decision": "PERMITIR",
+            "categoria": "benigno",
+            "confianza": 0.0004,
+            "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+            "latencia_ms": 660,
+            "omitida": false
+          },
+          {
+            "capa": "8_llama_guard",
+            "decision": "PERMITIR",
+            "categoria": "safe",
+            "confianza": null,
+            "detalle": "safe",
+            "latencia_ms": 767,
+            "omitida": false
+          }
+        ]
+      },
+      "modelo": "openai/gpt-oss-20b",
+      "costo_usd": 0.0002751,
+      "tokens_in": 1236,
+      "tokens_out": 303,
+      "latencia_ms": 12358,
+      "latencia_cache_ms": 738,
+      "latencia_recuperacion_ms": 591,
+      "latencia_generacion_ms": 10255,
+      "latencia_guardrail_ms": 772,
+      "similitud_cache": null,
+      "clave_cache": "v2026_09|VIT-PRE|maternidad|carencia",
+      "truncada": false,
+      "sin_cita": false,
+      "finish_reason": ""
+    }
+  ]
+}

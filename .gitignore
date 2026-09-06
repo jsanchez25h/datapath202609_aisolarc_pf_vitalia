@@ -1,0 +1,12 @@
+# Nada de esto entra en el repositorio de entrega.
+variables.sh
+.env
+.env.*
+*.json.key
+.gcp/
+__pycache__/
+*.pyc
+*.log
+.venv/
+.DS_Store
+Thumbs.db

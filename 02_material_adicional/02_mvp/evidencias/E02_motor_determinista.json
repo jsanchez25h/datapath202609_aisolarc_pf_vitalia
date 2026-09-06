@@ -1,0 +1,160 @@
+{
+  "version_politica": "v2026_09",
+  "casos": [
+    {
+      "id": "C1",
+      "titulo": "Colecistectomía laparoscópica · VIT-INT · 14 meses de afiliación",
+      "demuestra": "autorización automática (STP): determinista puro, sin modelo",
+      "afiliado_ref": "AF-100234",
+      "procedimiento_codigo": "PRC-4712",
+      "dx_cie10": "K80.2",
+      "documentos": [
+        "orden_medica",
+        "informe_medico",
+        "ecografia_abdominal"
+      ],
+      "espera_ruta": "auto",
+      "resultado": {
+        "elegible": true,
+        "motivo_elegibilidad": "afiliación activa",
+        "carencia_ok": true,
+        "carencia_dias_exigidos": 60,
+        "carencia_dias_afiliado": 427,
+        "cobertura": "cubierto",
+        "motivo_cobertura": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+        "copago_pen": 1210.0,
+        "copago_desglose": {
+          "regla": "deducible pendiente + coaseguro sobre el saldo",
+          "tarifa": 12800.0,
+          "deducible": 600.0,
+          "base_coaseguro": 12200.0,
+          "coaseguro_pct": 5.0,
+          "coaseguro": 610.0
+        },
+        "documentos_faltantes": [],
+        "fundamentos": [
+          [
+            "afiliacion_y_dependientes",
+            "Inicio de vigencia"
+          ],
+          [
+            "carencias_y_preexistencias",
+            "Tabla de carencias por cobertura"
+          ],
+          [
+            "deducibles_y_copagos",
+            "Deducible anual por afiliado"
+          ],
+          [
+            "deducibles_y_copagos",
+            "Coaseguro hospitalario"
+          ]
+        ]
+      },
+      "ruta": "auto",
+      "motivo_ruta": "determinista completo, sin juicio clínico pendiente",
+      "correcto": true
+    },
+    {
+      "id": "C2",
+      "titulo": "Artroscopia de rodilla · VIT-ESE · sin informe de terapia física",
+      "demuestra": "subsanación: el único punto del flujo donde hay un agente",
+      "afiliado_ref": "AF-100777",
+      "procedimiento_codigo": "PRC-2933",
+      "dx_cie10": "M23.2",
+      "documentos": [
+        "orden_medica",
+        "informe_medico",
+        "resonancia_magnetica"
+      ],
+      "espera_ruta": "agente",
+      "resultado": {
+        "elegible": true,
+        "motivo_elegibilidad": "afiliación activa",
+        "carencia_ok": true,
+        "carencia_dias_exigidos": 60,
+        "carencia_dias_afiliado": 792,
+        "cobertura": "cubierto",
+        "motivo_cobertura": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+        "copago_pen": 1660.0,
+        "copago_desglose": {
+          "regla": "deducible pendiente + coaseguro sobre el saldo",
+          "tarifa": 9400.0,
+          "deducible": 800.0,
+          "base_coaseguro": 8600.0,
+          "coaseguro_pct": 10.0,
+          "coaseguro": 860.0
+        },
+        "documentos_faltantes": [
+          "informe_terapia_fisica"
+        ],
+        "fundamentos": [
+          [
+            "afiliacion_y_dependientes",
+            "Inicio de vigencia"
+          ],
+          [
+            "carencias_y_preexistencias",
+            "Tabla de carencias por cobertura"
+          ],
+          [
+            "deducibles_y_copagos",
+            "Deducible anual por afiliado"
+          ],
+          [
+            "deducibles_y_copagos",
+            "Coaseguro hospitalario"
+          ],
+          [
+            "protocolos_de_procedimientos_quirurgicos",
+            "Documentos exigibles a toda solicitud programada"
+          ]
+        ]
+      },
+      "ruta": "agente",
+      "motivo_ruta": "falta sustento clínico: informe de terapia física de al menos seis semanas",
+      "correcto": true
+    },
+    {
+      "id": "C3",
+      "titulo": "Cesárea programada · VIT-INT · 220 días de afiliación",
+      "demuestra": "ruteo a médico auditor: el sistema no puede negar (ADR-10)",
+      "afiliado_ref": "AF-100512",
+      "procedimiento_codigo": "PRC-5901",
+      "dx_cie10": "O82.0",
+      "documentos": [
+        "orden_medica",
+        "informe_medico",
+        "ecografia_obstetrica",
+        "control_prenatal"
+      ],
+      "espera_ruta": "hitl",
+      "resultado": {
+        "elegible": true,
+        "motivo_elegibilidad": "afiliación activa",
+        "carencia_ok": false,
+        "carencia_dias_exigidos": 300,
+        "carencia_dias_afiliado": 220,
+        "cobertura": "no_cubierto",
+        "motivo_cobertura": "carencia de maternidad no cumplida: exige 300 días y el afiliado tiene 220",
+        "copago_pen": null,
+        "copago_desglose": {},
+        "documentos_faltantes": [],
+        "fundamentos": [
+          [
+            "afiliacion_y_dependientes",
+            "Inicio de vigencia"
+          ],
+          [
+            "carencias_y_preexistencias",
+            "Carencia de maternidad"
+          ]
+        ]
+      },
+      "ruta": "hitl",
+      "motivo_ruta": "carencia no cumplida: el sistema no emite la negación, escala con la cita y el borrador",
+      "correcto": true
+    }
+  ],
+  "invariante": "R1 · ningún modelo de lenguaje participa de estas cifras"
+}

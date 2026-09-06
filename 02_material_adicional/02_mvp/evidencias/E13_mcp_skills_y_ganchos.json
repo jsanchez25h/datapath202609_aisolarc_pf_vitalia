@@ -1,0 +1,890 @@
+{
+  "generado": "2026-09-05 17:33:04",
+  "version_politica": "v2026_09",
+  "fallos": [],
+  "casos": {
+    "A_catalogo": [
+      {
+        "nombre": "consultar_politica",
+        "versiones": [
+          "1.0.0",
+          "1.1.0"
+        ],
+        "latest": "1.1.0",
+        "escribe": false,
+        "cita_politica": true,
+        "descripcion": "Responde preguntas sobre las condiciones del plan de salud de"
+      },
+      {
+        "nombre": "estado_expediente",
+        "versiones": [
+          "1.0.0"
+        ],
+        "latest": "1.0.0",
+        "escribe": false,
+        "cita_politica": false,
+        "descripcion": "Devuelve el estado completo de un expediente de preautorización:"
+      },
+      {
+        "nombre": "preparar_subsanacion",
+        "versiones": [
+          "1.0.0"
+        ],
+        "latest": "1.0.0",
+        "escribe": true,
+        "cita_politica": true,
+        "descripcion": "Prepara el mensaje de subsanación para un expediente al que le"
+      },
+      {
+        "nombre": "simular_cobertura",
+        "versiones": [
+          "1.0.0"
+        ],
+        "latest": "1.0.0",
+        "escribe": false,
+        "cita_politica": true,
+        "descripcion": "Calcula, para un afiliado y un procedimiento concretos, si hay"
+      }
+    ],
+    "B_consultar_politica": {
+      "ok": true,
+      "texto": "La colecistectomía, considerada hospitalización y cirugía, tiene un periodo de carencia de “Hospitalización y cirugía | 60 días | Los tres planes”.  \nFUENTES: carencias_y_preexistencias-v2026_09-c02",
+      "citas": [
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c02",
+          "articulo": "Tabla de carencias por cobertura",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Tabla de carencias por cobertura",
+          "version_id": "v2026_09",
+          "texto": "Hospitalización y cirugía | 60 días | Los tres planes"
+        }
+      ],
+      "citas_rechazadas": [],
+      "origen": "modelo",
+      "nivel": "N0",
+      "degradado": false,
+      "intentos": [
+        {
+          "nivel": "N0",
+          "resultado": "ok",
+          "ms": 6504
+        }
+      ],
+      "latencia_ms": 5927,
+      "_skill": "consultar_politica@1.1.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 2060,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G4",
+          "nombre": "guardrail de salida · O1 y O2",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G5",
+          "nombre": "sin PII fuera de destino · O5",
+          "ms": 26,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ],
+      "_controles_frontera": [
+        {
+          "codigo": "O1",
+          "nombre": "La cita existe literalmente",
+          "paso": true,
+          "detalle": "las 1 citas coinciden carácter por carácter",
+          "accion": ""
+        },
+        {
+          "codigo": "O2",
+          "nombre": "La versión citada estaba vigente",
+          "paso": true,
+          "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+          "accion": ""
+        }
+      ]
+    },
+    "C_hot_swap": {
+      "con_1_1_0": {
+        "skill": "consultar_politica@1.1.0",
+        "origen": "cache",
+        "latencia_ms": 1503
+      },
+      "con_1_0_0": {
+        "skill": "consultar_politica@1.0.0",
+        "origen": "modelo",
+        "latencia_ms": 3236
+      }
+    },
+    "D_gancho_entrada": {
+      "ok": false,
+      "error": "bloqueada_por_guardrail",
+      "detalle": "No puedo atender esa consulta por este canal.",
+      "capas": [
+        "7_prompt_guard"
+      ],
+      "_skill": "consultar_politica@1.1.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 1032,
+          "abortado_aqui": true
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ],
+      "_abortado_en": "G3 · guardrail de entrada: BLOQUEAR"
+    },
+    "E_presupuesto": {
+      "ok": false,
+      "error": "presupuesto_excedido",
+      "detalle": "la consulta tiene 10800 caracteres y el tope del canal es 6000. Una solicitud completa no entra por aquí: se registra por el canal de la mesa.",
+      "_skill": "consultar_politica@1.1.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": true
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ],
+      "_abortado_en": "G2 · entrada de 10800 caracteres sobre un tope de 6000"
+    },
+    "F_simular_cobertura": {
+      "ok": true,
+      "afiliado_ref": "AF-100234",
+      "plan_codigo": "VIT-INT",
+      "procedimiento": {
+        "codigo": "PRC-4712",
+        "descripcion": "Colecistectomía laparoscópica"
+      },
+      "fecha_evaluada": "2026-09-05",
+      "determinista": true,
+      "modelo": null,
+      "elegible": true,
+      "motivo_elegibilidad": "afiliación activa",
+      "carencia": {
+        "cumplida": true,
+        "dias_exigidos": 60,
+        "dias_afiliado": 427
+      },
+      "cobertura": "cubierto",
+      "motivo_cobertura": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+      "copago_pen": 1210.0,
+      "copago_desglose": {
+        "regla": "deducible pendiente + coaseguro sobre el saldo",
+        "tarifa": 12800.0,
+        "deducible": 600.0,
+        "base_coaseguro": 12200.0,
+        "coaseguro_pct": 5.0,
+        "coaseguro": 610.0
+      },
+      "documentos_faltantes": [
+        {
+          "codigo": "informe_medico",
+          "descripcion": "informe médico que sustenta la indicación"
+        },
+        {
+          "codigo": "ecografia_abdominal",
+          "descripcion": "ecografía abdominal con informe radiológico"
+        }
+      ],
+      "documentos_ignorados": [],
+      "ruta": "agente",
+      "motivo_ruta": "falta sustento clínico: informe médico que sustenta la indicación, ecografía abdominal con informe radiológico",
+      "citas": [
+        {
+          "chunk_id": "afiliacion_y_dependientes-v2026_09-c03",
+          "articulo": "Inicio de vigencia",
+          "jerarquia": "Afiliación y dependientes > Proceso de afiliación > Inicio de vigencia",
+          "version_id": "v2026_09",
+          "texto": "\n\nLa vigencia inicia el primer día del mes siguiente al pago de la primera prima, salvo que la\nsolicitud se apruebe después del día 20, en cuyo caso inicia el primer día del mes subsiguiente.\nLa fecha de inicio de vigencia es la que determina el cómputo de todos los periodos de carencia\ny la que define si una condición es preexistente. No es la fecha de firma de la solicitud ni la\nfecha de aprobación."
+        },
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c02",
+          "articulo": "Tabla de carencias por cobertura",
+          "jerarquia": "Carencias y preexistencias > Periodos de carencia > Tabla de carencias por cobertura",
+          "version_id": "v2026_09",
+          "texto": "\n\n| Cobertura | Carencia | Aplica a |\n|---|---|---|\n| Emergencia por accidente | 0 días | Los tres planes |\n| Emergencia por enfermedad | 0 días | Los tres planes |\n| Consulta ambulatoria | 30 días | Los tres planes |\n| Exámenes de laboratorio e imágenes | 30 días | Los tres planes |\n| Hospitalización y cirugía | 60 días | Los tres planes |\n| Terapia física y rehabilitación | 90 días | Los tres planes |\n| Salud mental | 90 días | Integral y Premium |\n| Maternidad y parto | 300 días | Integral y Premium |\n| Tratamiento oncológico | 180 días | Los tres planes |\n| Cirugía bariátrica | 540 días | Solo Premium |\n| Prótesis y órtesis | 365 días | Integral y Premium |"
+        },
+        {
+          "chunk_id": "deducibles_y_copagos-v2026_09-c06",
+          "articulo": "Deducible anual por afiliado",
+          "jerarquia": "Deducibles y copagos > Deducibles hospitalarios > Deducible anual por afiliado",
+          "version_id": "v2026_09",
+          "texto": "\n\n| Plan | Deducible anual | Habitación cubierta |\n|---|---|---|\n| VIT-ESE | S/ 1,200 | Compartida (dos camas) |\n| VIT-INT | S/ 600 | Individual estándar |\n| VIT-PRE | S/ 0 | Individual con acompañante |\n\nEl deducible se aplica una sola vez por año póliza y por afiliado, en la primera\nhospitalización del periodo. Si el afiliado es hospitalizado por segunda vez en el mismo año\npóliza, ya no vuelve a pagar deducible. En el caso de hijos menores de 12 años, el deducible se\nreduce a la mitad en los planes Esencial e Integral."
+        },
+        {
+          "chunk_id": "deducibles_y_copagos-v2026_09-c07",
+          "articulo": "Coaseguro hospitalario",
+          "jerarquia": "Deducibles y copagos > Deducibles hospitalarios > Coaseguro hospitalario",
+          "version_id": "v2026_09",
+          "texto": "\n\nDespués de cubierto el deducible, el afiliado asume un coaseguro del 10% de los gastos\nhospitalarios en el plan Esencial y del 5% en el plan Integral. El plan Premium no tiene\ncoaseguro. El coaseguro hospitalario se calcula sobre el monto cubierto y también acumula para\nel tope máximo de gasto anual. En hospitalizaciones por emergencia calificada, el coaseguro se\nreduce a la mitad en los tres planes."
+        },
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+          "articulo": "Documentos exigibles a toda solicitud programada",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Documentos exigibles a toda solicitud programada",
+          "version_id": "v2026_09",
+          "texto": "\n\nToda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la\norden médica firmada por el médico tratante de la red con su número de colegiatura, el informe\nmédico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico\ncodificado según CIE-10, la fecha tentativa y la clínica donde se realizará. La ausencia de\ncualquiera de estos elementos genera observación y suspende el plazo de evaluación hasta que\nse subsane."
+        }
+      ],
+      "fundamentos_sin_fragmento": [],
+      "nivel": "N0",
+      "aviso": "Simulación. No abre expediente, no autoriza y no niega: una resolución sobre una solicitud real la firma la mesa.",
+      "_skill": "simular_cobertura@1.0.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G4",
+          "nombre": "guardrail de salida · O1 y O2",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G5",
+          "nombre": "sin PII fuera de destino · O5",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ],
+      "_controles_frontera": [
+        {
+          "codigo": "O1",
+          "nombre": "La cita existe literalmente",
+          "paso": true,
+          "detalle": "las 5 citas coinciden carácter por carácter",
+          "accion": ""
+        },
+        {
+          "codigo": "O2",
+          "nombre": "La versión citada estaba vigente",
+          "paso": true,
+          "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+          "accion": ""
+        }
+      ]
+    },
+    "G_codigo_fuera_de_catalogo": {
+      "ok": false,
+      "error": "procedimiento_inexistente",
+      "detalle": "«PRC-9999» no está en el catálogo de procedimientos",
+      "_skill": "simular_cobertura@1.0.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G4",
+          "nombre": "guardrail de salida · O1 y O2",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G5",
+          "nombre": "sin PII fuera de destino · O5",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ]
+    },
+    "H_estado_expediente": {
+      "ok": true,
+      "solicitud_id": "SOL-d4c15d873dfe",
+      "afiliado_ref": "AF-100234",
+      "estado": "emitida",
+      "canal": "portal",
+      "procedimiento": {
+        "codigo": "PRC-4712",
+        "descripcion": "Colecistectomía laparoscópica"
+      },
+      "dx_cie10": "K80.2",
+      "texto": "Expediente SOL-d4c15d873dfe de <PERSON> (AF-100234), Colecistectomía laparoscópica. Estado: emitida.",
+      "adjudicacion": {
+        "determinista": true,
+        "modelo": null,
+        "elegible": true,
+        "carencia_ok": true,
+        "carencia_dias_exigidos": 60,
+        "carencia_dias_afiliado": 427,
+        "cobertura": "cubierto",
+        "motivo": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+        "copago_pen": 1210.0,
+        "copago_desglose": {
+          "regla": "deducible pendiente + coaseguro sobre el saldo",
+          "tarifa": 12800.0,
+          "coaseguro": 610.0,
+          "deducible": 600.0,
+          "coaseguro_pct": 5.0,
+          "base_coaseguro": 12200.0
+        },
+        "ruta": "auto",
+        "motivo_ruta": "determinista completo, sin juicio clínico pendiente"
+      },
+      "extraccion": [
+        {
+          "campo": "afiliado_ref",
+          "valor": "AF-100234",
+          "confianza": 1.0,
+          "validado_catalogo": true,
+          "modelo": "gpt-4o-mini"
+        },
+        {
+          "campo": "prestador_id",
+          "valor": "PRE-0031",
+          "confianza": 1.0,
+          "validado_catalogo": true,
+          "modelo": "gpt-4o-mini"
+        },
+        {
+          "campo": "dx_cie10",
+          "valor": "K80.2",
+          "confianza": 1.0,
+          "validado_catalogo": true,
+          "modelo": "gpt-4o-mini"
+        },
+        {
+          "campo": "procedimiento_codigo",
+          "valor": "PRC-4712",
+          "confianza": 1.0,
+          "validado_catalogo": true,
+          "modelo": "gpt-4o-mini"
+        },
+        {
+          "campo": "tipo",
+          "valor": "programado",
+          "confianza": 1.0,
+          "validado_catalogo": true,
+          "modelo": "gpt-4o-mini"
+        },
+        {
+          "campo": "documentos",
+          "valor": "[\"orden_medica\", \"informe_medico\", \"ecografia_abdominal\"]",
+          "confianza": 1.0,
+          "validado_catalogo": true,
+          "modelo": "gpt-4o-mini"
+        }
+      ],
+      "citas": [
+        {
+          "chunk_id": "carencias_y_preexistencias-v2026_09-c02",
+          "version_id": "v2026_09",
+          "articulo": "Tabla de carencias por cobertura",
+          "verificada_literal": true,
+          "texto": "| Hospitalización y cirugía | 60 días | Los tres planes |"
+        }
+      ],
+      "borradores": [],
+      "cartas": [
+        {
+          "carta_id": "CAR-204818923b43",
+          "tipo": "autoriza",
+          "firma_id": null,
+          "copago_pen": 1210.0,
+          "core_folio": "FOLIO-946695de72ac",
+          "emitida_en": "2026-09-05T22:30:22.469608+00:00"
+        }
+      ],
+      "bitacora": [
+        {
+          "desde": "recibida",
+          "hacia": "E1",
+          "actor": "sistema",
+          "motivo": "extracción validada contra catálogo (gpt-4o-mini)",
+          "ts": "2026-09-05T22:30:22.469608+00:00"
+        },
+        {
+          "desde": "E1",
+          "hacia": "E2",
+          "actor": "motor-determinista",
+          "motivo": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+          "ts": "2026-09-05T22:30:22.469608+00:00"
+        },
+        {
+          "desde": "E2",
+          "hacia": "E3",
+          "actor": "motor-determinista",
+          "motivo": "determinista completo, sin juicio clínico pendiente",
+          "ts": "2026-09-05T22:30:22.469608+00:00"
+        },
+        {
+          "desde": "E3",
+          "hacia": "auto",
+          "actor": "motor-determinista",
+          "motivo": "determinista completo, sin juicio clínico pendiente",
+          "ts": "2026-09-05T22:30:22.469608+00:00"
+        },
+        {
+          "desde": "auto",
+          "hacia": "E4",
+          "actor": "sistema",
+          "motivo": "carta «autoriza» redactada y controlada",
+          "ts": "2026-09-05T22:30:22.469608+00:00"
+        },
+        {
+          "desde": "E4",
+          "hacia": "emitida",
+          "actor": "sistema",
+          "motivo": "carta CAR-204818923b43",
+          "ts": "2026-09-05T22:30:22.469608+00:00"
+        }
+      ],
+      "costo_usd_total": 0.006421,
+      "nivel": "N0",
+      "_skill": "estado_expediente@1.0.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G4",
+          "nombre": "guardrail de salida · O1 y O2",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G5",
+          "nombre": "sin PII fuera de destino · O5",
+          "ms": 7,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ],
+      "_pii_enmascarada": [
+        {
+          "campo": "texto",
+          "por_catalogo": true,
+          "por_deteccion": false
+        }
+      ]
+    },
+    "I_solo_lectura": {
+      "ok": false,
+      "error": "solo_lectura",
+      "detalle": "la skill «preparar_subsanacion» escribe y este servidor se arrancó en modo solo lectura",
+      "_skill": "preparar_subsanacion@1.0.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": true
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ],
+      "_abortado_en": "G1 · el servidor está en modo solo lectura"
+    },
+    "J_subsanacion": {
+      "ok": true,
+      "solicitud_id": "SOL-1a2a715702a4",
+      "mensaje": "Estimado prestador,\n\nHemos recibido su solicitud de preautorización para la artroscopia de rodilla, pero falta el siguiente documento:\n\n- informe de terapia física de al menos seis semanas\n\nLe recordamos que, según la cláusula: «Toda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la orden médica firmada por el médico tratante de la red con su número de colegiatura, el informe médico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico codificado según CIE-10, la fecha tentativa y la clínica donde se realizará. La ausencia de cualquiera de estos elementos genera observación y suspende el plazo de evaluación hasta que se subsane.»\n\nAl recibir lo solicitado, su solicitud continuará su evaluación en la mesa.\n\nSaludos cordiales.",
+      "documentos_faltantes": [
+        {
+          "codigo": "informe_terapia_fisica",
+          "descripcion": "informe de terapia física de al menos seis semanas"
+        }
+      ],
+      "documentos_presentes": [
+        "orden_medica",
+        "informe_medico",
+        "resonancia_magnetica"
+      ],
+      "control_lista_determinista": "la lista del mensaje coincide con la del motor",
+      "citas": [
+        {
+          "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+          "articulo": "Documentos exigibles a toda solicitud programada",
+          "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Documentos exigibles a toda solicitud programada",
+          "version_id": "v2026_09",
+          "texto": "Toda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la orden médica firmada por el médico tratante de la red con su número de colegiatura, el informe médico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico codificado según CIE-10, la fecha tentativa y la clínica donde se realizará. La ausencia de cualquiera de estos elementos genera observación y suspende el plazo de evaluación hasta que se subsane."
+        }
+      ],
+      "nivel": "N0",
+      "degradado": false,
+      "intentos": [
+        {
+          "nivel": "N0",
+          "resultado": "ok",
+          "ms": 1713
+        }
+      ],
+      "aviso": "Texto preparado, no enviado. No cambia el estado del expediente ni resuelve la solicitud.",
+      "_skill": "preparar_subsanacion@1.0.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G4",
+          "nombre": "guardrail de salida · O1 y O2",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G5",
+          "nombre": "sin PII fuera de destino · O5",
+          "ms": 23,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 241,
+          "abortado_aqui": false
+        }
+      ],
+      "_controles_frontera": [
+        {
+          "codigo": "O1",
+          "nombre": "La cita existe literalmente",
+          "paso": true,
+          "detalle": "las 1 citas coinciden carácter por carácter",
+          "accion": ""
+        },
+        {
+          "codigo": "O2",
+          "nombre": "La versión citada estaba vigente",
+          "paso": true,
+          "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+          "accion": ""
+        }
+      ]
+    },
+    "K_no_procede": {
+      "ok": false,
+      "error": "no_procede",
+      "detalle": "el expediente SOL-d4c15d873dfe está en estado «emitida» y la subsanación solo aplica a los que el motor enrutó al agente por falta de sustento clínico",
+      "_skill": "preparar_subsanacion@1.0.0",
+      "_ganchos": [
+        {
+          "cadena": "pre",
+          "codigo": "G1",
+          "nombre": "ámbito de escritura",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G2",
+          "nombre": "presupuesto de contexto",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "pre",
+          "codigo": "G3",
+          "nombre": "guardrail de entrada · 8 capas",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G4",
+          "nombre": "guardrail de salida · O1 y O2",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G5",
+          "nombre": "sin PII fuera de destino · O5",
+          "ms": 0,
+          "abortado_aqui": false
+        },
+        {
+          "cadena": "post",
+          "codigo": "G6",
+          "nombre": "traza y costo",
+          "ms": 0,
+          "abortado_aqui": false
+        }
+      ]
+    },
+    "L_trazas": [
+      {
+        "skill": "consultar_politica@1.1.0",
+        "ms": 10035,
+        "ok": true,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0002772,
+        "ts": "2026-09-05T17:32:36"
+      },
+      {
+        "skill": "consultar_politica@1.1.0",
+        "ms": 2865,
+        "ok": true,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:40"
+      },
+      {
+        "skill": "consultar_politica@1.0.0",
+        "ms": 4385,
+        "ok": true,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0002772,
+        "ts": "2026-09-05T17:32:46"
+      },
+      {
+        "skill": "consultar_politica@1.1.0",
+        "ms": 1032,
+        "ok": false,
+        "abortado": true,
+        "motivo": "G3 · guardrail de entrada: BLOQUEAR",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:48"
+      },
+      {
+        "skill": "consultar_politica@1.1.0",
+        "ms": 0,
+        "ok": false,
+        "abortado": true,
+        "motivo": "G2 · entrada de 10800 caracteres sobre un tope de 6000",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:49"
+      },
+      {
+        "skill": "simular_cobertura@1.0.0",
+        "ms": 483,
+        "ok": true,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:51"
+      },
+      {
+        "skill": "simular_cobertura@1.0.0",
+        "ms": 360,
+        "ok": false,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:52"
+      },
+      {
+        "skill": "estado_expediente@1.0.0",
+        "ms": 1201,
+        "ok": true,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:56"
+      },
+      {
+        "skill": "preparar_subsanacion@1.0.0",
+        "ms": 0,
+        "ok": false,
+        "abortado": true,
+        "motivo": "G1 · el servidor está en modo solo lectura",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:32:57"
+      },
+      {
+        "skill": "preparar_subsanacion@1.0.0",
+        "ms": 3181,
+        "ok": true,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.00017205,
+        "ts": "2026-09-05T17:33:02"
+      },
+      {
+        "skill": "preparar_subsanacion@1.0.0",
+        "ms": 1196,
+        "ok": false,
+        "abortado": false,
+        "motivo": "",
+        "nivel": "N0",
+        "costo_usd": 0.0,
+        "ts": "2026-09-05T17:33:04"
+      }
+    ]
+  }
+}

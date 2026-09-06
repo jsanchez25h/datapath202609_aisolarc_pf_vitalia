@@ -1,0 +1,1085 @@
+{
+  "fecha": "2026-09-05",
+  "version_politica": "v2026_09",
+  "fundamentos_del_motor": [
+    {
+      "clave": "elegibilidad",
+      "doc_id": "afiliacion_y_dependientes",
+      "articulo": "Inicio de vigencia",
+      "resuelve": true
+    },
+    {
+      "clave": "suspension",
+      "doc_id": "facturacion_y_pagos",
+      "articulo": "Suspensión de cobertura por mora",
+      "resuelve": true
+    },
+    {
+      "clave": "causal_administrativa",
+      "doc_id": "protocolos_de_procedimientos_quirurgicos",
+      "articulo": "Qué no puede resolverse sin médico colegiado",
+      "resuelve": true
+    },
+    {
+      "clave": "carencia",
+      "doc_id": "carencias_y_preexistencias",
+      "articulo": "Tabla de carencias por cobertura",
+      "resuelve": true
+    },
+    {
+      "clave": "carencia_maternidad",
+      "doc_id": "carencias_y_preexistencias",
+      "articulo": "Carencia de maternidad",
+      "resuelve": true
+    },
+    {
+      "clave": "deducible",
+      "doc_id": "deducibles_y_copagos",
+      "articulo": "Deducible anual por afiliado",
+      "resuelve": true
+    },
+    {
+      "clave": "coaseguro",
+      "doc_id": "deducibles_y_copagos",
+      "articulo": "Coaseguro hospitalario",
+      "resuelve": true
+    },
+    {
+      "clave": "copago_parto",
+      "doc_id": "deducibles_y_copagos",
+      "articulo": "Copago de parto",
+      "resuelve": true
+    },
+    {
+      "clave": "tope",
+      "doc_id": "deducibles_y_copagos",
+      "articulo": "Tope máximo de gasto anual del afiliado",
+      "resuelve": true
+    },
+    {
+      "clave": "documentos",
+      "doc_id": "protocolos_de_procedimientos_quirurgicos",
+      "articulo": "Documentos exigibles a toda solicitud programada",
+      "resuelve": true
+    }
+  ],
+  "fundamentos_sin_resolver": 0,
+  "casos": [
+    {
+      "id": "C1",
+      "titulo": "Colecistectomía laparoscópica · VIT-INT · expediente completo",
+      "demuestra": "STP: E1 extrae, el motor adjudica, E4 redacta y la carta se emite",
+      "espera_ruta": "auto",
+      "espera_tipo": "autoriza",
+      "espera_estado": "emitida",
+      "texto_recibido": "Estimados, Clínica San Felipe (PRE-0031) solicita preautorización\nprogramada para la afiliada AF-100234, quien tiene indicación de colecistectomía\nlaparoscópica, código PRC-4712, por diagnóstico K80.2 (colelitiasis con colecistitis\naguda). Adjuntamos la orden médica firmada por el Dr. Ramírez, el informe médico\ndel servicio de cirugía general y la ecografía abdominal con su informe\nradiológico. Quedamos atentos. Coordinación de Autorizaciones.",
+      "espera_copago": "",
+      "resultado": {
+        "solicitud_id": "SOL-d4c15d873dfe",
+        "estado_final": "emitida",
+        "duplicada": false,
+        "abierto": true,
+        "motivo_no_abierto": "",
+        "extraccion": {
+          "campos": [
+            {
+              "campo": "afiliado_ref",
+              "valor": "AF-100234",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "prestador_id",
+              "valor": "PRE-0031",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "dx_cie10",
+              "valor": "K80.2",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "procedimiento_codigo",
+              "valor": "PRC-4712",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "tipo",
+              "valor": "programado",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "documentos",
+              "valor": [
+                "orden_medica",
+                "informe_medico",
+                "ecografia_abdominal"
+              ],
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            }
+          ],
+          "completa": true,
+          "motivo_incompleta": "",
+          "modelo": "gpt-4o-mini",
+          "costo_usd": 0.00016095,
+          "tokens_in": 441,
+          "tokens_out": 158,
+          "latencia_ms": 2972,
+          "truncada": false
+        },
+        "guardrail_entrada": {
+          "decision": "TRANSFORMAR",
+          "latencia_ms": 1925,
+          "hallazgos": [
+            {
+              "capa": "1_secretos",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "2_inyeccion",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "3_toxicidad",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "4_reglas_dominio",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "5_pii",
+              "decision": "TRANSFORMAR",
+              "categoria": "PERSON",
+              "confianza": 1.0,
+              "detalle": "2 entidad(es) anonimizada(s): PERSON",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "6_url",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "7_prompt_guard",
+              "decision": "PERMITIR",
+              "categoria": "benigno",
+              "confianza": 0.0007,
+              "detalle": "Prompt Guard 2: p(ataque)=0.0007",
+              "latencia_ms": 771,
+              "omitida": false
+            },
+            {
+              "capa": "8_llama_guard",
+              "decision": "PERMITIR",
+              "categoria": "safe",
+              "confianza": null,
+              "detalle": "safe",
+              "latencia_ms": 993,
+              "omitida": false
+            }
+          ]
+        },
+        "adjudicacion": {
+          "elegible": true,
+          "motivo_elegibilidad": "afiliación activa",
+          "carencia_ok": true,
+          "carencia_dias_exigidos": 60,
+          "carencia_dias_afiliado": 427,
+          "cobertura": "cubierto",
+          "motivo_cobertura": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+          "copago_pen": 1210.0,
+          "copago_desglose": {
+            "regla": "deducible pendiente + coaseguro sobre el saldo",
+            "tarifa": 12800.0,
+            "deducible": 600.0,
+            "base_coaseguro": 12200.0,
+            "coaseguro_pct": 5.0,
+            "coaseguro": 610.0
+          },
+          "documentos_faltantes": [],
+          "fundamentos": [
+            [
+              "afiliacion_y_dependientes",
+              "Inicio de vigencia"
+            ],
+            [
+              "carencias_y_preexistencias",
+              "Tabla de carencias por cobertura"
+            ],
+            [
+              "deducibles_y_copagos",
+              "Deducible anual por afiliado"
+            ],
+            [
+              "deducibles_y_copagos",
+              "Coaseguro hospitalario"
+            ]
+          ]
+        },
+        "ruta": "auto",
+        "motivo_ruta": "determinista completo, sin juicio clínico pendiente",
+        "emision": {
+          "tipo": "autoriza",
+          "cuerpo": "Estimada Rosa Milagros Quispe Ayala,\n\nNos complace informarle que su solicitud para el procedimiento de colecistectomía laparoscópica ha sido autorizada. Hemos verificado que cumple con todos los requisitos necesarios para proceder con la cobertura de este procedimiento bajo su plan VIT-INT.\n\nDe acuerdo con nuestra política, el periodo de carencia para hospitalización y cirugía es de 60 días. Usted ha cumplido con este requisito, ya que tiene 427 días de afiliación activa, lo que le permite acceder a la cobertura sin carencias pendientes. Tal como se indica en la tabla de carencias: «| Hospitalización y cirugía | 60 días | Los tres planes |».\n\nEl copago correspondiente a este procedimiento es de S/ 1,210.00, conforme a las condiciones de su plan. Le recordamos que este copago es parte de los términos de su cobertura y debe ser asumido por el afiliado.\n\nSi tiene alguna pregunta adicional o necesita más información, no dude en contactarnos. Estamos aquí para ayudarle.\n\nAtentamente,\n\nVitalia Salud EPS\n\nFUENTES: carencias_y_preexistencias-v2026_09-c02",
+          "borrador": false,
+          "aprobada": true,
+          "citas": [
+            {
+              "texto": "| Hospitalización y cirugía | 60 días | Los tres planes |",
+              "chunk_id": "carencias_y_preexistencias-v2026_09-c02",
+              "articulo": "Tabla de carencias por cobertura",
+              "jerarquia": "Carencias y preexistencias > Periodos de carencia > Tabla de carencias por cobertura",
+              "version_id": "v2026_09",
+              "verificada": true
+            }
+          ],
+          "citas_rechazadas": [],
+          "fuentes_declaradas": [
+            "carencias_y_preexistencias-v2026_09-c02"
+          ],
+          "fuentes_huerfanas": [],
+          "controles": [
+            {
+              "codigo": "O1",
+              "nombre": "La cita existe literalmente",
+              "paso": true,
+              "detalle": "las 1 citas coinciden carácter por carácter",
+              "accion": ""
+            },
+            {
+              "codigo": "O2",
+              "nombre": "La versión citada estaba vigente",
+              "paso": true,
+              "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+              "accion": ""
+            },
+            {
+              "codigo": "O3",
+              "nombre": "Consistencia determinista ↔ prosa",
+              "paso": true,
+              "detalle": "la carta dice S/ 1210.00 y el motor calculó S/ 1210.00",
+              "accion": ""
+            },
+            {
+              "codigo": "O4",
+              "nombre": "Sin negación clínica sin firma",
+              "paso": true,
+              "detalle": "no es una negación por necesidad médica",
+              "accion": ""
+            },
+            {
+              "codigo": "O5",
+              "nombre": "Sin PII fuera de destino",
+              "paso": true,
+              "detalle": "destino es el titular: la carta lleva sus datos por diseño",
+              "accion": ""
+            },
+            {
+              "codigo": "O6",
+              "nombre": "Esquema y catálogo",
+              "paso": true,
+              "detalle": "0 código(s), las fuentes declaradas y los fundamentos del motor resuelven contra el corpus vigente",
+              "accion": ""
+            }
+          ],
+          "fundamentos_sin_fragmento": [],
+          "modelo": "gpt-4o",
+          "costo_usd": 0.00626,
+          "tokens_in": 1528,
+          "tokens_out": 244,
+          "latencia_ms": 2054,
+          "truncada": false
+        },
+        "carta_id": "CAR-204818923b43",
+        "eventos": [
+          "recibida",
+          "E1",
+          "E2",
+          "E3",
+          "auto",
+          "E4",
+          "emitida"
+        ],
+        "costo_usd": 0.00642095,
+        "latencia_ms": 12974,
+        "latencia_por_etapa": {
+          "guardrail": 1925,
+          "E1_extraccion": 3332,
+          "E2_adjudicacion": 120,
+          "E4_emision": 2413
+        }
+      },
+      "correcto": true,
+      "controles_que_bloquearon": []
+    },
+    {
+      "id": "C2",
+      "titulo": "Artroscopia de rodilla · VIT-ESE · falta el informe de terapia física",
+      "demuestra": "subsanación: el sistema no rechaza por falta de papeles, pide lo que falta",
+      "espera_ruta": "agente",
+      "espera_tipo": "observa",
+      "espera_estado": "agente",
+      "espera_copago": "1660.00",
+      "texto_recibido": "Buenos días. Desde el Policlínico Los Olivos (PRE-0104) remitimos\nsolicitud de artroscopia de rodilla PRC-2933 para el afiliado AF-100777, con\ndiagnóstico M23.2, trastorno de menisco por desgarro antiguo. Va adjunta la orden\nmédica, el informe médico del traumatólogo y la resonancia magnética de rodilla\nderecha. El informe de terapia física todavía está pendiente, lo remitiremos en\ncuanto el servicio lo emita. Es una solicitud programada.",
+      "resultado": {
+        "solicitud_id": "SOL-1a2a715702a4",
+        "estado_final": "agente",
+        "duplicada": false,
+        "abierto": true,
+        "motivo_no_abierto": "",
+        "extraccion": {
+          "campos": [
+            {
+              "campo": "afiliado_ref",
+              "valor": "AF-100777",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "prestador_id",
+              "valor": "PRE-0104",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "dx_cie10",
+              "valor": "M23.2",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "procedimiento_codigo",
+              "valor": "PRC-2933",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "tipo",
+              "valor": "programado",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "documentos",
+              "valor": [
+                "orden_medica",
+                "informe_medico",
+                "resonancia_magnetica"
+              ],
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            }
+          ],
+          "completa": true,
+          "motivo_incompleta": "",
+          "modelo": "gpt-4o-mini",
+          "costo_usd": 0.0001578,
+          "tokens_in": 444,
+          "tokens_out": 152,
+          "latencia_ms": 1458,
+          "truncada": false
+        },
+        "guardrail_entrada": {
+          "decision": "PERMITIR",
+          "latencia_ms": 1117,
+          "hallazgos": [
+            {
+              "capa": "1_secretos",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "2_inyeccion",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "3_toxicidad",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "4_reglas_dominio",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "5_pii",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "6_url",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "7_prompt_guard",
+              "decision": "PERMITIR",
+              "categoria": "benigno",
+              "confianza": 0.0004,
+              "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+              "latencia_ms": 670,
+              "omitida": false
+            },
+            {
+              "capa": "8_llama_guard",
+              "decision": "PERMITIR",
+              "categoria": "safe",
+              "confianza": null,
+              "detalle": "safe",
+              "latencia_ms": 1098,
+              "omitida": false
+            }
+          ]
+        },
+        "adjudicacion": {
+          "elegible": true,
+          "motivo_elegibilidad": "afiliación activa",
+          "carencia_ok": true,
+          "carencia_dias_exigidos": 60,
+          "carencia_dias_afiliado": 792,
+          "cobertura": "cubierto",
+          "motivo_cobertura": "elegible, sin carencia pendiente y dentro del tarifario del plan",
+          "copago_pen": 1660.0,
+          "copago_desglose": {
+            "regla": "deducible pendiente + coaseguro sobre el saldo",
+            "tarifa": 9400.0,
+            "deducible": 800.0,
+            "base_coaseguro": 8600.0,
+            "coaseguro_pct": 10.0,
+            "coaseguro": 860.0
+          },
+          "documentos_faltantes": [
+            "informe_terapia_fisica"
+          ],
+          "fundamentos": [
+            [
+              "afiliacion_y_dependientes",
+              "Inicio de vigencia"
+            ],
+            [
+              "carencias_y_preexistencias",
+              "Tabla de carencias por cobertura"
+            ],
+            [
+              "deducibles_y_copagos",
+              "Deducible anual por afiliado"
+            ],
+            [
+              "deducibles_y_copagos",
+              "Coaseguro hospitalario"
+            ],
+            [
+              "protocolos_de_procedimientos_quirurgicos",
+              "Documentos exigibles a toda solicitud programada"
+            ]
+          ]
+        },
+        "ruta": "agente",
+        "motivo_ruta": "falta sustento clínico: informe de terapia física de al menos seis semanas",
+        "emision": {
+          "tipo": "observa",
+          "cuerpo": "Estimado Carlos Alberto Ramos Tineo,\n\nHemos recibido su solicitud de preautorización para el procedimiento de artroscopia de rodilla bajo el diagnóstico M23.2. Tras revisar la documentación presentada, hemos identificado que falta un documento necesario para continuar con el proceso.\n\nConforme a nuestra política, «toda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la orden médica firmada por el médico tratante de la red con su número de colegiatura, el informe médico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico codificado según CIE-10, la fecha tentativa y la clínica donde se realizará». En este caso, necesitamos el informe de terapia física de al menos seis semanas para completar su expediente.\n\nLe solicitamos amablemente que nos haga llegar el documento faltante a la brevedad posible. Una vez recibido, procederemos con la evaluación de su solicitud.\n\nQuedamos atentos a cualquier consulta adicional que pueda tener.\n\nAtentamente,\n\nEquipo de Preautorizaciones  \nVitalia Salud EPS\n\nFUENTES: protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+          "borrador": true,
+          "aprobada": true,
+          "citas": [
+            {
+              "texto": "toda solicitud de preautorización de un procedimiento programado debe incluir, como mínimo, la orden médica firmada por el médico tratante de la red con su número de colegiatura, el informe médico que sustenta la indicación, el código del procedimiento propuesto, el diagnóstico codificado según CIE-10, la fecha tentativa y la clínica donde se realizará",
+              "chunk_id": "protocolos_de_procedimientos_quirurgicos-v2026_09-c02",
+              "articulo": "Documentos exigibles a toda solicitud programada",
+              "jerarquia": "Protocolos de procedimientos quirúrgicos programados > Alcance de este protocolo > Documentos exigibles a toda solicitud programada",
+              "version_id": "v2026_09",
+              "verificada": true
+            }
+          ],
+          "citas_rechazadas": [],
+          "fuentes_declaradas": [
+            "protocolos_de_procedimientos_quirurgicos-v2026_09-c02"
+          ],
+          "fuentes_huerfanas": [],
+          "controles": [
+            {
+              "codigo": "O1",
+              "nombre": "La cita existe literalmente",
+              "paso": true,
+              "detalle": "las 1 citas coinciden carácter por carácter",
+              "accion": ""
+            },
+            {
+              "codigo": "O2",
+              "nombre": "La versión citada estaba vigente",
+              "paso": true,
+              "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+              "accion": ""
+            },
+            {
+              "codigo": "O3",
+              "nombre": "Consistencia determinista ↔ prosa",
+              "paso": true,
+              "detalle": "la carta no cita montos y el motor calculó S/ 1660.00",
+              "accion": ""
+            },
+            {
+              "codigo": "O4",
+              "nombre": "Sin negación clínica sin firma",
+              "paso": true,
+              "detalle": "no es una negación por necesidad médica",
+              "accion": ""
+            },
+            {
+              "codigo": "O5",
+              "nombre": "Sin PII fuera de destino",
+              "paso": true,
+              "detalle": "destino es el titular: la carta lleva sus datos por diseño",
+              "accion": ""
+            },
+            {
+              "codigo": "O6",
+              "nombre": "Esquema y catálogo",
+              "paso": true,
+              "detalle": "1 código(s), las fuentes declaradas y los fundamentos del motor resuelven contra el corpus vigente",
+              "accion": ""
+            }
+          ],
+          "fundamentos_sin_fragmento": [],
+          "modelo": "gpt-4o",
+          "costo_usd": 0.00667,
+          "tokens_in": 1708,
+          "tokens_out": 240,
+          "latencia_ms": 1964,
+          "truncada": false
+        },
+        "carta_id": null,
+        "eventos": [
+          "recibida",
+          "E1",
+          "E2",
+          "E3",
+          "agente"
+        ],
+        "costo_usd": 0.006827799999999999,
+        "latencia_ms": 9713,
+        "latencia_por_etapa": {
+          "guardrail": 1117,
+          "E1_extraccion": 1817,
+          "E2_adjudicacion": 119,
+          "E4_emision": 2324
+        }
+      },
+      "correcto": true,
+      "controles_que_bloquearon": []
+    },
+    {
+      "id": "C3",
+      "titulo": "Parto por cesárea · VIT-INT · 220 días de afiliación (carencia 300)",
+      "demuestra": "ADR-10: ante una carencia incumplida el sistema no niega, escala con el borrador",
+      "espera_ruta": "hitl",
+      "espera_tipo": "niega_administrativa",
+      "espera_estado": "hitl",
+      "texto_recibido": "Clínica Materno Infantil Belén (PRE-0077) solicita autorización\nprogramada de parto por cesárea, procedimiento PRC-5901, para la afiliada\nAF-100512, diagnóstico O82.0. Se adjunta la orden médica del gineco-obstetra, el\ninforme médico con la indicación de cesárea electiva por presentación podálica, la\necografía obstétrica del tercer trimestre y el control prenatal vigente.",
+      "espera_copago": "",
+      "resultado": {
+        "solicitud_id": "SOL-c3edb7ce3b1d",
+        "estado_final": "hitl",
+        "duplicada": false,
+        "abierto": true,
+        "motivo_no_abierto": "",
+        "extraccion": {
+          "campos": [
+            {
+              "campo": "afiliado_ref",
+              "valor": "AF-100512",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "prestador_id",
+              "valor": "PRE-0077",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "dx_cie10",
+              "valor": "O82.0",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "procedimiento_codigo",
+              "valor": "PRC-5901",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "tipo",
+              "valor": "programado",
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            },
+            {
+              "campo": "documentos",
+              "valor": [
+                "orden_medica",
+                "informe_medico",
+                "ecografia_obstetrica",
+                "control_prenatal"
+              ],
+              "confianza": 1.0,
+              "validado_catalogo": true,
+              "nota": ""
+            }
+          ],
+          "completa": true,
+          "motivo_incompleta": "",
+          "modelo": "gpt-4o-mini",
+          "costo_usd": 0.0001584,
+          "tokens_in": 420,
+          "tokens_out": 159,
+          "latencia_ms": 2005,
+          "truncada": false
+        },
+        "guardrail_entrada": {
+          "decision": "PERMITIR",
+          "latencia_ms": 1450,
+          "hallazgos": [
+            {
+              "capa": "1_secretos",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "2_inyeccion",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "3_toxicidad",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "4_reglas_dominio",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "5_pii",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "6_url",
+              "decision": "PERMITIR",
+              "categoria": "",
+              "confianza": null,
+              "detalle": "",
+              "latencia_ms": 0,
+              "omitida": false
+            },
+            {
+              "capa": "7_prompt_guard",
+              "decision": "PERMITIR",
+              "categoria": "benigno",
+              "confianza": 0.0004,
+              "detalle": "Prompt Guard 2: p(ataque)=0.0004",
+              "latencia_ms": 627,
+              "omitida": false
+            },
+            {
+              "capa": "8_llama_guard",
+              "decision": "PERMITIR",
+              "categoria": "safe",
+              "confianza": null,
+              "detalle": "safe",
+              "latencia_ms": 1439,
+              "omitida": false
+            }
+          ]
+        },
+        "adjudicacion": {
+          "elegible": true,
+          "motivo_elegibilidad": "afiliación activa",
+          "carencia_ok": false,
+          "carencia_dias_exigidos": 300,
+          "carencia_dias_afiliado": 220,
+          "cobertura": "no_cubierto",
+          "motivo_cobertura": "carencia de maternidad no cumplida: exige 300 días y el afiliado tiene 220",
+          "copago_pen": null,
+          "copago_desglose": {},
+          "documentos_faltantes": [],
+          "fundamentos": [
+            [
+              "afiliacion_y_dependientes",
+              "Inicio de vigencia"
+            ],
+            [
+              "carencias_y_preexistencias",
+              "Carencia de maternidad"
+            ]
+          ]
+        },
+        "ruta": "hitl",
+        "motivo_ruta": "carencia no cumplida: el sistema no emite la negación, escala con la cita y el borrador",
+        "emision": {
+          "tipo": "niega_administrativa",
+          "cuerpo": "Estimada Ana Lucía Cavero Bendezú,\n\nHemos recibido la solicitud para la cobertura del procedimiento de cesárea programada bajo el diagnóstico O82.0. Lamentablemente, debemos informarle que en este momento no podemos autorizar la cobertura solicitada debido a que no se ha cumplido con el periodo de carencia requerido para la cobertura de maternidad.\n\nSegún nuestra política vigente, «la cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia». Actualmente, usted ha cumplido con 220 días de carencia, lo que significa que aún no se ha alcanzado el periodo necesario para que el parto esté cubierto.\n\nEntendemos que esta situación puede ser inconveniente, y le recomendamos considerar otras opciones disponibles para la atención del parto. Una vez que se cumpla el periodo de carencia de 300 días, estaremos encantados de reevaluar su solicitud para cualquier procedimiento relacionado con maternidad.\n\nSi tiene alguna pregunta o necesita más información, no dude en ponerse en contacto con nosotros.\n\nAtentamente,\n\nEl equipo de preautorización de Vitalia Salud EPS\n\nFUENTES: carencias_y_preexistencias-v2026_09-c03",
+          "borrador": true,
+          "aprobada": true,
+          "citas": [
+            {
+              "texto": "la cobertura de maternidad tiene un periodo de carencia de 300 días calendario contados desde el inicio de vigencia",
+              "chunk_id": "carencias_y_preexistencias-v2026_09-c03",
+              "articulo": "Carencia de maternidad",
+              "jerarquia": "Carencias y preexistencias > Periodos de carencia > Carencia de maternidad",
+              "version_id": "v2026_09",
+              "verificada": true
+            }
+          ],
+          "citas_rechazadas": [],
+          "fuentes_declaradas": [
+            "carencias_y_preexistencias-v2026_09-c03"
+          ],
+          "fuentes_huerfanas": [],
+          "controles": [
+            {
+              "codigo": "O1",
+              "nombre": "La cita existe literalmente",
+              "paso": true,
+              "detalle": "las 1 citas coinciden carácter por carácter",
+              "accion": ""
+            },
+            {
+              "codigo": "O2",
+              "nombre": "La versión citada estaba vigente",
+              "paso": true,
+              "detalle": "todas las citas son de v2026_09, vigente el 2026-09-05",
+              "accion": ""
+            },
+            {
+              "codigo": "O3",
+              "nombre": "Consistencia determinista ↔ prosa",
+              "paso": true,
+              "detalle": "el motor no calculó copago y la carta no afirma ninguno",
+              "accion": ""
+            },
+            {
+              "codigo": "O4",
+              "nombre": "Sin negación clínica sin firma",
+              "paso": true,
+              "detalle": "no es una negación por necesidad médica",
+              "accion": ""
+            },
+            {
+              "codigo": "O5",
+              "nombre": "Sin PII fuera de destino",
+              "paso": true,
+              "detalle": "destino es el titular: la carta lleva sus datos por diseño",
+              "accion": ""
+            },
+            {
+              "codigo": "O6",
+              "nombre": "Esquema y catálogo",
+              "paso": true,
+              "detalle": "1 código(s), las fuentes declaradas y los fundamentos del motor resuelven contra el corpus vigente",
+              "accion": ""
+            }
+          ],
+          "fundamentos_sin_fragmento": [],
+          "modelo": "gpt-4o",
+          "costo_usd": 0.0052425,
+          "tokens_in": 1097,
+          "tokens_out": 250,
+          "latencia_ms": 1897,
+          "truncada": false
+        },
+        "carta_id": null,
+        "eventos": [
+          "recibida",
+          "E1",
+          "E2",
+          "E3",
+          "hitl"
+        ],
+        "costo_usd": 0.0054009,
+        "latencia_ms": 10516,
+        "latencia_por_etapa": {
+          "guardrail": 1450,
+          "E1_extraccion": 2364,
+          "E2_adjudicacion": 119,
+          "E4_emision": 2256
+        }
+      },
+      "correcto": true,
+      "controles_que_bloquearon": []
+    }
+  ],
+  "idempotencia_ok": true,
+  "cartas_forzadas": [
+    {
+      "id": "X1",
+      "control": "O3",
+      "defecto": "la carta afirma un copago distinto del que calculó el motor",
+      "por_que_importa": "el afiliado llega a la clínica con un número que nadie va a respetar; es el reclamo de S/ 340 del caso de negocio",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 640.00, según la política vigente:\n«La vigencia inicia el primer día del mes siguiente al pago de la primera prima, salvo que la\nsolicitud se apruebe después del día 20, en».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O3"
+      ],
+      "detalle": "el motor calculó S/ 1210.00 y la carta afirma S/ 640.00, que no sale de ningún cálculo del motor",
+      "detectado": true
+    },
+    {
+      "id": "X2",
+      "control": "O1",
+      "defecto": "la carta presenta como cita textual un texto que no está en ningún fragmento",
+      "por_que_importa": "una cláusula inventada en una carta de preautorización es exactamente lo que R2 existe para impedir",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, según la política vigente:\n«el copago se reduce a la mitad cuando el afiliado tiene más de un año de antigüedad».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O1"
+      ],
+      "detalle": "la carta afirma sobre la política y no cita ninguna cláusula · 1 cita(s) sin fragmento de origen: «el copago se reduce a la mitad cuando el afiliado tiene más …»",
+      "detectado": true
+    },
+    {
+      "id": "X3",
+      "control": "O6",
+      "defecto": "la carta nombra un código de procedimiento que no existe en el catálogo",
+      "por_que_importa": "el prestador factura contra el código de la carta",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-9999) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, según la política vigente:\n«La vigencia inicia el primer día del mes siguiente al pago de la primera prima, salvo que la\nsolicitud se apruebe después del día 20, en».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O6"
+      ],
+      "detalle": "códigos inexistentes: PRC-9999",
+      "detectado": true
+    },
+    {
+      "id": "X4",
+      "control": "O6",
+      "defecto": "la carta declara en FUENTES un identificador que no estuvo en el contexto",
+      "por_que_importa": "es el identificador con el que un fiscalizador va al documento, y se midió en el Carril 0 que el modelo llega a firmar fuentes inventadas",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, según la política vigente:\n«La vigencia inicia el primer día del mes siguiente al pago de la primera prima, salvo que la\nsolicitud se apruebe después del día 20, en».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03, deducibles_y_copagos-v2026_09-c99",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O6"
+      ],
+      "detalle": "FUENTES fuera del contexto: deducibles_y_copagos-v2026_09-c99",
+      "detectado": true
+    },
+    {
+      "id": "X5",
+      "control": "O1",
+      "defecto": "la carta cita bien el principio de la cláusula y le cambia el final",
+      "por_que_importa": "es el fallo que una revisión humana no ve: parece la cláusula correcta",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, según la política vigente:\n«La vigencia inicia el primer día del mes siguiente al pago de la prime y no admite excepción alguna».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O1"
+      ],
+      "detalle": "la carta afirma sobre la política y no cita ninguna cláusula · 1 cita(s) sin fragmento de origen: «La vigencia inicia el primer día del mes siguiente al pago d…»",
+      "detectado": true
+    },
+    {
+      "id": "X8",
+      "control": "O1",
+      "defecto": "la carta no cita ninguna cláusula: resuelve «según la política vigente»",
+      "por_que_importa": "es el defecto que el propio MVP produjo y que O1 aprobaba por vacío, porque «las 0 citas coinciden» es trivialmente cierto",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, conforme a lo establecido en la política vigente.\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O1"
+      ],
+      "detalle": "la carta afirma sobre la política y no cita ninguna cláusula",
+      "detectado": true
+    },
+    {
+      "id": "X9",
+      "control": "O1",
+      "defecto": "la carta entrecomilla la ruta de títulos del fragmento en vez de la cláusula",
+      "por_que_importa": "es la cita más fácil de producir —está en la primera línea de todos los fragmentos— y no sustenta nada: un título dice dónde está la norma, no qué ordena. Lo produjo el modelo en la primera corrida real",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, según la política vigente:\n«Afiliación y dependientes > Proceso de afiliación > Inicio de vigencia».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O1"
+      ],
+      "detalle": "la carta afirma sobre la política y no cita ninguna cláusula · 1 cita(s) sin fragmento de origen: «Afiliación y dependientes > Proceso de afiliación > Inicio d…»",
+      "detectado": true
+    },
+    {
+      "id": "X10",
+      "control": "O3",
+      "defecto": "la carta explica el desglose: copago S/ 1,210.00 con deducible de S/ 600.00",
+      "es_control_negativo": true,
+      "por_que_importa": "el control tiene que dejar pasar los importes que el motor sí calculó; una carta que da el resultado sin la aritmética es la carta que el afiliado no entiende hoy",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada.\n\nEl copago que le corresponde asumir es de S/ 1 210.00, del que S/ 600.00 corresponden al deducible anual de su plan, según la política vigente:\n«La vigencia inicia el primer día del mes siguiente al pago de la primera prima, salvo que la\nsolicitud se apruebe después del día 20, en».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": true,
+      "controles_que_bloquearon": [],
+      "detalle": "la carta dice S/ 1210.00 y el motor calculó S/ 1210.00; los demás importes (1) son del desglose",
+      "detectado": true
+    },
+    {
+      "id": "X11",
+      "control": "O1",
+      "defecto": "la carta entrecomilla una palabra corriente además de citar la cláusula",
+      "es_control_negativo": true,
+      "por_que_importa": "lo produjo una carta real del MVP. La expresión que recorta las citas abría con una clase de comillas y cerraba con otra sin emparejarlas, así que la comilla recta de una palabra del cuerpo se casaba con el «»» de la cita verdadera y fabricaba un tramo que no está en ningún fragmento. O1 lo reprobaba con razón —ese texto no existe— y bloqueaba una carta correcta: el control acertaba y el insumo mentía",
+      "cuerpo": "Estimada señora Rosa Milagros Quispe Ayala:\n\nSu solicitud de Colecistectomía laparoscópica (PRC-4712) ha sido autorizada. Su afiliación figura en estado \"activo\".\n\nEl copago que le corresponde asumir es de S/ 1 210.00, según la política vigente:\n«La vigencia inicia el primer día del mes siguiente al pago de la primera prima, salvo que la\nsolicitud se apruebe después del día 20, en».\n\nSi tiene alguna consulta puede escribirnos respondiendo esta carta.\n\nAtentamente,\nMesa de Preautorización de Vitalia Salud EPS\nFUENTES: afiliacion_y_dependientes-v2026_09-c03",
+      "aprobada": true,
+      "controles_que_bloquearon": [],
+      "detalle": "las 1 citas coinciden carácter por carácter",
+      "detectado": true
+    },
+    {
+      "id": "X6",
+      "control": "O2",
+      "defecto": "la carta cita v2026_09 cuando la versión vigente es v2026_10",
+      "por_que_importa": "una cita correcta de una norma derogada es una cita falsa con otro nombre; es lo que ADR-21 y el alias resuelven",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O2"
+      ],
+      "detalle": "citas de otra versión: v2026_09",
+      "detectado": true
+    },
+    {
+      "id": "X7",
+      "control": "O4",
+      "defecto": "negación por necesidad médica sin firma de médico colegiado",
+      "por_que_importa": "R3: es la única regla del diseño que además está como CHECK en la base, y el control la detiene antes del INSERT",
+      "aprobada": false,
+      "controles_que_bloquearon": [
+        "O4"
+      ],
+      "detalle": "sin firma → negación clínica sin firma · con firma → firmada por FIR-000123",
+      "detectado": true,
+      "nivel": "control, no carta"
+    }
+  ],
+  "controles_ejercitados": [
+    "O1",
+    "O2",
+    "O3",
+    "O4",
+    "O6"
+  ],
+  "eventos_de_estado": 14,
+  "citas_verificadas_en_base": 3,
+  "cartas_emitidas": 1,
+  "costo_por_span": [
+    {
+      "span": "adjudicacion",
+      "llamadas": 3,
+      "costo_usd": 0.0,
+      "latencia_max_ms": 120
+    },
+    {
+      "span": "emision",
+      "llamadas": 3,
+      "costo_usd": 0.0181725,
+      "latencia_max_ms": 2413
+    },
+    {
+      "span": "extraccion",
+      "llamadas": 3,
+      "costo_usd": 0.00047715,
+      "latencia_max_ms": 3332
+    }
+  ],
+  "costo_usd_total": 0.01865,
+  "costo_pen_por_solicitud": 0.0233,
+  "fallos": 0
+}
